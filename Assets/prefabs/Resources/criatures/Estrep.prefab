@@ -1,0 +1,348 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &185592
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 485592}
+  m_Layer: 8
+  m_Name: Bone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &185594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 485594}
+  - component: {fileID: 13785592}
+  m_Layer: 8
+  m_Name: C_rculo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &185596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 485596}
+  m_Layer: 8
+  m_Name: Arma__o
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &185598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 485598}
+  - component: {fileID: 9585592}
+  - component: {fileID: 14385592}
+  - component: {fileID: 11485592}
+  - component: {fileID: 11410126}
+  m_Layer: 8
+  m_Name: Estrep
+  m_TagString: Criature
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &485592
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185592}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.49999997, w: 0.50000006}
+  m_LocalPosition: {x: -0, y: 0, z: 0.04777483}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 485596}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &485594
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185594}
+  m_LocalRotation: {x: 0.7071069, y: 0, z: 0, w: 0.70710677}
+  m_LocalPosition: {x: 0, y: 0.132, z: 0.376}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 485598}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &485596
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185596}
+  m_LocalRotation: {x: -0.7071069, y: 0, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: 0, y: 0.644, z: 0.085}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 485592}
+  m_Father: {fileID: 485598}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &485598
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -780.963, y: 0.222, z: 2473.615}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 485596}
+  - {fileID: 485594}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &9585592
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185598}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: f035acf0e6709e5428d071247a2a9ae7, type: 3}
+  m_Controller: {fileID: 9100000, guid: 691191f2a6c70d64b95edb32a2fb4bd7, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11410126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74738a453a923e74499322e2bd681e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  piscar:
+  - {x: 0, y: 0}
+  - {x: 0.2, y: 0}
+  - {x: 0.4, y: 0}
+  - {x: 0.6, y: 0}
+  olhosDeImpacto: []
+  olhosDeMorto:
+  - {x: 0.8, y: 0}
+  tempoDePiscada: 0.1
+  tempoFechadoNoPiscar: 0.2
+  materialDosOlhos: 4
+--- !u!114 &11485592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052a590db11cb9a449d73625856648bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  X:
+    velocidadeAndando: 1
+    velocidadeCorrendo: 1
+    gravidade: 9.8
+    velocidadeDeRotacao: 0.5
+    velocidadeDeRotacaoParado: 1
+    velocidadeDeRotacaoCorrendo: 0.25
+    rot: 0
+    apiceDoPulo: 1.2
+    velocidadeCaindo: 7
+    velocidadeNoAr: 4
+    velocidadeSubindo: 5
+    distanciaFundamentadora: 0.5
+    alturaCamera: 4
+    distanciaCamera: 5.5
+    velocidadeMaxAngular: 25
+    Nome: 
+    nomeID: 0
+    mNivel:
+      _nivel: 1
+      _XP: 0
+      _paraProxNivel: 40
+      _modNivel: 1.25
+      _ultimoPassaNivel: 0
+    contraTipos:
+    - _mod: 1
+      _nome: Agua
+    - _mod: 1
+      _nome: Fogo
+    - _mod: 1
+      _nome: Planta
+    - _mod: 1
+      _nome: Gelo
+    - _mod: 1
+      _nome: Terra
+    - _mod: 1
+      _nome: Pedra
+    - _mod: 1
+      _nome: Psiquico
+    - _mod: 1
+      _nome: Eletrico
+    - _mod: 1
+      _nome: Normal
+    - _mod: 1
+      _nome: Veneno
+    - _mod: 1
+      _nome: Inseto
+    - _mod: 1
+      _nome: Voador
+    - _mod: 1
+      _nome: Gas
+    meusTipos: []
+    cAtributos:
+    - basico: 3
+      corrente: 14
+      maximo: 14
+      taxa: 0.2
+      _name: PV
+    - basico: 7
+      corrente: 30
+      maximo: 30
+      taxa: 0.2
+      _name: PE
+    - basico: 1
+      corrente: 1
+      maximo: 1
+      taxa: 0.2
+      _name: Poder
+    - basico: 1
+      corrente: 1
+      maximo: 1
+      taxa: 0.2
+      _name: Forca
+    - basico: 1
+      corrente: 1
+      maximo: 1
+      taxa: 0.2
+      _name: Defesa
+    emissor: 
+    Golpes: []
+    tempoReacaoBasico: 2
+    tempoReacaoCorrente: 2
+    tempoReacaoMinimo: 2
+    statusTemporarios: []
+    golpeEscolhido: 0
+    mov:
+      velocidadeAndando: 6
+      caracPulo:
+        alturaDoPulo: 2
+        tempoMaxPulo: 1
+        velocidadeSubindo: 3
+        velocidadeDescendo: 4.8
+        velocidadeDuranteOPulo: 6
+        amortecimentoNaTransicaoDePulo: 0.05
+        impulsoInicial: 0.3
+        estouPulando: 0
+        estavaPulando: 0
+  nomeCriature: 31
+  nivelCriature: 1
+  ataqueComPulo: 0
+--- !u!137 &13785592
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185594}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 7eaf7e86fa17d174391a71a40f30dcf6, type: 2}
+  - {fileID: 2100000, guid: 7eaf7e86fa17d174391a71a40f30dcf6, type: 2}
+  - {fileID: 2100000, guid: e9c29218e3db78d43a9ae42dab4d9d14, type: 2}
+  - {fileID: 2100000, guid: afa0deaf72d9d9f4ba337943285046ee, type: 2}
+  - {fileID: 2100000, guid: f5f9ccdbdfad54e4ebd3158ad56effac, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300000, guid: f035acf0e6709e5428d071247a2a9ae7, type: 3}
+  m_Bones:
+  - {fileID: 485592}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 485592}
+  m_AABB:
+    m_Center: {x: -0.15221193, y: 0, z: -0.14122286}
+    m_Extent: {x: 0.4929236, y: 0.5248203, z: 0.3199125}
+  m_DirtyAABB: 0
+--- !u!143 &14385592
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185598}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0
+  m_Center: {x: 0, y: 0.65, z: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 185598}
+  m_IsPrefabParent: 1

@@ -1,0 +1,177 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1784405038662236}
+  m_IsPrefabParent: 1
+--- !u!1 &1784405038662236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4022096999572850}
+  - component: {fileID: 33382463309983208}
+  - component: {fileID: 65781897673294044}
+  - component: {fileID: 23589102035828640}
+  - component: {fileID: 114378782928872188}
+  m_Layer: 9
+  m_Name: cuboDeGrama(Clone)
+  m_TagString: cenario
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 18
+  m_IsActive: 1
+--- !u!4 &4022096999572850
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1784405038662236}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 710, y: 0, z: 1090}
+  m_LocalScale: {x: 10, y: 2, z: 10}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23589102035828640
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1784405038662236}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33382463309983208
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1784405038662236}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65781897673294044
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1784405038662236}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114378782928872188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1784405038662236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef0dc79b46392f48b50453642900019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialAlvo: {fileID: 2100000, guid: 6eae9912332d88045bb3da5b348da5e1, type: 2}
+  materiaisConfirmadores:
+  - {fileID: 2100000, guid: 09ed5b95f2394bc4180e9518de6b19a3, type: 2}
+  - {fileID: 2100000, guid: 277308de1cd52694dbde8cc7ae7009f4, type: 2}
+  planoTransparencia: {fileID: 1508077794548574, guid: f09c02ecfb87b1244bec79cbaea190bc,
+    type: 2}
+  props:
+  - taxaDeInsercaoDeProps: 0.95
+    propsCompativelComBaixo:
+    - prop: {fileID: 1527792931610378, guid: d9cdc3a7a0e7054419d8e5693ffe9cf1, type: 2}
+      taxa: 0.35
+    - prop: {fileID: 1962754926600080, guid: 0fd6f34b282400549891ae4d39922a49, type: 2}
+      taxa: 0.35
+    - prop: {fileID: 1328064246021408, guid: 3de5b9fd7ad95914aab37884f12fe0e6, type: 2}
+      taxa: 0.1
+    - prop: {fileID: 1905682119273720, guid: 35d5592cbc448374e9fcc18e1ed462fe, type: 2}
+      taxa: 0.4
+    propsNaoCompativelComBaixo:
+    - prop: {fileID: 1441825670348422, guid: 24d98dbe4b347c5408815103dbaade32, type: 2}
+      taxa: 0.5
+    - prop: {fileID: 1030811689606650, guid: 155e8a0367dbaa04aba7978cef3637c3, type: 2}
+      taxa: 0.6
+    - prop: {fileID: 1253419386792674, guid: a7cc37d9eb500cb488d9c448817cdb0f, type: 2}
+      taxa: 0.6
+    - prop: {fileID: 1098738335970602, guid: 467915d3c9dcff947bf1aebd97ce2250, type: 2}
+      taxa: 0.15
+    propsDeCanto:
+    - prop: {fileID: 100000, guid: 5411ce5ba361a4db496bbb6b45ea4f4f, type: 2}
+      taxa: 0.25
+    - prop: {fileID: 100000, guid: 59cf995d5276647b89af02ed13b11ee4, type: 2}
+      taxa: 0.25
+    - prop: {fileID: 100000, guid: 52936a1b3c11a4eed881b2e5f4055469, type: 2}
+      taxa: 0.25
+    - prop: {fileID: 1664212221650100, guid: 56749b1713ee1f04dbce8ac3c5c51306, type: 2}
+      taxa: 0.25
+    - prop: {fileID: 1714739520945514, guid: 46e2ac3af3f01b24f9608d86d28c0813, type: 2}
+      taxa: 0.55
+  - taxaDeInsercaoDeProps: 0.761
+    propsCompativelComBaixo:
+    - prop: {fileID: 1262751334629922, guid: 064ecc42a5df65d44adec51f87819bdb, type: 2}
+      taxa: 0.2
+    - prop: {fileID: 100006, guid: 2c63f3e267066654a9e9f79535a534a5, type: 2}
+      taxa: 0.3
+    - prop: {fileID: 100004, guid: e96d5109248f4944b98c7c43dfa09c45, type: 2}
+      taxa: 0.2
+    - prop: {fileID: 100006, guid: 12a07bb1932cfb244b701c7da4b0bee7, type: 2}
+      taxa: 0.35
+    propsNaoCompativelComBaixo:
+    - prop: {fileID: 100000, guid: a0d978648211cb74a818288783d78ec1, type: 2}
+      taxa: 0.7
+    - prop: {fileID: 1356677664203414, guid: 861e115e2437cd3459e24c9ee782eccc, type: 2}
+      taxa: 0.5
+    - prop: {fileID: 1204895074814368, guid: d0334db0eb35aa04a80aabd1ff6bdc70, type: 2}
+      taxa: 0.5
+    - prop: {fileID: 100000, guid: 984c421b7c89cb745a0acd01cafa05d2, type: 2}
+      taxa: 0.3
+    - prop: {fileID: 1383540967847758, guid: 38593a38c9773be409c939ee9f139ea5, type: 2}
+      taxa: 0.3
+    - prop: {fileID: 1357094315829506, guid: eb56f42fbda5f2146901e7a0ead8a5db, type: 2}
+      taxa: 0.5
+    propsDeCanto:
+    - prop: {fileID: 100000, guid: 5411ce5ba361a4db496bbb6b45ea4f4f, type: 2}
+      taxa: 0.5
+    - prop: {fileID: 100000, guid: 59cf995d5276647b89af02ed13b11ee4, type: 2}
+      taxa: 0.25
+    - prop: {fileID: 100000, guid: 52936a1b3c11a4eed881b2e5f4055469, type: 2}
+      taxa: 0.25
+    - prop: {fileID: 100004, guid: e96d5109248f4944b98c7c43dfa09c45, type: 2}
+      taxa: 0.25
+  vai: 0

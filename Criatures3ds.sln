@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Criatures3ds.Plugins", "Criatures3ds.Plugins.csproj", "{92F5F33C-F850-4200-2281-A5E50EB3BAB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Criatures3ds", "Criatures3ds.csproj", "{F894EF12-D99F-A621-FC5E-0E033E8A6A9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Criatures3ds.Editor.Plugins", "Criatures3ds.Editor.Plugins.csproj", "{E5CE2C12-D274-17B3-AF38-D49BFE97A853}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92F5F33C-F850-4200-2281-A5E50EB3BAB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92F5F33C-F850-4200-2281-A5E50EB3BAB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92F5F33C-F850-4200-2281-A5E50EB3BAB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92F5F33C-F850-4200-2281-A5E50EB3BAB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F894EF12-D99F-A621-FC5E-0E033E8A6A9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F894EF12-D99F-A621-FC5E-0E033E8A6A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F894EF12-D99F-A621-FC5E-0E033E8A6A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F894EF12-D99F-A621-FC5E-0E033E8A6A9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5CE2C12-D274-17B3-AF38-D49BFE97A853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5CE2C12-D274-17B3-AF38-D49BFE97A853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5CE2C12-D274-17B3-AF38-D49BFE97A853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5CE2C12-D274-17B3-AF38-D49BFE97A853}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

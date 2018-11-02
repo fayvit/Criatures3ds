@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F894EF12-D99F-A621-FC5E-0E033E8A6A9F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectGenerator>VSTU</UnityProjectGenerator>
+    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityBuildTarget>N3DS:35</UnityBuildTarget>
+    <UnityVersion>5.6.6f2</UnityVersion>
+    <RootNamespace></RootNamespace>
+    <LangVersion>4</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_6;UNITY_5_6;UNITY_5;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WWW;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_N3DS;UNITY_N3DS_API;ENABLE_AUDIO;ENABLE_CLOTH;ENABLE_MICROPHONE;MIC_NOT_SUPPORTED_BY_FMOD;ENABLE_PLATFORMSOCKETS;SUPPORT_THREADS;ENABLE_NETWORK;ENABLE_UNET;ENABLE_WEBCAM;ENABLE_IL2CPP;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_PRO_LICENSE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_6;UNITY_5_6;UNITY_5;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WWW;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_N3DS;UNITY_N3DS_API;ENABLE_AUDIO;ENABLE_CLOTH;ENABLE_MICROPHONE;MIC_NOT_SUPPORTED_BY_FMOD;ENABLE_PLATFORMSOCKETS;SUPPORT_THREADS;ENABLE_NETWORK;ENABLE_UNET;ENABLE_WEBCAM;ENABLE_IL2CPP;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_PRO_LICENSE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityScript.Lang" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:/Program Files/UnityNew3DS_1_3_2/Editor/Data/PlaybackEngines/N3DS/Tools/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Program Files/UnityNew3DS_1_3_2/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>C:/Program Files/UnityNew3DS_1_3_2/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>C:/Program Files/UnityNew3DS_1_3_2/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>C:/Program Files/UnityNew3DS_1_3_2/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>C:/Program Files/UnityNew3DS_1_3_2/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>C:/Program Files/UnityNew3DS_1_3_2/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VR">
+      <HintPath>C:/Program Files/UnityNew3DS_1_3_2/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:/Program Files/UnityNew3DS_1_3_2/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Criatures3ds.Plugins.csproj">
+      <Project>{92F5F33C-F850-4200-2281-A5E50EB3BAB1}</Project>
+      <Name>Criatures3ds.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="Criatures3ds.Plugins.unityproj">
+      <Project>{92F5F33C-F850-4200-2281-A5E50EB3BAB1}</Project>
+      <Name>Criatures3ds.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Orion Criatures scripts\3dsUpdate\ImageMenuN3ds.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\3dsUpdate\MyN3dsCommandDefines.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\3dsUpdate\N3DS_KeysDic.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\3dsUpdate\N3dsAxis.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\3dsUpdate\N3dsLoader.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\AnimaBraco.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\AnimaLuzPsiquica.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\AnimaPoseDeCaptura.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\AnimacaoDeSpriteParaUI.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\AnimandoCaptura.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\ControleDosOlhos.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\DanoAparecendo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\caindoNaArmadilhaChao.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\eletricidade\LightningBolt.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\eletricidade\Perlin.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\escalaParaSabre.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\giraFuracaoDeFolhas.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\giraGira.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\giraTurboDagua.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\impactoAoChao.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\particulasAoChao.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Animacoes\poeiraAoVento.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\AtivadorDeBotao.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\BilboardGeneration.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\BillboardParticularGenerate.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\BlocsGenerate.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\BuscadorDeID.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ComportamentoInimigo\DisparadorDoGolpe.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ComportamentoInimigo\IA_Agressiva.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ComportamentoInimigo\SorteadorDeGolpe.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\AnimadorCriature.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\AnimadorHumano.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\AplicadorDeCamera.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\CameraBasica.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\CameraDeLuta.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\CameraDirecionavel.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\CameraExibicionista.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\CommandReader.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\DirecaoInduzida.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\MovimentacaoBasica.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\Pulo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\SigaOLider.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\TransformPosDeConversa.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\abrePortaInterna.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\transporteInterno.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\EncounterTriggerManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\BarrierEventManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\Bau.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\EscondeCoisa.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\EventAgregator.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\EventoComGolpe.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\IGameEvent.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\IniciarEncontroComGerente.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\IniciarEncontroDeLocal.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\MbMudeCena.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\MiniArmagedomPortatilNaCaverna.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\RockMovePuzzle.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\RockMovePuzzleManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\StandardGameEvent.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\StandardSendIntAndStringEvent.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\StandardSendIntEvent.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\StandardSendStringEvent.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\TriggerFinalDeCapitulo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\GetKeyFromText.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\ActionManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\Ativadores\AtivadorDaConversaCiclica.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\Ativadores\AtivadorDaConversaComDerek.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\Ativadores\AtivadorDaConversaComIan.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\Ativadores\AtivadorDaConversaComOpcoes.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\Ativadores\AtivadorDaLutaComTreinador.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\Ativadores\AtivadorDoBotaoArmagedom.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\Ativadores\AtivadorDoBotaoConversa.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\Ativadores\AtivadorDoBotaoConversaComJogoDeCamera.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\Ativadores\AtivadorDoBotaoConversaCondicional.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\Ativadores\AtivadorDoShop.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\BtnsManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\CriatureParaMostrador.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\DadosDeMiniaturas.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\DisparaTextos.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\FerramentasDeHud.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\HudManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\ImageMenu.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\LayoutElementQuadrado.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\LoadBar.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\MenuBasico.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\MenuDeImagens.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\MenuDeShop.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PainelDeAcoes.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PainelDeConfirmacao.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PainelDeCriature.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PainelDeEscolhaINicial.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PainelDeGolpe.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PainelDeItens.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PainelMensCriature.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PainelMostrarItem.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PainelQuantidadesParaShop.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PainelStatus.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PainelUmaMensagem.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\ParentearNaHUD.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\PauseMenu.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\RedimensionarUI.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\ReplaceCriatureHudManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\ShopManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\ShoulderButtonsN3DS.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\StatusHudManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\TryToLearnHud.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\UiDeOpcoes.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\UmaOpcao.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\UmaOpcaoDeMenu.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\HUD\UmaOpcaoDeShop.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Initial_insert\ContainerDeLoadSaves.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Initial_insert\InitialSceneManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Initial_insert\InputTextDoCriandoNovoJogo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Initial_insert\LanguageMenu.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Initial_insert\LanguageSwitcher.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Initial_insert\LoadButton.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Initial_insert\LoginJoltManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Initial_insert\UmaOpcaoDeLinguagem.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\AmuletoDaCoragem.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\Antidoto.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\CanetaSagradaDeLog.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\IntervaloDeItens.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\ItemAntiStatusBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\ItemConsumivelBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\ItemDeAprenderGolpe.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\ItemDeEnergiaBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\ItemDeRecuperacaoBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\ItemModificadorDeAtributoBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\ItemModificadorDeAtributoConsumivel.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\ItemModificadorDeAtributoIntrinsico.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\ItemNaoUsavel.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\ItemQuantitativo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbAdubo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbAguaTonica.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbAura.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbCartaLuva.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbEstrela.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbGasolina.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbInseticida.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbItens.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbMaca.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbPergaminhoDeArmagedom.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbPergaminhoDeFuga.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbPergaminhoDePerfeicao.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbPilha.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbQuartzo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbRegador.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbRepolhoComOvo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbSeiva.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbUsoDeItem.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MbVentilador.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\MensDeUsoDeItem.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PegaCristal.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PegaUmItem.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergDeSabre.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergDoMultiplicar.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergFuracaoDeFolhas.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergGosmaAcida.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergOlharEnfraquecedor.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergOlharMal.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergVentosCortantes.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergaminhoDeAlana.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergaminhoDeAnanda.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergaminhoDeBoutjoi.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergaminhoDeLaurense.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\PergaminhoDeSinara.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\TintaSagradaDeLog.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Itens\Tonico.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\MapaPorScript.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\MatrizDeBillboards.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\MeuBillboard.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\MyBillboard.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\NPCs\ConversaComNpcMovimentandoCamera.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\NPCs\MovimentoControladoParaNPC.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\NPCs\NPCcomOpcoesDeConversa.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\NPCs\NPCdeConversa.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\NPCs\NPCdeFalasCiclicas.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\NPCs\NPCfalasCondicionais.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\NPCs\NpcDoPrimeiroMiniArmagedom.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\NPCs\NpcIan.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\NPCs\NpcLutaContraTreinador.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\NPCs\VisaoDeTreinadorEspecial.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\PropsPorScript.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\AdicionaStatusSimples.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\Amedrontado.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\ContainerDosStatus.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\DatesForTemporaryStatus.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\Envenenado.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\Fraco.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\RecolocadorDeStatus.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\StatusTemporarioBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\StatusTemporarioSimplesBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\VerificaAplicaStatusEnvenenado.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\AuxiliarDeInstancia.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\CriaturesPerto.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\EvitaAvancarNoTrigger.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\FadeView.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\FadeViewLoad.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\IntervaloDeGolpeView.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\MbAlternancia.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\MelhoraInstancia.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\MusicasDeFundo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\ParticulaDeCoisasBoas.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\ParticulasDeSubstituicao.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\RetaDelimitadora.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\melhoraPos.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\splash.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Suporte\tiraPoeFlare.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\TesteMudeCena.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\colisor.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\CharacterManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\CreatureManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\ArpiaG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\Atributos.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\Batler.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\CaracteristicasDeCriature.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\CriatureBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\FlorestG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\GerenciadorDeExperiencia.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\GerenciadorDeGolpes.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\IGerenciadorDeExperiencia.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\IruinG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\Izicuolo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbAladegg.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbBabaucu.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbBaratarab.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbCabecu.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbCracler.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbDogMour.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbEscorpion.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbFlam.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbMarak.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbNessei.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbOnarac.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbProjetilEletrico.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbRocketler.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbSerpente.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\MbSteal.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\PolyCharmG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\UpDeNivel.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\UrkanG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\Wisks.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\XuashG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\AplicadorDeGolpe.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\AplicadorDeProjeteis.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\AtualizadorDeImpactoAereo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\AtualizadorDeImpactos.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\BicoG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\BolaDeFogoG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\BolaPsiquicaG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\ChaoQueimando.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\ChicoteDeCaldaG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\Dano\ColisorDeDano.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\Dano\ColisorDeDanoBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\Dano\ColisorDeDanoDirecional.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\Dano\ColisorDeDanoRigido.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\Dano\ColisorDeGolpe.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\Dano\ColisorDeStatusExpansivel.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\Dano\Dano.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\Dano\EstouEmDano.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\Emissor.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\FuracaoDeFolhasG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\GarraG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\GolpeBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\GolpePersonagem.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\GosmaAcidaG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\GosmaDeInsetoG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\HitNoChaoBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\IGolpeBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\ImpactoAereoBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\ImpactoBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\LaminaDeFolhaG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbAgulhaVenenosa.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbAnelDoOlhar.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbAvalanche.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbBastao.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbBombaDeGas.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbCabecada.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbCascalho.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbChicoteDeMao.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbChifre.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbChute.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbChuvaVenenosa.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbCortinaDeFumaca.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbCortinaDeTerra.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbDentada.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbEletricidade.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbEletricidadeConcentrada.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbEspada.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbHidroBomba.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbMultiplicar.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbOndaVenenosa.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbPedregulho.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbRajadaDeGas.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbRajadaDeTerra.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbSobreSalto.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbSobreVoo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbTeletransporte.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbTempestadeDeFolhas.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbTempestadeEletrica.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbTosteAtaque.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbVingancaDaTerra.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\MbcomportamentoDoMultiplicado.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\OlharEnfraquecedor.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\OlharMal.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\PegaUmGolpeG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\ProjetilBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\ProjetilEletricoBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\PsicoseG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\RajadaDeAguaG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\RajadaDeFogoG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\Sabre.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\TapaG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\TurboDeAguaG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\VentaniaG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\golpesG2\VentosCortantesG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Criatures\personagemG2.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\DadosDoPersonagem.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\ElementosDoJogo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Encontravel.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\ExistenciaDoController.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\GameController.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\GlobalController.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\IA_Base.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\InfoInGame.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\InformacoesDeCarregamento.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\InicializadorDoJogo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\KeyVar.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\LoadAndSaveGame.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\LocalizacaoDeArmagedoms.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\OnOffMoveGameObjects.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\ReplaceManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\SaveAndLoadInJolt.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\SaveDates.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\SaveDatesForJolt.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\SaveManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\SceneLoader.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\BancoDeTextos.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\EN_GOOGLE\InterfaceTextListEN_G.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\EN_GOOGLE\ListaDeTextosEN_G.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\EN_GOOGLE\NomeDeArmagedomEN_G.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\EN_GOOGLE\TextosChaveEmEN_G.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\EN_GOOGLE\TextosDaCavernaInicialEN_G.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\EN_GOOGLE\TextosDeBarreirasEN_G.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\EN_GOOGLE\TextosDeInfoEN_G.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\EN_GOOGLE\TextosDeKatidsEN_G.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\EN_GOOGLE\TextosDeMarjanEN_G.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\InterfaceLanguageConverter.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\InterfaceTextKey.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\PT_BR\InterfaceTextList.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\PT_BR\ListaDeTextosPT_BR.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\PT_BR\NomeDeArmagedomPT_BR.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\PT_BR\TextosChaveEmPT_BR.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\PT_BR\TextosDaCavernaInicialPT_BR.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\PT_BR\TextosDeBarreiraPT_BR.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\PT_BR\TextosDeInfoPT_BR.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\PT_BR\TextosDeKatidsPT_BR.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\PT_BR\TextosDeMarjanPT_BR.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\StringParaChaveDeTexto.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\TriggerGerenciadorDeCena.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\tipos.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\ApresentaDerrota.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\ApresentaFim.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\ApresentadorDeAdversario.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\EncounterManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\InsereElementosDoEncontro.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\InsereInimigoEmCampo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\ListasEncontraveis\ListaDeEncontraveis.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\ListasEncontraveis\ListaEncontravelDaPetrolifera.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\ListasEncontraveis\ListaEncontravelDeMarjan.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\ListasEncontraveis\ListaEncontravelDeTempleZone.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\ListasEncontraveis\ListaEncontravelDoEsgoto.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\ListasEncontraveis\ListaEncontravelKatidsTerrain.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\LocaisSeguros\ListaDeLocaisSeguros.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\LocaisSeguros\LocaisSegurosDeKatidesTerrain.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\LocaisSeguros\LocaisSegurosDeMarjan.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\LocaisSeguros\LocaisSegurosDeTempleZone.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\MbEncontros.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\PassouDeNivelEmLuta.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\encontros\reflexoCilindro.cs" />
+    <Compile Include="Assets\TerrainExample\Rotate.cs" />
+    <Compile Include="Assets\modelosMateriaisTexturas\Fantasy Skybox FREE\Scripts\FSPlayer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
+    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
+    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
+    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
+    <None Include="Assets\Standard Assets\GlassStainedBumpDistort.shader" />
+    <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+    <None Include="Assets\Standard Assets\Water (Pro Only)\Sources\Shaders\FX-Water.shader" />
+    <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-SimpleWater4.shader" />
+    <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-Water4.shader" />
+    <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\WaterInclude.cginc" />
+    <None Include="Assets\TerrainExample\ReadMe.txt" />
+    <None Include="Assets\TerrainExample\TerrainN3DS.shader" />
+    <None Include="Assets\modelosMateriaisTexturas\Fantasy Skybox FREE\Readme\Readme.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
+</Project>
