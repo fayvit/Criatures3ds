@@ -155,7 +155,7 @@ public static class CommandReader
 
         if (numControlador == (int)Controlador.N3DS)
         {
-            if (!PressionadoBotao(4, numControlador))
+            if (!(PressionadoBotao(4, numControlador)&& PressionadoBotao(2, numControlador)))
             {
                 h = Mathf.Min(N3dsAxis.GetAxis("horizontal") + N3dsAxis.GetAxis("HDpad"), 1);
                 v = Mathf.Min(N3dsAxis.GetAxis("vertical") + N3dsAxis.GetAxis("VDpad"), 1);

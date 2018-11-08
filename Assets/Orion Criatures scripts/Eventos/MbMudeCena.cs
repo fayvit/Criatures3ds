@@ -34,6 +34,7 @@ public class MbMudeCena : MonoBehaviour
     {
         iniciarCarregamento = true;
         GameController.EntrarNoFluxoDeTexto();
+        GameController.g.ContarPassos = false;
         //p = GameController.g.gameObject.AddComponent<FadeView>();
         GlobalController.g.FadeV.IniciarFadeOut(corDoFade);
         EventAgregator.AddListener(EventKey.fadeOutComplete, OnFadeOutComplete);

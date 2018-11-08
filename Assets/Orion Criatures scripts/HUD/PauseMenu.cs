@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -72,7 +73,15 @@ public class PauseMenu : MonoBehaviour
                 BotaoCriature();
             break;
             case 1:
-                BotaoItens();
+                if (GameController.g.Manager.Dados.Itens.Count > 0)
+                    BotaoItens();
+                else
+                {
+                    GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(
+                        RetornoDoNaoTemItem,
+                    BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.itens)[11]);
+                    estado = EstadosDePause.janelaSuspensaAbertas;
+                }
             break;
             case 2:
 
@@ -83,9 +92,38 @@ public class PauseMenu : MonoBehaviour
             case 4:
                 VoltarAoJogo();
             break;
+            case 5:
+                GameController.g.EncontroAgora();
+            break;
+            case 6:
+                GameController.g.InimigoComUmPV();
+            break;
+            case 7:
+                GameController.g.MeuCriatureComUmPV();
+            break;
+            case 8:
+                GameController.g.ColocaQuatroGolpesNosCriatures();
+            break;
+            case 9:
+                GameController.g.UmXpParaNivel();
+            break;
+            case 10:
+                GameController.g.MeuCriatureComUZeroPE();
+            break;
+            case 11:
+                GameController.g.TesteSave();
+            break;
+            case 12:
+                GameController.g.CarregarSaveZero();
+            break;
         }
 
         GameController.g.HudM.Menu_Basico.FinalizarHud();
+    }
+
+    private void RetornoDoNaoTemItem()
+    {
+        PausarJogo();
     }
 
     void ReligarBotoes()
@@ -104,6 +142,8 @@ public class PauseMenu : MonoBehaviour
     {
         if (GameController.g.EmEstadoDeAcao() && GameController.g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto))
         {
+            ColetorDeLixo.Coleta();
+
             GameController g = GameController.g;
             g.FinalizaHuds();
             g.HudM.Menu_Basico.IniciarHud(EuFizUmaEscolha, 

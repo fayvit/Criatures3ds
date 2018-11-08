@@ -155,6 +155,7 @@
     <Compile Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Scripts\WaterTile.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\CombinerOverrideExample\AddThreeTextures.shader" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
@@ -168,6 +169,7 @@
     <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\WaterInclude.cginc" />
     <None Include="Assets\TerrainExample\ReadMe.txt" />
     <None Include="Assets\TerrainExample\TerrainN3DS.shader" />
+    <None Include="Assets\VideoExample\ReadMe.txt" />
     <None Include="Assets\modelosMateriaisTexturas\Fantasy Skybox FREE\Readme\Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

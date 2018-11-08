@@ -367,7 +367,7 @@ public class GameController : MonoBehaviour
         if (estadoP == EstadoDePersonagem.aPasseio && !chao)
             chao = Manager.Mov.NoChao(0.1f);
 
-        if (myKeys.VerificaAutoShift(KeyShift.estouNoTuto))
+        if (myKeys.VerificaAutoShift(KeyShift.estouNoTuto)&&manager.CriatureAtivo!=null)
         {
             CreatureManager.CreatureState estadoC = manager.CriatureAtivo.Estado;
 

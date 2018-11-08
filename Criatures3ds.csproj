@@ -261,6 +261,7 @@
     <Compile Include="Assets\Orion Criatures scripts\MatrizDeBillboards.cs" />
     <Compile Include="Assets\Orion Criatures scripts\MeuBillboard.cs" />
     <Compile Include="Assets\Orion Criatures scripts\MyBillboard.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\NPCs\ControlledMoveForCharacter.cs" />
     <Compile Include="Assets\Orion Criatures scripts\NPCs\ConversaComNpcMovimentandoCamera.cs" />
     <Compile Include="Assets\Orion Criatures scripts\NPCs\MovimentoControladoParaNPC.cs" />
     <Compile Include="Assets\Orion Criatures scripts\NPCs\NPCcomOpcoesDeConversa.cs" />
@@ -272,6 +273,9 @@
     <Compile Include="Assets\Orion Criatures scripts\NPCs\NpcLutaContraTreinador.cs" />
     <Compile Include="Assets\Orion Criatures scripts\NPCs\VisaoDeTreinadorEspecial.cs" />
     <Compile Include="Assets\Orion Criatures scripts\PropsPorScript.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\SceneConfigs\CavernaIntroConfigs.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\SceneConfigs\GetSceneConfigs.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\SceneConfigs\SceneConfigs.cs" />
     <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\AdicionaStatusSimples.cs" />
     <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\Amedrontado.cs" />
     <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\ContainerDosStatus.cs" />
@@ -416,6 +420,7 @@
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\InfoInGame.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\InformacoesDeCarregamento.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\InicializadorDoJogo.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\IntroManager.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\KeyVar.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\LoadAndSaveGame.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\LocalizacaoDeArmagedoms.cs" />
@@ -470,9 +475,12 @@
     <Compile Include="Assets\Orion Criatures scripts\encontros\PassouDeNivelEmLuta.cs" />
     <Compile Include="Assets\Orion Criatures scripts\encontros\reflexoCilindro.cs" />
     <Compile Include="Assets\TerrainExample\Rotate.cs" />
+    <Compile Include="Assets\VideoExample\Spin.cs" />
+    <Compile Include="Assets\VideoExample\VideoTest.cs" />
     <Compile Include="Assets\modelosMateriaisTexturas\Fantasy Skybox FREE\Scripts\FSPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\CombinerOverrideExample\AddThreeTextures.shader" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
@@ -486,6 +494,7 @@
     <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\WaterInclude.cginc" />
     <None Include="Assets\TerrainExample\ReadMe.txt" />
     <None Include="Assets\TerrainExample\TerrainN3DS.shader" />
+    <None Include="Assets\VideoExample\ReadMe.txt" />
     <None Include="Assets\modelosMateriaisTexturas\Fantasy Skybox FREE\Readme\Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -40,7 +40,7 @@ public class RockMovePuzzle:EventoComGolpe
         yInicial = transform.position.y;
         if (ExistenciaDoController.AgendaExiste(Start, this))
         {
-            if (GameController.g.MyKeys.VerificaAutoShift(Chave))
+            if (GameController.g.MyKeys.VerificaAutoShift(ID))
             {
                 if (rockManager)
                 {
@@ -134,7 +134,7 @@ public class RockMovePuzzle:EventoComGolpe
 
     public override void DisparaEvento(nomesGolpes nomeDoGolpe)
     {
-        if (EsseGolpeAtiva(nomeDoGolpe) && !GameController.g.MyKeys.VerificaAutoShift(Chave))
+        if (EsseGolpeAtiva(nomeDoGolpe) && !GameController.g.MyKeys.VerificaAutoShift(ID))
         {
             FluxoDeBotao();
             CalculaDirecaoDeMove();
@@ -143,7 +143,7 @@ public class RockMovePuzzle:EventoComGolpe
 
     public void RestauraShift()
     {
-        GameController.g.MyKeys.MudaAutoShift(Chave,false);
+        GameController.g.MyKeys.MudaAutoShift(ID,false);
         estado = RockMoveState.emEspera;
     }
 
@@ -156,7 +156,7 @@ public class RockMovePuzzle:EventoComGolpe
                 umAlvo = hit.transform;
                 Destroy(
                 Instantiate(GameController.g.El.retorna("teletransporte"), hit.transform.position, Quaternion.identity), 5);
-                GameController.g.MyKeys.MudaAutoShift(Chave, true);
+                GameController.g.MyKeys.MudaAutoShift(ID, true);
                 estado = RockMoveState.finalizar;
             }
             else

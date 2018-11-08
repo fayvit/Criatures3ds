@@ -26,7 +26,7 @@ public class Pulo
         ultimoYFundamentado = elementos.transform.position.y;
         caracteristicas.estouPulando = true;
         elementos.controle.Move(Vector3.up * caracteristicas.impulsoInicial);
-        elementos.animador.AnimaIniciaPulo();
+        elementos.Animador.AnimaIniciaPulo();
     }
 
     public void VerificaPulo(Vector3 direcaoMovimento)
@@ -82,7 +82,7 @@ public class Pulo
     {
         
         if (caracteristicas.estouPulando)
-            elementos.animador.AnimaDescendoPulo();
+            elementos.Animador.AnimaDescendoPulo();
             
 
         //else

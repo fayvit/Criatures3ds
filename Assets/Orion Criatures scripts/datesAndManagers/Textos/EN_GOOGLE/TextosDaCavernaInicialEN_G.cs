@@ -5,6 +5,22 @@ public class TextosDaCavernaInicialEN_G
 {
     public static Dictionary<ChaveDeTexto, List<string>> txt = new Dictionary<ChaveDeTexto, List<string>>()
         {
+        { ChaveDeTexto.entradinha, new List<string>()
+            {
+                "Então... é você que veio juntar-se a nós?",
+                "Nós entendemos os seus motivos.",
+                "Também sentimos que há algo errado com o rumo que o império está tomando",
+                "Nós estamos tentando abrir a <color=yellow>Torre da Vida Eterna</color> ",
+                "para encarar o imperador <color=orange>Logan</color> e mudar destino de <color=yellow>Orion</colors>",
+                "O caminho para isso é muito longo e muito difícil,",
+                " você precisa de muita determinação para percorrer todo o caminho",
+                "Nós estamos apenas no meio dele um tanto quanto sem rumo mas já temos algumas lições para tirar",
+                "Rapaz, todos os que querem fazer uma tarefa difícil tem um começo.",
+                "E só quem já está no meio do caminho sabe como é dificil começar.",
+                "Por isso vamos te ajudar",
+                "Seu nome é <color=cyan>Cesar Corean</color> não é?",
+                "Siga na caverna, Cesar Corean, e você poderá pegar um criature de nossa reserva"
+            } },
             {ChaveDeTexto.bemVindo, new List<string>()
             {
                "Hello, newbie, welcome.",
@@ -12,10 +28,26 @@ public class TextosDaCavernaInicialEN_G
                 "We currently base resistance to the empire in the struggle with criatures",
                 "Go in the cave and you could catch a creature from our reservation"
             } },
+              {ChaveDeTexto.hooliganSeApresenta, new List<string>()
+            {
+                "Bem vindo <color=cyan>Cesar Corean</color>",
+                "Meu nome é <color=orange>Random Hooligan</color>.",
+                "Meu irmão é um clérigo da coragem e regente de uma arena de Criatures.",
+                "Somos de uma tradicional familia aristocratica de <color=orange>Orion</color>",
+                "Logo eu partirei para encontrar meu irmão na cidade de <color=yellow>Afarenga</color>.",
+                 "Pretendo com a ajuda dele conseguir o apoio do povo da cidade para nossa causa."
+            } },
+            {ChaveDeTexto.lanceSeApresenta, new List<string>()
+            {
+                "Seja muito bem vindo companheiro",
+                "Meu nome é <color=orange>Lance Lutz</color>. Sou um sociologo formado na universidade do deserto da predominância",
+                "tenho grande contato entre os pensadores e movimentos sociais de Orion.",
+                "Logo viajarei para a cidade de <color=yellow>Ofawing</color> organizar um ato proximo das administrações governamentais"
+            }},
             {ChaveDeTexto.comSeuCriature, new List<string>()
             {
                 "Great you already have a criature now!",
-                "Keep following the path of the cave and you will soon reach the city of <color=yellow> Katids </color>"
+                "Keep following the path of the cave and you will soon reach the city of <color=yellow> Infinity </color>"
             }},
             {
                 ChaveDeTexto.comoVaiSuaJornada,new List<string>()

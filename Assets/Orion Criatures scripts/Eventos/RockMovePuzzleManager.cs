@@ -6,8 +6,8 @@ public class RockMovePuzzleManager : AtivadorDeBotao
     [SerializeField]private RockShift[] rockShift;
     [SerializeField]private Vector3 posDeEscondido = Vector3.zero;
     [SerializeField]private GameObject particulaDeFim;
-    [SerializeField]private KeyShift chaveEspecial;
-    [SerializeField]private string chave;    
+    //[SerializeField]private KeyShift chaveEspecial;
+    [SerializeField]private string ID;    
     [SerializeField]private float tempoParaEsconder = 3;
 
     [SerializeField]private bool iniciarVisaoDeFeito = false;
@@ -21,7 +21,7 @@ public class RockMovePuzzleManager : AtivadorDeBotao
         
         if (ExistenciaDoController.AgendaExiste(Start, this))
             {
-            if (GameController.g.MyKeys.VerificaAutoShift(chave))
+            if (GameController.g.MyKeys.VerificaAutoShift(ID))
             {
                 for (int i = 0; i < rockShift.Length; i++)
                 {
@@ -45,6 +45,11 @@ public class RockMovePuzzleManager : AtivadorDeBotao
         }
     }
 
+    private void OnValidate()
+    {
+        BuscadorDeID.Validate(ref ID, this);
+    }
+
     // Update is called once per frame
     new void Update()
     {
@@ -66,8 +71,8 @@ public class RockMovePuzzleManager : AtivadorDeBotao
                 GameController.g.Manager.AoHeroi();
                 //GameController.g.HudM.ligarControladores();
                 //AndroidController.a.LigarControlador();
-                GameController.g.MyKeys.MudaAutoShift(chave, true);
-                GameController.g.MyKeys.MudaShift(chaveEspecial, true);
+                GameController.g.MyKeys.MudaAutoShift(ID, true);
+                //GameController.g.MyKeys.MudaShift(chaveEspecial, true);
                 FinalizaEspecifico();
                 gameObject.SetActive(false);
             }
@@ -109,7 +114,7 @@ public class RockMovePuzzleManager : AtivadorDeBotao
 
         if (retorno)
         {
-            AplicadorDeCamera.cam.NovoFocoBasico(transform.parent, 10, 10,true,true);
+            AplicadorDeCamera.cam.NovoFocoBasico(transform.parent, 8, 10, true, true);
             iniciarVisaoDeFeito = retorno;
             particulaDeFim.SetActive(true);
         }

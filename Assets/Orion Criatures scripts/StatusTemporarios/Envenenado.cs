@@ -48,19 +48,19 @@ public class Envenenado : StatusTemporarioBase
                         if (CDoAfetado.name == "CriatureAtivo")
                             GameController.g.HudM.Painel.AtivarNovaMens(
                                 string.Format(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.status)[1],
-                                OAfetado.NomeEmLinguas, (int)Dados.Quantificador), 20, 2
+                                OAfetado.NomeEmLinguas, (int)Dados.Quantificador), 24, 2
                                 );
                         else
                             GameController.g.HudM.Painel.AtivarNovaMens(
                                 string.Format(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.status)[2],
-                                (int)Dados.Quantificador), 20, 2
+                                (int)Dados.Quantificador), 24, 2
                                 );
                     }
                     else
                     {
                         GameController.g.HudM.Painel.AtivarNovaMens(
                                 string.Format(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.status)[1],
-                                OAfetado.NomeEmLinguas, (int)Dados.Quantificador), 20, 2
+                                OAfetado.NomeEmLinguas, (int)Dados.Quantificador), 24, 2
                                 );
                     }
 
@@ -163,7 +163,7 @@ public class Envenenado : StatusTemporarioBase
 
                 GameController.g.HudM.Painel.AtivarNovaMens(
                                 string.Format(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.status)[0],
-                                OAfetado.NomeEmLinguas), 20, 5
+                                OAfetado.NomeEmLinguas), 24, 5
                                 );              
 
             }

@@ -23,7 +23,8 @@ public class ShopManager
         iniciouConversaNoShop,
         escolhaInicial,
         esperandoEscolhaInicial,
-        esperandoEscolhaDeCompraVenda,
+        esperandoEscolhaDeCompra,
+        esperandoEscolhaDeVenda,
         fraseDeVenda,
         fraseDeCompra,
         quantidadesAbertas,
@@ -52,18 +53,23 @@ public class ShopManager
                 {
                     fase = FasesDoShop.esperandoEscolhaInicial;
                     menuBasico.IniciarHud(ComprarVender, BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.comprarOuVender).ToArray());
-                    ActionManager.ModificarAcao(GameController.g.transform,()=> {
+                    /*ActionManager.ModificarAcao(GameController.g.transform,()=> {
                         ComprarVender(menuBasico.OpcaoEscolhida);
                         ActionManager.ModificarAcao(GameController.g.transform, null);
-                    });
+                    });*/
                 }
             break;
             case FasesDoShop.esperandoEscolhaInicial:
-                if (Input.GetButtonDown("Cancel"))
+                if (ActionManager.ButtonUp(1,GameController.g.Manager.Control))
                 {
                     ActionManager.ModificarAcao(GameController.g.transform, null);
                     ActionManager.useiCancel = true;
                     SairDoShop();
+                }else
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                {
+                    ComprarVender(menuBasico.OpcaoEscolhida);
+                    ActionManager.ModificarAcao(GameController.g.transform, null);
                 }
 
                 menuBasico.MudarOpcao();
@@ -71,37 +77,62 @@ public class ShopManager
             case FasesDoShop.fraseDeVenda:
                 if (!dispara.LendoMensagemAteOCheia())
                 {
-                    fase = FasesDoShop.esperandoEscolhaDeCompraVenda;
+                    fase = FasesDoShop.esperandoEscolhaDeCompra;
                     string[] opcoes = new string[itensAVenda.Length];
                     for (int i = 0; i < itensAVenda.Length; i++)
                     {
                         opcoes[i] = itensAVenda[i].ToString();
                     }
 
-                    
+                    /*
                     ActionManager.ModificarAcao(GameController.g.transform, () => {                        
                         ActionManager.ModificarAcao(GameController.g.transform, null);
                         GameController.g.HudM.DisparaT.DesligarPaineis();
                         OpcaoEscolhidaParaCompra(menuDeShop.OpcaoEscolhida);
-                    });
+                    });*/
 
                     menuDeShop.IniciarHud(true, OpcaoEscolhidaParaCompra, opcoes);
                     menuDeShop.SetActive(true);
                 }
             break;
-            case FasesDoShop.esperandoEscolhaDeCompraVenda:
-                if (Input.GetButtonDown("Cancel"))
+            case FasesDoShop.esperandoEscolhaDeCompra:
+                if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
+
                     ActionManager.ModificarAcao(GameController.g.transform, null);
                     VoltarParaAPerguntaInicial();
                 }
 
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                {
+                    ActionManager.ModificarAcao(GameController.g.transform, null);
+                    GameController.g.HudM.DisparaT.DesligarPaineis();
+                    OpcaoEscolhidaParaCompra(menuDeShop.OpcaoEscolhida);
+                }
+
                 menuDeShop.MudarOpcao();
             break;
+            case FasesDoShop.esperandoEscolhaDeVenda:
+                if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
+                {
+
+                    ActionManager.ModificarAcao(GameController.g.transform, null);
+                    VoltarParaAPerguntaInicial();
+                }
+
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                {
+                    ActionManager.ModificarAcao(GameController.g.transform, null);
+                    GameController.g.HudM.DisparaT.DesligarPaineis();
+                    OpcaoEscolhidaParaVenda(menuDeShop.OpcaoEscolhida);
+                }
+
+                menuDeShop.MudarOpcao();
+                break;
             case FasesDoShop.fraseDeCompra:
                 if (!dispara.LendoMensagemAteOCheia())
                 {
-                    fase = FasesDoShop.esperandoEscolhaDeCompraVenda;
+                    fase = FasesDoShop.esperandoEscolhaDeVenda;
                     List<string> opcoes2 = new List<string>();
                     List<MbItens> meusItens = GameController.g.Manager.Dados.Itens;
 
@@ -135,11 +166,11 @@ public class ShopManager
                 if (!dispara.LendoMensagemAteOCheia())
                 {
                     fase = FasesDoShop.esperandoFim;
-                    ActionManager.ModificarAcao(GameController.g.transform, Finalizacao);
+                    //ActionManager.ModificarAcao(GameController.g.transform, Finalizacao);
                 }
             break;
             case FasesDoShop.esperandoFim:
-                if (Input.GetButtonDown("Cancel"))
+                if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
                     Finalizacao();
                 }

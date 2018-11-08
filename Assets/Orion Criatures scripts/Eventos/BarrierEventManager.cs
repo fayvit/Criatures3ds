@@ -32,7 +32,7 @@ public class BarrierEventManager : EventoComGolpe
         textoDoBotao = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.textoBaseDeAcao)[1];
         if (GameController.g)
         {
-            if (GameController.g.MyKeys.VerificaAutoShift(Chave))
+            if (GameController.g.MyKeys.VerificaAutoShift(ID))
             {
                 gameObject.SetActive(false);
             }
@@ -62,6 +62,8 @@ public class BarrierEventManager : EventoComGolpe
     
     private void OnValidate()
     {
+        BuscadorDeID.Validate(ref ID, this);
+        /*
 #if UNITY_EDITOR
         if (string.IsNullOrEmpty(Chave)&& gameObject.scene.name != null)
         {
@@ -71,7 +73,7 @@ public class BarrierEventManager : EventoComGolpe
             //ID = System.Guid.NewGuid().ToString();
             BuscadorDeID.SetUniqueIdProperty(this, Chave, "chave");
         }
-#endif
+#endif*/
     }
 
     new void Update()
@@ -81,8 +83,11 @@ public class BarrierEventManager : EventoComGolpe
             switch (estado)
             {
                 case BarrierEventsState.mensAberta:
-
-                    break;
+                    if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                    {
+                        AcaoDeMensAberta();
+                    }
+                break;
                 case BarrierEventsState.ativou:
                     tempoDecorrido += Time.deltaTime;
                     if (tempoDecorrido > tempoDeEfetivaAcao)
@@ -114,8 +119,7 @@ public class BarrierEventManager : EventoComGolpe
 
     public override void DisparaEvento(nomesGolpes nomeDoGolpe)
     {
-        Debug.Log(nomeDoGolpe+" : "+ GameController.g.MyKeys.VerificaAutoShift(Chave)+" : "+
-        GameController.g.MyKeys.VerificaAutoShift(ChaveEspecial));
+        Debug.Log(nomeDoGolpe+" : "+ GameController.g.MyKeys.VerificaAutoShift(ID));
 
         if (EsseGolpeAtiva(nomeDoGolpe))        
             estado = BarrierEventsState.ativou;
@@ -127,8 +131,8 @@ public class BarrierEventManager : EventoComGolpe
             FluxoDeBotao();
             acaoEfetivada.SetActive(true);
             tempoDecorrido = 0;
-            GameController.g.MyKeys.MudaAutoShift(Chave, true);
-            GameController.g.MyKeys.MudaShift(ChaveEspecial, true);
+            GameController.g.MyKeys.MudaAutoShift(ID, true);
+            //GameController.g.MyKeys.MudaShift(ChaveEspecial, true);
             AplicadorDeCamera.cam.NovoFocoBasico(transform,10,10,true,usarForwardDoObjeto);
         }
     }
@@ -141,7 +145,7 @@ public class BarrierEventManager : EventoComGolpe
             , 25);
         estado = BarrierEventsState.mensAberta;
 
-        ActionManager.ModificarAcao(GameController.g.transform,AcaoDeMensAberta);
+        //ActionManager.ModificarAcao(GameController.g.transform,AcaoDeMensAberta);
         
     }
 

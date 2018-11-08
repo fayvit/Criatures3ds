@@ -13,6 +13,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
     [SerializeField] private Text infos;
     [SerializeField] private Text labelDoBotaoComprar;
     [SerializeField] private Text labelDoBotaoVoltar;
+    [SerializeField] private RawImage itemImage;
 
     private int quantidade = 1;
     private bool comprar;
@@ -26,6 +27,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
     {
         botoesAtivos,
         fraseAgradecer,
+        finalizacao,
         emEspera
     }
 
@@ -41,13 +43,14 @@ public class PainelQuantidadesParaShop : MonoBehaviour
             switch (estado)
             {
                 case EstadoDaqui.botoesAtivos:
-                    if (CommandReader.ButtonDown(1,GameController.g.Manager.Control))
+                    if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                     {
                         BtnVoltar();
                     }
-                    else
-                        ActionManager.useiCancel = false;
-                    int val = CommandReader.ValorDeGatilhos("HDpad",GameController.g.Manager.Control);
+                    else if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                        ActionManager.VerificaAcao();
+
+                        int val = CommandReader.ValorDeGatilhos("HDpad",GameController.g.Manager.Control);
                     if (val == 0)
                         val = CommandReader.ValorDeGatilhosTeclado("horizontal",GameController.g.Manager.Control);
 
@@ -68,9 +71,16 @@ public class PainelQuantidadesParaShop : MonoBehaviour
                     }
                 break;
                 case EstadoDaqui.fraseAgradecer:
-                    if (GameController.g.HudM.DisparaT.LendoMensagemAteOCheia())
+                    if (!GameController.g.HudM.DisparaT.LendoMensagemAteOCheia())
                     {
+                        estado = EstadoDaqui.finalizacao;
                         ActionManager.ModificarAcao(transform, () => { gameObject.SetActive(false); });
+                    }
+                break;
+                case EstadoDaqui.finalizacao:
+                    if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                    {
+                        gameObject.SetActive(false);
                     }
                 break;
             }
@@ -155,6 +165,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
             if (quantidade - tanto <= 0)
             {
                 DesligaBotoes();
+                estado = EstadoDaqui.emEspera;
                 GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(ReligarBotoes, textos[9]);
                 AtualizaQuantidade(1, esseItem.Valor);
             }
@@ -166,6 +177,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
             if (quantidade - tanto <= 0)
             {
                 DesligaBotoes();
+                estado = EstadoDaqui.emEspera;
                 GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(ReligarBotoes, textos[10]);
                 AtualizaQuantidade(1, Mathf.Max(1, esseItem.Valor / 4));
             }
@@ -177,6 +189,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
     public void IniciarEssaHud(MbItens itemAlvo, bool comprar = true)
     {
         this.comprar = comprar;
+        this.itemImage.texture = GameController.g.El.RetornaMini(itemAlvo.ID);
         BtnsManager.ReligarBotoes(gameObject);
         ActionManager.ModificarAcao(transform, BotaoComprar);
         estado = EstadoDaqui.botoesAtivos;
@@ -187,8 +200,8 @@ public class PainelQuantidadesParaShop : MonoBehaviour
 
         labelCristais.text = textos[0] + dados.Cristais;
         mensagem.text = string.Format(comprar ? textos[3] : textos[4], MbItens.NomeEmLinguas(itemAlvo.ID));
-        infos.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.shopInfoItem)[(int)(itemAlvo.ID)];
-        quantidadeTXt.text = (comprar)?quantidade.ToString():quantidade+" / "+ dados.TemItem(esseItem.ID);
+        infos.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.shopInfoItem)[(int)itemAlvo.ID];
+        quantidadeTXt.text = comprar ? quantidade.ToString() : quantidade + " / " + dados.TemItem(esseItem.ID);
 
         valorAPagar.text = (itemAlvo.Valor / (comprar ? 1 : 4)).ToString();
         labelValorAPagar.text = comprar ? textos[1] : textos[2];

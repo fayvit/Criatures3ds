@@ -94,7 +94,8 @@ public class TriggerGerenciadorDeCena : MonoBehaviour
 public enum NomesCenas
 {
     nula = -1,
-    cavernaIntro,
+    cavernaIntro,    
+    //antigos
     planicieDeKatids,
     katidsTerrain,
     katidsVsTempleZone,
@@ -105,6 +106,9 @@ public enum NomesCenas
     esgoto,
     rioMariinque,
     testeDeminimalidade,
+    //testes
     cavernaIntro_b,
     cavernaIntro_x,
+    //novidades
+    planicieDeInfinity
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class GlobalController : MonoBehaviour {
 
     [SerializeField] private Controlador control = Controlador.N3DS;
     [SerializeField] private AudioSource[] audios;
+    [SerializeField] private MusicasDeFundo musica;
     [SerializeField] private FadeViewLoad fadeV;
 
     private List<AudioSource> ativos = new List<AudioSource>();
@@ -36,11 +38,13 @@ public class GlobalController : MonoBehaviour {
     private void Start()
     {
         GlobalController.g = this;
-
+        musica.Start();
         //EventAgregator.AddListener(EventKey.novoHeroiSpawnado, OnNewHeroSpawned);
         EventAgregator.AddListener(EventKey.UiDeOpcoesChange, OnChangeOptionUi);
         EventAgregator.AddListener(EventKey.positiveUiInput, OnPositiveUiInput);
         EventAgregator.AddListener(EventKey.negativeUiInput, OnNegativeUiInput);
+        EventAgregator.AddListener(EventKey.fadeOutStart, OnFadeOutStart);
+        EventAgregator.AddListener(EventKey.fadeInStart, OnFadeInStart);
     }
 
     private void OnDestroy()
@@ -48,6 +52,18 @@ public class GlobalController : MonoBehaviour {
         EventAgregator.RemoveListener(EventKey.UiDeOpcoesChange, OnChangeOptionUi);
         EventAgregator.RemoveListener(EventKey.positiveUiInput, OnPositiveUiInput);
         EventAgregator.RemoveListener(EventKey.negativeUiInput, OnNegativeUiInput);
+        EventAgregator.RemoveListener(EventKey.fadeOutStart, OnFadeOutStart);
+        EventAgregator.RemoveListener(EventKey.fadeInStart, OnFadeInStart);
+    }
+
+    private void OnFadeOutStart(IGameEvent obj)
+    {
+        musica.PararMusicas();
+    }
+
+    private void OnFadeInStart(IGameEvent obj)
+    {
+        musica.ReiniciarMusicas();
     }
 
     void DisparaAudio(string s)
@@ -93,5 +109,15 @@ public class GlobalController : MonoBehaviour {
         }
 
         return ativos[0];
+    }
+
+    private void Update()
+    {
+        musica.Update();
+    }
+
+    public void IniciarMusica(NameMusic n,float volumeAlvo=1)
+    {
+        musica.IniciarMusica(n,volumeAlvo);
     }
 }

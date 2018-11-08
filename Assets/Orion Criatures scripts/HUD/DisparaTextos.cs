@@ -118,7 +118,7 @@ public class DisparaTexto
     {
         if (LendoMensagem() != FasesDaMensagem.mensagemCheia)
         {
-            if (CommandReader.ButtonDown(0, GameController.g.Manager.Control))
+            if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
             {
                 Debug.Log("controlador de acao removido");
                 Toque();

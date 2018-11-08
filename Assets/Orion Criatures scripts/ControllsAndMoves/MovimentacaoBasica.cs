@@ -33,10 +33,16 @@ public class MovimentacaoBasica
         get { return pulo; }
     }
 
+    public float VelocidadeAndando
+    {
+        get { return caracMov.velocidadeAndando; }
+        set { caracMov.velocidadeAndando = value; }
+    }
+
     
     public AnimadorHumano Animador
     {
-          get { return elementos.animador; }
+          get { return elementos.Animador; }
     }
 
     public MovimentacaoBasica(CaracteristicasDeMovimentacao caracMov, ElementosDeMovimentacao elementos)
@@ -165,7 +171,7 @@ public class MovimentacaoBasica
         //Fundamentador();
         
         elementos.controle.Move((direcaoMovimento * targetSpeed + velocidadeDescendo * Vector3.down) * Time.deltaTime);
-        elementos.animador.AnimaAndar(targetSpeed);
+        elementos.Animador.AnimaAndar(targetSpeed);
 
     }
     
@@ -245,7 +251,7 @@ public struct ElementosDeMovimentacao
 {
     public CharacterController controle;
     public Transform transform;
-    public AnimadorHumano animador;
+    private AnimadorHumano animador;
     /*
     public GerenciadorDeEstadoDePersonagem gerente;
     
@@ -263,5 +269,20 @@ public struct ElementosDeMovimentacao
         
         this.cam = cam;
         */
+    }
+
+    public AnimadorHumano Animador
+    {
+        get
+        {
+            if (animador == null)
+                animador = new AnimadorHumano(controle.GetComponent<Animator>());
+            return animador;
+        }
+
+        set
+        {
+            animador = value;
+        }
     }
 }

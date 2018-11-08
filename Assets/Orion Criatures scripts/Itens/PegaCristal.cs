@@ -15,7 +15,7 @@ public class PegaCristal : MonoBehaviour
             {
                 
 
-                if (GameController.g.MyKeys.VerificaAutoShift(ID))
+                if (GameController.g.MyKeys.VerificaCristalShift(ID))
                     Destroy(gameObject);
             }
         }
@@ -29,6 +29,8 @@ public class PegaCristal : MonoBehaviour
 
     private void OnValidate()
     {
+        BuscadorDeID.Validate(ref ID, this);
+        /*
 #if UNITY_EDITOR
         Event e = Event.current;
         bool foi = false;
@@ -46,7 +48,7 @@ public class PegaCristal : MonoBehaviour
             //ID = System.Guid.NewGuid().ToString();
             BuscadorDeID.SetUniqueIdProperty(this, ID, "ID");
         }
-#endif
+#endif */
     }
 
     private void OnTriggerEnter(Collider other)
@@ -59,7 +61,7 @@ public class PegaCristal : MonoBehaviour
                 g.Manager.Dados.Cristais += valor;
                 GameObject G = g.El.retorna(DoJogo.pegueiCristal);
                 Destroy(Instantiate(G,transform.position+1f*Vector3.up,G.transform.rotation),5);
-                g.MyKeys.MudaAutoShift(ID, true);
+                g.MyKeys.MudaCristalShift(ID);
                 if(g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto))
                     g.HudM.AtualizeImagemDeAtivos();
                 Destroy(gameObject);

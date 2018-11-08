@@ -23,11 +23,13 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
         escolhaInicial,
         curando,
         fraseQueAntecedePossoAjudar,
+        possoAjudar,
         armagedadosAberto,
         fazendoUmaTroca,
         mensDetrocaAberta,
         escolhaDePergaminho,
-        vendendoPergaminho
+        vendendoPergaminho,
+        menuSuspenso
     }
 
     private const float TEMPO_DE_CURA = 2.5F;
@@ -63,16 +65,20 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
                 if (!dispara.LendoMensagemAteOCheia())
                     GameController.g.HudM.Menu_Basico.MudarOpcao();
 
-                if (Input.GetButtonDown("Cancel"))
+                if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
                     ActionManager.useiCancel = true;
                     OpcaoEscolhida(txtDeOpcoes.Length - 1);
+                }
+                else if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                {
+                    OpcaoEscolhida(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
                 }
             break;
             case fasesDoArmagedom.curando:
 
                 tempoDecorrido += Time.deltaTime;
-                if (tempoDecorrido > TEMPO_DE_CURA || Input.GetButtonDown("Acao"))
+                if (tempoDecorrido > TEMPO_DE_CURA || ActionManager.ButtonUp(0,GameController.g.Manager.Control))
                 {
                     fase = fasesDoArmagedom.fraseQueAntecedePossoAjudar;
                     dispara.ReligarPaineis();
@@ -82,26 +88,39 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
             case fasesDoArmagedom.fraseQueAntecedePossoAjudar:
                 if (!dispara.LendoMensagemAteOCheia())
                 {
+                    /*
                     ActionManager.ModificarAcao(GameController.g.transform, () =>
                      {
                          LigarMenu();
                          EntraFrasePossoAjudar();
-                     });
+                     });*/
 
-                    fase = fasesDoArmagedom.emEspera;
+                    fase = fasesDoArmagedom.possoAjudar;
+                }
+            break;
+            case fasesDoArmagedom.possoAjudar:
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                {
+                    LigarMenu();
+                    EntraFrasePossoAjudar();
                 }
             break;
             case fasesDoArmagedom.armagedadosAberto:
                 if (!dispara.LendoMensagemAteOCheia())
                     GameController.g.HudM.EntraCriatures.MudarOpcao();
 
-                if (Input.GetButtonDown("Cancel"))
+                if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
                     ActionManager.useiCancel = true;
                     GameController.g.HudM.EntraCriatures.FinalizarHud();
                     GameController.g.HudM.Painel.EsconderMensagem();
                     LigarMenu();
                     EntraFrasePossoAjudar();
+                }
+                else if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                {
+                    ActionManager.VerificaAcao();
+                    //AoEscolherumCriature(GameController.g.HudM.EntraCriatures.OpcaoEscolhida);
                 }
             break;
             case fasesDoArmagedom.fazendoUmaTroca:
@@ -120,8 +139,11 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
                 AplicadorDeCamera.cam.FocarPonto(2, 8, -1, true);
                 if (!dispara.LendoMensagemAteOCheia())
                     GameController.g.HudM.Menu_Basico.MudarOpcao();
-
-                if (Input.GetButtonDown("Cancel"))
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                {
+                    EscolhaDeComprarPergaminho(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
+                }else
+                if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
                     ActionManager.useiCancel = true;
                     EscolhaDeComprarPergaminho(1);
@@ -145,7 +167,7 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
     void OpcaoEscolhida(int opcao)
     {
         ActionManager.ModificarAcao(GameController.g.transform, () => { });
-        Debug.Log("ola");
+        
         GameController.g.HudM.Menu_Basico.FinalizarHud();
 
         switch (opcao)
@@ -173,11 +195,11 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
         GameController.g.HudM.Menu_Basico.IniciarHud(EscolhaDeComprarPergaminho, 
             BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.simOuNao).ToArray());
         fase = fasesDoArmagedom.escolhaDePergaminho;
-
+                      /*
         ActionManager.ModificarAcao(
             GameController.g.transform,
             () => { EscolhaDeComprarPergaminho(GameController.g.HudM.Menu_Basico.OpcaoEscolhida); }
-            );
+            );*/
     }
 
     void EscolhaDeComprarPergaminho(int escolha)
@@ -186,6 +208,7 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
         switch (escolha)
         {
             case 0:
+                fase = fasesDoArmagedom.vendendoPergaminho;
                 GameController.g.HudM.PainelQuantidades.IniciarEssaHud(PegaUmItem.Retorna(nomeIDitem.pergArmagedom));
             break;
             case 1:
@@ -208,7 +231,7 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
             g.HudM.EntraCriatures.IniciarEssaHUD(armagedados, AoEscolherumCriature);
             GameController.g.HudM.Painel.AtivarNovaMens(frasesDeArmagedom[2], 30);
             fase = fasesDoArmagedom.armagedadosAberto;
-
+                          
             ActionManager.ModificarAcao(GameController.g.transform, () => {
                 AoEscolherumCriature(GameController.g.HudM.EntraCriatures.OpcaoEscolhida);
             });
@@ -244,6 +267,7 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
                 );
             dados.CriaturesArmagedados.Remove(C);
             dados.CriaturesAtivos.Add(C);
+            fase = fasesDoArmagedom.menuSuspenso;
         }
         else
         {
@@ -255,6 +279,7 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
                 string.Format(frasesDeArmagedom[4], C.NomeEmLinguas, C.CaracCriature.mNivel.Nivel)
                 );
             GameController.g.HudM.EntraCriatures.FinalizarHud();
+            fase = fasesDoArmagedom.menuSuspenso;
         }
 
     }
@@ -295,6 +320,7 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
         GameController.g.HudM.Painel.AtivarNovaMens(frasesDeArmagedom[5], 30);
         GameController.g.HudM.EntraCriatures
             .IniciarEssaHUD(GameController.g.Manager.Dados.CriaturesAtivos.ToArray(), SubstituiArmagedado,true);
+        fase = fasesDoArmagedom.armagedadosAberto;
     }
 
     void InstanciaVisaoDeCura()
@@ -352,10 +378,11 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
         dispara.ReligarPaineis();
         dispara.Dispara(t[t.Length - 1], fotoDoNPC);
         fase = fasesDoArmagedom.escolhaInicial;
+        /*
         ActionManager.ModificarAcao(
             GameController.g.transform,
             ()=>{ OpcaoEscolhida(GameController.g.HudM.Menu_Basico.OpcaoEscolhida); }
-            );
+            );*/
     }
 
     public void BotaoArmagedom()

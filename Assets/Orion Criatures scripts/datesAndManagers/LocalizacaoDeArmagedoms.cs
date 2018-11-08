@@ -6,10 +6,11 @@ public class LocalizacaoDeArmagedoms
 {
     private static Dictionary<IndiceDeArmagedoms, VisitasParaArmagedom> l = new Dictionary<IndiceDeArmagedoms, VisitasParaArmagedom>()
     {
-        
+
         { IndiceDeArmagedoms.cavernaIntro, new VisitasParaArmagedom() {
-            Endereco = new Vector3(145, 5.5f, 180),
-            nomeDasCenas = new NomesCenas[1]{NomesCenas.cavernaIntro}
+            Endereco = new Vector3(-184f, 11, 150),
+            nomeDasCenas = new NomesCenas[1]{NomesCenas.cavernaIntro},
+            DirRotation = "s"
         } },
         { IndiceDeArmagedoms.deKatids, new VisitasParaArmagedom() {
             Endereco = new Vector3(761, 1.2f, 1872),
@@ -41,6 +42,7 @@ public class VisitasParaArmagedom
     private float endX = 0;
     private float endY = 0;
     private float endZ = 0;
+    private string dir = "n";
     public NomesCenas[] nomeDasCenas = new NomesCenas[1] { NomesCenas.cavernaIntro };
 
     public Vector3 Endereco
@@ -58,6 +60,36 @@ public class VisitasParaArmagedom
             endZ = V.z;
         }
     }
+
+    public Quaternion Rot
+    {
+        get {
+            Debug.Log(dir);
+            Quaternion retorno = Quaternion.identity;
+            switch (dir)
+            {
+                case "s":
+                    retorno = Quaternion.LookRotation(new Vector3(0, 0, -1));
+                break;
+                case "n":
+                    retorno = Quaternion.LookRotation(new Vector3(0, 0, 1));
+                break;
+                case "l":
+                    retorno = Quaternion.LookRotation(new Vector3(1, 0, 0));
+                break;
+                case "o":
+                    retorno = Quaternion.LookRotation(new Vector3(-1, 0, 0));
+                break;
+            }
+            return retorno; }
+    }
+
+    public string DirRotation
+    {
+        get { return dir; }
+        set { dir = value; }
+    }
+
 
     public static string NomeEmLinguas(IndiceDeArmagedoms i)
     {

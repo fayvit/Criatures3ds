@@ -3,7 +3,7 @@ using System.Collections;
  
 public class Bau : AtivadorDeBotao
 {
-    [SerializeField]private string autoKey = "bau";
+    [SerializeField]private string ID = "";
     [SerializeField]private ItemDeBau[] itemDoBau;
     [SerializeField]private Transform tampa;
 
@@ -27,7 +27,7 @@ public class Bau : AtivadorDeBotao
     {
         if (ExistenciaDoController.AgendaExiste(Start, this))
         {
-            if (GameController.g.MyKeys.VerificaAutoShift(autoKey))
+            if (GameController.g.MyKeys.VerificaAutoShift(ID))
                 tampa.Rotate(tampa.right, -70, Space.World);
 
             textoDoBotao = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.textoBaseDeAcao)[1];
@@ -42,7 +42,7 @@ public class Bau : AtivadorDeBotao
 
     void BauAberto()
     {
-        if (indiceDoItem + 1 > itemDoBau.Length || GameController.g.MyKeys.VerificaAutoShift(autoKey))
+        if (indiceDoItem + 1 > itemDoBau.Length || GameController.g.MyKeys.VerificaAutoShift(ID))
         {
             GameController.g.HudM.Painel.EsconderMensagem();
             GameController.g.HudM.MostrarItem.DesligarPainel();
@@ -57,6 +57,8 @@ public class Bau : AtivadorDeBotao
 
     private void OnValidate()
     {
+        BuscadorDeID.Validate(ref ID, this);
+        /*
 #if UNITY_EDITOR
         if (gameObject.scene.name!=null && autoKey== "0" )
         {
@@ -64,7 +66,7 @@ public class Bau : AtivadorDeBotao
             autoKey = GetInstanceID() + "_" + gameObject.scene.name + "_Bau";
             BuscadorDeID.SetUniqueIdProperty(this, autoKey, "autoKey");
         }
-#endif
+#endif */
     }
 
     // Update is called once per frame
@@ -79,7 +81,8 @@ public class Bau : AtivadorDeBotao
                 GameController.g.HudM.Menu_Basico.MudarOpcao();
 
 
-                // ação de opção lida
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                    QualOpcao(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
             break;
             case FasesDoBau.abrindo:
 
@@ -88,19 +91,20 @@ public class Bau : AtivadorDeBotao
                 else
                 {
                     fase = FasesDoBau.aberto;
-                    ActionManager.ModificarAcao(GameController.g.transform, BauAberto);
+                    //ActionManager.ModificarAcao(GameController.g.transform, BauAberto);
                     VerificaItem();
                 }
             break;
             case FasesDoBau.aberto:
-                // bau aberto
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                    BauAberto();
             break;
             case FasesDoBau.fechando:
                 // if (Vector3.Angle(tampa.forward, transform.forward) > 5)
                 //    tampa.Rotate(tampa.right, 75 * Time.deltaTime, Space.World);
                 //else
                 {
-                    GameController.g.MyKeys.MudaAutoShift(autoKey, true);
+                    GameController.g.MyKeys.MudaAutoShift(ID, true);
                     //tampa.rotation = Quaternion.LookRotation(transform.forward);
                     FinalizarAcaoDeBau();
                 }
@@ -112,7 +116,7 @@ public class Bau : AtivadorDeBotao
 
     void VerificaItem()
     {
-        if (GameController.g.MyKeys.VerificaAutoShift(autoKey))
+        if (GameController.g.MyKeys.VerificaAutoShift(ID))
         {
             GameController.g.HudM.Painel.AtivarNovaMens(textos[1], 25);
         }
@@ -162,7 +166,7 @@ public class Bau : AtivadorDeBotao
         //commandR = GameController.g.CommandR;
         ActionManager.ModificarAcao(GameController.g.transform, AcaoDeOpcaoLida);
 
-        if (GameController.g.MyKeys.VerificaAutoShift(autoKey))
+        if (GameController.g.MyKeys.VerificaAutoShift(ID))
             fase = FasesDoBau.abrindo;
         else
         {

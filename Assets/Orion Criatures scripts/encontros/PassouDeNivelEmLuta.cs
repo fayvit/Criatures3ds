@@ -24,7 +24,7 @@ public class PassouDeNivelEmLuta
             string.Format(BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.passouDeNivel),
             oNivelado.NomeEmLinguas,
             oNivelado.CaracCriature.mNivel.Nivel)
-            , 20);
+            , 32);
     }
 
     public bool Update()
@@ -32,7 +32,7 @@ public class PassouDeNivelEmLuta
         switch (fase)
         {
             case FasesDoPassouDeNivel.mostrandoNivel:
-                if (CommandReader.SubmitButtonDown())
+                if (CommandReader.SubmitButtonDown(GameController.g.Manager.Control))
                 {
                     GameController.g.HudM.Painel.EsconderMensagem();
 
@@ -66,7 +66,7 @@ public class PassouDeNivelEmLuta
                 }
             break;
             case FasesDoPassouDeNivel.painelAprendeuGolpeAberto:
-                if (CommandReader.SubmitButtonDown())
+                if (CommandReader.SubmitButtonDown(GameController.g.Manager.Control))
                 {
                     fase = FasesDoPassouDeNivel.finalizar;
                 }
@@ -80,7 +80,7 @@ public class PassouDeNivelEmLuta
                         string.Format(BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.tentandoAprenderGolpe),
                         oNivelado.NomeEmLinguas,
                         GolpeBase.NomeEmLinguas(gp.Nome))
-                        , 24
+                        , 30
                         );
                     
                     

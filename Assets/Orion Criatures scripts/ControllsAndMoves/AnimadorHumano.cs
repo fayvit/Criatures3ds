@@ -11,6 +11,11 @@ public class AnimadorHumano
         this.animator = animator;
     }
 
+    public Animator MeuAnimator
+    {
+        get { return animator; }
+    }
+
     public void AnimaAndar(float magnitude)
     {
         if(animator!=null)

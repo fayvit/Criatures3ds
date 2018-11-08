@@ -70,7 +70,7 @@ public class PainelDeItens : MonoBehaviour
 
                 if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
-                    Debug.Log("controlador de acao removido");
+                    
                     if (modoOrganizar)
                         AoClique(insereI.OpcaoEscolhida);
                     else
@@ -81,7 +81,7 @@ public class PainelDeItens : MonoBehaviour
                 }
                 else if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
-                    Debug.Log("controlador de cancel removido");
+                    
                     BtnVoltar();
                 }
                 else if (ActionManager.ButtonUp(3,GameController.g.Manager.Control))
@@ -213,6 +213,7 @@ public class PainelDeItens : MonoBehaviour
         acao = null;
         SairDoModoOrganizar();
         infos.text = "Toque sobre um item para seleciona-lo";
+        ColetorDeLixo.Coleta();
         GameController.g.HudM.MenuDePause.PausarJogo();
     }
 

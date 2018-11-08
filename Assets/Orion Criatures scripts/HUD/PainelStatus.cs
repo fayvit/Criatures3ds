@@ -212,6 +212,7 @@ public class PainelStatus : MonoBehaviour
     public void BtnVoltar()
     {
         gameObject.SetActive(false);
+        ColetorDeLixo.Coleta();
         GameController.g.HudM.MenuDePause.PausarJogo();
     }
 

@@ -80,6 +80,7 @@ public class FadeViewLoad : MonoBehaviour {
         this.corDoFade.a = 0;
         fase = FaseDaqui.escurecendo;
         tempoDecorrido = 0;
+        EventAgregator.Publish(EventKey.fadeOutStart, null);
     }
 
     public void IniciarFadeIn(Color corDoFade = default(Color))
@@ -88,5 +89,6 @@ public class FadeViewLoad : MonoBehaviour {
         this.corDoFade.a = 1;
         fase = FaseDaqui.clareando;
         tempoDecorrido = 0;
+        EventAgregator.Publish(EventKey.fadeInStart, null);
     }
 }

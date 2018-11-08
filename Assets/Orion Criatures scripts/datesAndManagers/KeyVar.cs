@@ -7,6 +7,7 @@ public class KeyVar
 {
     private Dictionary<KeyShift, bool> shift = new Dictionary<KeyShift, bool>();
     private Dictionary<string, bool> autoShift = new Dictionary<string, bool>();
+    private Dictionary<string, string> cristalShift = new Dictionary<string, string>();
     private Dictionary<KeyCont, int> contadorChave = new Dictionary<KeyCont, int>();
     private Dictionary<nomesCriatures, bool> visto = new Dictionary<nomesCriatures, bool>();
     private Dictionary<nomesCriatures, bool> colecionado = new Dictionary<nomesCriatures, bool>();
@@ -82,6 +83,25 @@ public class KeyVar
     public void MudaColecionado(nomesCriatures nome, bool val = false)
     {
         MudaDic(colecionado, nome, val);
+    }
+
+    public void MudaCristalShift(string key)
+    {
+        MudaDic(cristalShift,key, System.DateTime.Now.ToString("dd/MM/yyyy"));
+    }
+
+    public bool VerificaCristalShift(string key)
+    {
+        //Debug.Log(autoShift.ContainsKey(key));
+        if (!cristalShift.ContainsKey(key))
+        {
+            //autoShift.Add(key, false);
+            return false;
+        }
+        else
+        { //Debug.Log(autoShift[key]); 
+            return cristalShift[key]== System.DateTime.Now.ToString("dd/MM/yyyy");
+        }
     }
 
     public void MudaCont(KeyCont key, int val = 0)

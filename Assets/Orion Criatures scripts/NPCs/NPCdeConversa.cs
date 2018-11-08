@@ -147,6 +147,8 @@ public class NPCdeConversa
 
     public virtual void IniciaConversa(/*Transform Destrutivel*/)
     {
+        ColetorDeLixo.Coleta();
+
         //destrutivel = Destrutivel;
         siga.PareAgora();
 

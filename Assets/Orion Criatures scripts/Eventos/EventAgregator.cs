@@ -66,6 +66,8 @@ public enum EventKey
     fadeOutComplete,
     UiDeOpcoesChange,
     positiveUiInput,
-    negativeUiInput
+    negativeUiInput,
+    fadeOutStart,
+    fadeInStart
     
 }

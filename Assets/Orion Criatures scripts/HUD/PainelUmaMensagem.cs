@@ -12,7 +12,7 @@ public class PainelUmaMensagem : MonoBehaviour
     // Use this for initialization
     public void ConstroiPainelUmaMensagem(RetornarParaAntecessor r,string textoDaMensagem)
     {
-        ActionManager.ModificarAcao(transform, BotaoEntendi);
+        //ActionManager.ModificarAcao(transform, BotaoEntendi);
         gameObject.SetActive(true);
         this.textoDaMensagem.text = textoDaMensagem;
         retornar = r;
@@ -54,7 +54,7 @@ public class PainelUmaMensagem : MonoBehaviour
 
     void Update()
     {
-        if (CommandReader.ButtonDown(1,GameController.g.Manager.Control)||CommandReader.ButtonDown(1,GameController.g.Manager.Control))
+        if (ActionManager.ButtonUp(1,GameController.g.Manager.Control)||ActionManager.ButtonUp(0,GameController.g.Manager.Control))
         {
             Debug.Log("disparaacao e nao cancel");
             EventAgregator.Publish(EventKey.negativeUiInput, null);

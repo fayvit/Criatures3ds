@@ -48,15 +48,37 @@ public class ImageMenuN3ds : FerramentasDeHud/*ferramentas de hud será removida
 
     public void AtualizaModificacaoNaHud()
     {
-      
+        bool foi = false;
         //VerificaTempoAtiva(TEMPO_PARA_SAIR);
-        AtualizaDadosDeHUD();
+        switch (tipo)
+        {
+            case TipoHud.criatures:
+                if (dados.CriaturesAtivos.Count > 1)
+                    foi = true;
+            break;
+            case TipoHud.golpes:
+                if (dados.CriaturesAtivos != null)
+                    if (dados.CriaturesAtivos.Count > 0)
+                        foi = true;
+                    
+            break;
+            case TipoHud.items:
+                if (dados.Itens.Count > 0)
+                    foi = true;
+            break;
+        }
+
+        if (foi)
+            AtualizaDadosDeHUD();
+        else
+            Esconde();
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(dados!=null)
         AtualizaModificacaoNaHud();
     }
 

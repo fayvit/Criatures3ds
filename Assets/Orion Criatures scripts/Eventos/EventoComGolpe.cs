@@ -3,24 +3,18 @@ using System.Collections;
 
 public abstract class EventoComGolpe : AtivadorDeBotao
 {
-    [SerializeField]private string chave;
-    [SerializeField]private KeyShift chaveEspecial = KeyShift.nula;
+    [SerializeField]protected string ID;
+    //[SerializeField]private KeyShift chaveEspecial = KeyShift.nula;
     [SerializeField]private nomesGolpes[] ativaveis;
     [Space(5)]
     [SerializeField]private bool todoDoTipo = false;
     [SerializeField]private nomeTipos tipoParaAtivar = nomeTipos.nulo;
     
-
+    /*
     protected KeyShift ChaveEspecial
     {
         get { return chaveEspecial; }
-    }
-
-    protected string Chave
-    {
-        get { return chave; }
-        set { chave = value; }
-    }
+    }*/
 
     private bool VerificaGolpeNaLista(nomesGolpes nomeDoGolpe)
     {
@@ -29,6 +23,11 @@ public abstract class EventoComGolpe : AtivadorDeBotao
                 return true;
 
         return false;
+    }
+
+    private void OnValidate()
+    {
+        BuscadorDeID.Validate(ref ID,this);
     }
 
     protected bool EsseGolpeAtiva(nomesGolpes nomeDoGolpe)

@@ -83,7 +83,7 @@ public class NpcDoPrimeiroMiniArmagedom : NPCdeConversa
                     pInicial.MudarSelecionado(val);
                 }
 
-                if (CommandReader.ButtonDown(1, GameController.g.Manager.Control))
+                if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
                     pInicial.BtnVoltar();
                     ActionManager.useiCancel = true;
@@ -94,7 +94,7 @@ public class NpcDoPrimeiroMiniArmagedom : NPCdeConversa
                     estado = EstadoDoNPC.finalizadoComBotao;
                 }
 
-                if (pInicial.TemIndiceEscolhido && CommandReader.ButtonDown(0,GameController.g.Manager.Control))
+                if (pInicial.TemIndiceEscolhido && ActionManager.ButtonUp(0,GameController.g.Manager.Control))
                 {
                     pInicial.BtnEscolher(this);
                     estadoInterno = EstadoDesseNpc.confirmarEscolha;

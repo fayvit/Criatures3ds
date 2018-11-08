@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public class MusicasDeFundo:MonoBehaviour
+public class MusicasDeFundo
 {    
     [SerializeField] private AudioSource[] audios;
 
@@ -12,12 +12,19 @@ public class MusicasDeFundo:MonoBehaviour
 
     private string cenaIniciada = "";
     private bool parando;
+    private float volumeAlvo = 0.5f;
 
     private const int VELOCIDADE_DE_MUDANCA = 1;
 
-    public void IniciarMusica(AudioClip esseClip)
+    public void IniciarMusica(NameMusic esseClip,float volumeAlvo = 1)
     {
+        IniciarMusica((AudioClip)Resources.Load(esseClip.ToString()),volumeAlvo);
+    }
 
+    public void IniciarMusica(AudioClip esseClip, float volumeAlvo = 1)
+    {
+        parando = false;
+        this.volumeAlvo = volumeAlvo;
         AudioSource au = audios[0];
         if (au.isPlaying)
         {
@@ -42,7 +49,7 @@ public class MusicasDeFundo:MonoBehaviour
             audios[inicia].clip = esseClip;
             audios[inicia].Play();
         }
-
+        Debug.Log(parando + " : " + volumeAlvo + " :" + inicia + " : " + termina + " : " + audios[inicia].clip + " : " + audios[termina].clip);
     }
 
     public void PararMusicas()
@@ -61,48 +68,57 @@ public class MusicasDeFundo:MonoBehaviour
         }
     }
 
-    void Update()
+    public void Update()
     {
+        //Debug.Log(audios.Length + " : " + parando);
         if (audios.Length > 0)
         {
             if (!parando)
             {
                 if (inicia != -1 && termina != -1)
                 {
-                    if (audios[inicia].volume < 0.9f)
-                        audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, 1, Time.deltaTime * VELOCIDADE_DE_MUDANCA);
+
+
+                    if (audios[inicia].volume < 0.9f*volumeAlvo)
+                        audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, volumeAlvo, Time.deltaTime * VELOCIDADE_DE_MUDANCA);
                     else
-                        audios[inicia].volume = 1;
+                        audios[inicia].volume = volumeAlvo;
 
                     if (audios[termina].volume < 0.2f)
                     {
+                        audios[termina].volume = 0;
                         audios[termina].Stop();
                     }
                     else
-                        audios[termina].volume = Mathf.Lerp(audios[termina].volume, 0, Time.deltaTime * 2 * VELOCIDADE_DE_MUDANCA);
+                        audios[termina].volume = Mathf.Lerp(audios[termina].volume, 0, Time.deltaTime * 3 * VELOCIDADE_DE_MUDANCA);
 
                 }
-                VerificaCena();
+                //VerificaCena();
             }
             else
             {
-                audios[termina].volume = Mathf.Lerp(audios[termina].volume, 0, Time.fixedDeltaTime * 2 * VELOCIDADE_DE_MUDANCA);
-                audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, 0, Time.fixedDeltaTime * 2 * VELOCIDADE_DE_MUDANCA);
+                if(termina!=-1)
+                    audios[termina].volume = Mathf.Lerp(audios[termina].volume, 0, Time.fixedDeltaTime * 2 * VELOCIDADE_DE_MUDANCA);
+
+                if(inicia!=-1)
+                    audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, 0, Time.fixedDeltaTime * 2 * VELOCIDADE_DE_MUDANCA);
             }
 
 
         }
     }
 
-    void MudaPara(string clip)
+    void MudaPara(string clip,float volume = 1)
     {
+        volumeAlvo = volume;
         IniciarMusica((AudioClip)Resources.Load(clip));
         cenaIniciada = SceneManager.GetActiveScene().name;
     }
 
-    private void Start()
+    public void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        if (SceneManager.GetActiveScene().name == "Inicial 1")
+            IniciarMusica((AudioClip)Resources.Load(NameMusic.Field2.ToString()));
     }
 
     void VerificaCena()
@@ -124,5 +140,12 @@ public class MusicasDeFundo:MonoBehaviour
                 break;
             }
     }
+}
+
+public enum NameMusic
+{
+    nula=-1,
+    Field2,
+    Mushrooms
 }
 

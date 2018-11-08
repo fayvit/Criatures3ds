@@ -178,7 +178,7 @@ public class CreatureManager : MonoBehaviour
         mov = new MovimentacaoBasica(
                        meuCriatureBase.Mov, new ElementosDeMovimentacao()
                        {
-                           animador = new AnimadorHumano(GetComponent<Animator>()),
+                           Animador = new AnimadorHumano(GetComponent<Animator>()),
                            controle = GetComponent<CharacterController>(),
                            transform = transform
                        }

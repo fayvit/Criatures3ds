@@ -5,17 +5,51 @@ public class TextosDaCavernaInicialPT_BR
 {
     public static Dictionary<ChaveDeTexto, List<string>> txt = new Dictionary<ChaveDeTexto, List<string>>()
         {
+        {ChaveDeTexto.entradinha, new List<string>()
+            {
+                "Então... é você que veio juntar-se a nós?",
+                "Nós entendemos os seus motivos.",
+                "Também sentimos que há algo errado com o rumo que o império está tomando",
+                "Nós estamos tentando abrir a <color=yellow>Torre da Vida Eterna</color> ",
+                "para encarar o imperador <color=orange>Logan</color> e mudar destino de <color=yellow>Orion</color>",
+                "O caminho para isso é muito longo e muito difícil,",
+                " você precisa de muita determinação para percorrer todo o caminho",
+                "Nós estamos apenas no meio dele um tanto quanto sem rumo mas já temos algumas lições para tirar",
+                "Rapaz, todos os que querem fazer uma tarefa difícil tem um começo.",
+                "E só quem já está no meio do caminho sabe como é dificil começar.",
+                "Por isso vamos te ajudar",
+                "Seu nome é <color=cyan>Cesar Corean</color> não é?",
+                "Siga na caverna, Cesar Corean, e você poderá pegar um criature de nossa reserva"
+            } },
             {ChaveDeTexto.bemVindo, new List<string>()
             {
                 "Olá novato, seja bem vindo",
+                "Meu nome é <color=orange> Caesar Palace</color>. ",
+                "Sou coordenador do levante popular contra o imperador que começou na <color=yellow>cidade de Infinity</color>",
                 "Nós somos a resistencia ao império de <color=orange>Logan</color>",
                 "Atualmente baseamos a resistencia ao império na luta com criatures",
                 "Siga na caverna e você poderá pegar um criature de nossa reserva"
             } },
+             {ChaveDeTexto.hooliganSeApresenta, new List<string>()
+            {
+                "Bem vindo <color=cyan>Cesar Corean</color>",
+                "Meu nome é <color=orange>Random Hooligan</color>.",
+                "Meu irmão é um clérigo da coragem e regente de uma arena de Criatures.",
+                "Somos de uma tradicional familia aristocratica de <color=orange>Orion</color>",
+                "Logo eu partirei para encontrar meu irmão na cidade de <color=yellow>Afarenga</color>.",
+                 "Pretendo com a ajuda dele conseguir o apoio do povo da cidade para nossa causa."
+            } },
+            {ChaveDeTexto.lanceSeApresenta, new List<string>()
+            {
+                "Seja muito bem vindo companheiro",
+                "Meu nome é <color=orange>Lance Lutz</color>. Sou um sociologo formado na universidade do deserto da predominância",
+                "tenho grande contato entre os pensadores e movimentos sociais de Orion.",
+                "Logo viajarei para a cidade de <color=yellow>Ofawing</color> organizar um ato proximo das administrações governamentais"
+            }},
             {ChaveDeTexto.comSeuCriature, new List<string>()
             {
                 "Ótimo você já tem um criature agora!",
-                "Continue seguindo o caminho da caverna e logo chegará a cidade de <color=yellow>Katids</color>"
+                "Continue seguindo o caminho da caverna e logo chegará a cidade de <color=yellow>Infinity</color>"
             }},
             {
                 ChaveDeTexto.comoVaiSuaJornada,new List<string>()
@@ -27,7 +61,7 @@ public class TextosDaCavernaInicialPT_BR
         {
             ChaveDeTexto.mudarDeCriature,new List<string>()
             {
-                "Você pode alternar entre o heroi e o criature pressionando Q no teclado ou LS no controle de Xbox"
+                "Você pode alternar entre o heroi e o criature pressionando o botão X"
             }
         },
         {
@@ -86,9 +120,9 @@ public class TextosDaCavernaInicialPT_BR
         {
             ChaveDeTexto.comoUsoCartaLuva,new List<string>()
             {
-                "Para usar a carta luva selecione o item utilizando os botões 1 e/ou 2 no teclado ou DPAD do controle de XBOX",
-                "O item selecionado será exibido no painel inferior esquerdo",
-                "Com carta luva selecionada pressione F no teclado ou X no controle de XBOX para utiliza-la"
+                "Para usar a carta luva selecione o item segunrando o botão R e pressionando Y ou A",
+                "O item selecionado será exibido no painel inferior",
+                "Com carta luva selecionada segure L e pressione A para utiliza-la"
             }
         },
         {

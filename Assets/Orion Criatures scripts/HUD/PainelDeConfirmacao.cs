@@ -21,11 +21,12 @@ public class PainelDeConfirmacao : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CommandReader.ButtonUp(0,GlobalController.g.Control))
+        
+        if (ActionManager.ButtonUp(0,GlobalController.g.Control))
         {
             BotaoSim();
         }else
-        if (CommandReader.ButtonUp(1, GlobalController.g.Control))
+        if (ActionManager.ButtonUp(1, GlobalController.g.Control))
         {
             BotaoNao();
         }
@@ -33,7 +34,7 @@ public class PainelDeConfirmacao : MonoBehaviour
 
     void AcaoDoBotaoSim()
     {
-        if (CommandReader.ButtonUp(0, GlobalController.g.Control))
+     //   if (ActionManager.ButtonUp(0, GlobalController.g.Control))
         {
             BotaoSim();
         }
@@ -41,7 +42,7 @@ public class PainelDeConfirmacao : MonoBehaviour
 
     public void AtivarPainelDeConfirmacao(Confirmacao sim,Confirmacao nao,string textoDoPainel)
     {
-        ActionManager.ModificarAcao(transform,AcaoDoBotaoSim);
+        //ActionManager.ModificarAcao(transform,AcaoDoBotaoSim);
         gameObject.SetActive(true);
         botaoSim += sim;
         botaoNao += nao;

@@ -7,7 +7,7 @@ public class AnimaPoseDeCaptura
     private Animator animator;
     private FaseDoAnimaPose fase = FaseDoAnimaPose.inicia;
     private bool foiParaArmagedom = false;
-    private bool ativarAcao = false;
+    //private bool ativarAcao = false;
     private float tempoDecorrido = 0;
 
     private const int TEMPO_DE_MENS_DE_CAPTURA = 10;
@@ -92,25 +92,23 @@ public class AnimaPoseDeCaptura
 
                     if (foiParaArmagedom)
                     {
-                        ActionManager.ModificarAcao(GameController.g.transform, () => { ativarAcao = true; });
+                        //ActionManager.ModificarAcao(GameController.g.transform, () => { ativarAcao = true; });
                         fase = FaseDoAnimaPose.mensDoArmagedom;
                     }
                     else
                     {
-                        ActionManager.ModificarAcao(GameController.g.transform, () => { ativarAcao = true; });
+                        //ActionManager.ModificarAcao(GameController.g.transform, () => { ativarAcao = true; });
                         fase = FaseDoAnimaPose.finaliza;
                         tempoDecorrido = 0;
                     }
                 }
             break;
             case FaseDoAnimaPose.mensDoArmagedom:
-                if (ativarAcao|| tempoDecorrido > TEMPO_DE_MENS_DE_CAPTURA)
+                if (ActionManager.ButtonUp(0,GameController.g.Manager.Control)|| tempoDecorrido > TEMPO_DE_MENS_DE_CAPTURA)
                 {
-                    ativarAcao = false;
                    GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(() => {
                         tempoDecorrido = 11;// para finalizar imediatamente
                         fase = FaseDoAnimaPose.finaliza;
-                       ActionManager.ModificarAcao(GameController.g.transform, () => { ativarAcao = true; });
                     },string .Format(BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.foiParaArmagedom),
                     GameController.g.Manager.Dados.maxCarregaveis,
                     oCapturado.NomeEmLinguas,
@@ -119,9 +117,8 @@ public class AnimaPoseDeCaptura
                 }
             break;
             case FaseDoAnimaPose.finaliza:
-                if (ativarAcao|| tempoDecorrido > TEMPO_DE_MENS_DE_CAPTURA)
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control) || tempoDecorrido > TEMPO_DE_MENS_DE_CAPTURA)
                 {
-                    ativarAcao = false;
                     animator.SetBool("travar", false);
                     GameController.g.HudM.Painel.EsconderMensagem();
                     GameController.g.HudM.P_Criature.gameObject.SetActive(false);

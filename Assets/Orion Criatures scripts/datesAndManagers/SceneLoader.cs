@@ -29,6 +29,8 @@ public class SceneLoader:MonoBehaviour
 
     public void CenaDoCarregamento(int indice)
     {
+        ColetorDeLixo.Coleta();
+
         DontDestroyOnLoad(gameObject);
         indiceDoJogo = indice;
 
@@ -91,20 +93,14 @@ public class SceneLoader:MonoBehaviour
             }
             else
             {
-                NomesCenas[] N = PegueAsCenasPorCarregar();
-                NomesCenas[] N2 = DescarregarCenasDesnecessarias();
+                DescarregarCenasDesnecessarias();
+                NomesCenas[] N = S.VariaveisChave.CenasAtivas.ToArray();//PegueAsCenasPorCarregar();
+
                 a2 = new AsyncOperation[N.Length];
                 for (int i = 0; i < N.Length; i++)
                 {
                     a2[i] = SceneManager.LoadSceneAsync(N[i].ToString(), LoadSceneMode.Additive);
                  //   Debug.Log(a2[i]+": "+N[i]);
-                }
-
-                for (int i = N.Length; i < N.Length + N2.Length; i++)
-                {
-                  SceneManager.UnloadSceneAsync(N2[i-N.Length].ToString());
-                    //Debug.Log("tamanha: " + N2.Length + " : " + N2[i - N.Length]);
-                   // Debug.Log(a2[i]+" : "+N2[i - N.Length]);
                 }
             }
             Time.timeScale = 0;
@@ -120,11 +116,6 @@ public class SceneLoader:MonoBehaviour
         System.Collections.Generic.List<NomesCenas> retorno = new System.Collections.Generic.List<NomesCenas>();
         for (int i = 0; i < N.Length; i++)
         {
-            /*
-            Debug.Log(
-                SceneManager.GetSceneByName(N[i].ToString()) + " : " + 
-                N[i].ToString() + " : " + 
-                SceneManager.GetSceneByName(N[i].ToString()).isLoaded);*/
             if (!SceneManager.GetSceneByName(N[i].ToString()).isLoaded)
             {
                 retorno.Add(N[i]);
@@ -134,9 +125,9 @@ public class SceneLoader:MonoBehaviour
         return retorno.ToArray();
     }
 
-    NomesCenas[] DescarregarCenasDesnecessarias()
+    void DescarregarCenasDesnecessarias()
     {
-        NomesCenas[] N = S.VariaveisChave.CenasAtivas.ToArray();
+        
         System.Collections.Generic.List<NomesCenas> retorno = new System.Collections.Generic.List<NomesCenas>();
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
@@ -149,23 +140,19 @@ public class SceneLoader:MonoBehaviour
 
                 if (S.isLoaded)
                 {
-                    bool foi = false;
-                    for (int j = 0; j < N.Length; j++)
-                    {
-
-                        if (S.name == N[j].ToString())
-                            foi = true;
-
-                     //   Debug.Log(S.name + " : " + N[j] + " : " + foi);
-                    }
-
-                    if (!foi)
-                        retorno.Add(StringParaEnum.ObterEnum<NomesCenas>(S.name));
+                    SceneManager.UnloadSceneAsync(S.name);
+                    SceneManager.sceneUnloaded += MySceneUnloaded;
                 }
             }
         }
 
-        return retorno.ToArray();
+      
+    }
+
+    private void MySceneUnloaded(Scene arg0)
+    {
+        ColetorDeLixo.Coleta();
+        SceneManager.sceneUnloaded -= MySceneUnloaded;
     }
 
     void ComoPode()
@@ -187,7 +174,8 @@ public class SceneLoader:MonoBehaviour
             for (int i = 0; i < Gs.Length; i++)
                 MonoBehaviour.Destroy(Gs[i]);
 
-           // if (manager.CriatureAtivo != null)
+            Debug.Log("me diga se estou no tuto: "+GameController.g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto));
+            if (GameController.g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto))
             {
              //   MonoBehaviour.Destroy(manager.CriatureAtivo.gameObject);
                 manager.InserirCriatureEmJogo();
@@ -244,16 +232,17 @@ public class SceneLoader:MonoBehaviour
             /*
                 novo jogo inicia sem itens e sem criatures
             */
-           // manager.Dados.CriaturesAtivos = new System.Collections.Generic.List<CriatureBase>();
+            manager.Dados.CriaturesAtivos = new System.Collections.Generic.List<CriatureBase>();
             manager.Dados.CriaturesArmagedados = new System.Collections.Generic.List<CriatureBase>();
-           // manager.Dados.Itens = new System.Collections.Generic.List<MbItens>();
+            manager.Dados.Itens = new System.Collections.Generic.List<MbItens>();
+            
             GameController.g.ComCriature = false;
             /***************************/
 
 
             AplicadorDeCamera.cam.transform.position = new Vector3(49, 15f, 155); //new Vector3(411, 15f, 1569);
-            manager.transform.position = new Vector3(39, 5.4f, 155); //new Vector3(519, 5.4f, 1894);
-            manager.transform.rotation = Quaternion.LookRotation(Vector3.right);
+            manager.transform.position = new Vector3(-108f, 15f, 174); /****************new Vector3(39, 5.4f, 155);*/ //new Vector3(519, 5.4f, 1894);
+            manager.transform.rotation = Quaternion.LookRotation(Vector3.left);
             GameController.g.ReiniciarContadorDeEncontro();
 
             if (manager.CriatureAtivo != null)
@@ -282,6 +271,9 @@ public class SceneLoader:MonoBehaviour
     {
         //Debug.Log(scene.name);
         SceneManager.SetActiveScene(scene);
+        SceneConfigs sc = GetSceneConfigs.Get(StringParaEnum.ObterEnum<NomesCenas>(scene.name));
+        Camera.main.backgroundColor = sc.CamColor;
+        GlobalController.g.IniciarMusica(sc.SceneMusic,sc.MusicVolume);
         //Debug.Log(GameController.g+" : "+scene.name);
         if (SceneManager.GetActiveScene() != scene)
             StartCoroutine(setarScene(scene));
@@ -375,7 +367,7 @@ public class SceneLoader:MonoBehaviour
 
     private void OnFadeInComplete(IGameEvent obj)
     {
-        
+        GameController.g.ContarPassos = true;
         Destroy(gameObject);
     }
 

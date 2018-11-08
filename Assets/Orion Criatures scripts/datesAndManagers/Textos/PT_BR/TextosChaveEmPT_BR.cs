@@ -214,7 +214,8 @@ public static class TextosChaveEmPT_BR
                     "Tem certeza que deseja usar o item {0} ?",
                     " Cesar Corean não pode usar esse item nesse local",
                     "{0} não precisa usar esse item nesse momento",
-                    "Você não pode usar itens pelo menu enquanto estiver em luta"
+                    "Você não pode usar itens pelo menu enquanto estiver em luta",
+                    "Você não tem nenhum item no momento."
                 }},
                 {ChaveDeTexto.bau,new List<string>()
                 {
@@ -468,7 +469,8 @@ public static class TextosChaveEmPT_BR
         {
             ChaveDeTexto.menuDePause,new List<string>()
             {
-                "Status", "Itens", "Coleção", "Voltar ao título", "Voltar ao jogo"
+                "Status", "Itens", "Coleção", "Voltar ao título", "Voltar ao jogo","Encontro Agora",
+                "Inimigo com 1PV","Heroi com 1PV","4 golpes","1XP para Nivel","0 PE","teste Save","carregar save zero"
             }
         },
         {

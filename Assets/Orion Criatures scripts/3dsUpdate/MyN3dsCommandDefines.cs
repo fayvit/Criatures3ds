@@ -39,7 +39,7 @@ public class MyN3dsCommandDefines  {
     {
         float x, y;
         Controlador c = GameController.g.Manager.Control;
-        if (!CommandReader.PressionadoBotao(4, (int)c))
+        if (!(CommandReader.PressionadoBotao(4, (int)c)&&CommandReader.PressionadoBotao(2,(int)c)))
         {
             x = CommandReader.GetAxis("Xcam", c);// * caracteristicas.xSpeed * 0.02f;
             y = CommandReader.GetAxis("Ycam",c);// * caracteristicas.ySpeed * 0.02f;
@@ -80,13 +80,14 @@ public class MyN3dsCommandDefines  {
                && manager.Estado == EstadoDePersonagem.comMeuCriature)
                     GameController.g.BotaoAtaque();
 
+                /*
                 if (CommandReader.ButtonDown(3, GameController.g.Manager.Control))
                 {
                     GameController.g.MyKeys.MudaShift(KeyShift.estouNoTuto, true);
 
                     Debug.Log("estou no tuto para retirar");
                     Debug.Log(GameController.g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto) + " : " + GameController.g.EmEstadoDeAcao());
-                }
+                }*/
 
                 if (GameController.g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto))
                     if (ActionManager.ButtonUp(3, GameController.g.Manager.Control)
@@ -103,8 +104,10 @@ public class MyN3dsCommandDefines  {
                     GameController.g.HudM.MenuDePause.PausarJogo();
                 }
 
-                if (CommandReader.ButtonDown(0, GameController.g.Manager.Control))
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+                {
                     ActionManager.VerificaAcao();
+                }
 
             }
             else if (CommandReader.PressionadoBotao(4, c) && !CommandReader.PressionadoBotao(5, c) && !esteQuadro)
@@ -204,7 +207,7 @@ public class MyN3dsCommandDefines  {
             if (CommandReader.ButtonDown(5, GameController.g.Manager.Control) && GameController.g.EmEstadoDeAcao() && manager.Dados.CriaturesAtivos.Count > 1)
                 GameController.g.BotaTrocarCriature();
 
-            if (CommandReader.ButtonDown(0, GameController.g.Manager.Control))
+            if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 ActionManager.VerificaAcao();
         }
     }

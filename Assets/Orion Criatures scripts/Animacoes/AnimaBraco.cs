@@ -75,6 +75,7 @@ public class AnimaBraco
         string nomeDoGameObject = "")
     {
         tempoDecorrido += Time.deltaTime;
+        Debug.Log(estadoEnvia);
         switch (estadoEnvia)
         {
             case EstadoDoAnimaEnvia.iniciaAnimacao:

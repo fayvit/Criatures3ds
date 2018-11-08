@@ -49,8 +49,8 @@ public static class ActionManager
 
     public static void VerificaAcao()
     {
-
-        if (!anularAcao )
+        
+        if (!anularAcao)
         {
             //anularAcao = true;
             if (visualizado != null)
@@ -72,7 +72,7 @@ public static class ActionManager
         bool press = CommandReader.ButtonUp(n, c);
         if (!esteQuadro&& press)
         {
-            Debug.Log("Botao: " + n);
+
             AgendaEsseQuadro();
             return true;
         }
@@ -88,6 +88,7 @@ public static class ActionManager
 
     static IEnumerator VoltaQuadro()
     {
+        yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
         esteQuadro = false;

@@ -35,7 +35,6 @@ public class ReplaceCriatureHudManager : UiDeOpcoes
     public void Update()
     {
         if(PodeMudar)
-
             MudarOpcao();
     }
 

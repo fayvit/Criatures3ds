@@ -44,7 +44,9 @@ public class CameraDeLuta
         if (tInimigo && alvo && transform)
             focoDeLuta();
         else
-            Debug.LogAssertion("transforms não setados corretamente, inimigo = " + tInimigo + ", alvo= " + alvo + ", camera = " + transform);
+        {
+            Debug.LogWarning("transforms não setados corretamente, inimigo = " + tInimigo + ", alvo= " + alvo + ", camera = " + transform);
+        }
     }
 
     void focoDeLuta()

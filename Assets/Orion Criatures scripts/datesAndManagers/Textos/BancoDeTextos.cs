@@ -245,5 +245,7 @@ public enum ChaveDeTexto
     nomeStatus,
     riquinhaDoEsgoto,
     menuDePause,
-    menuDeArmagedom
+    menuDeArmagedom,
+    hooliganSeApresenta,
+    lanceSeApresenta
 }

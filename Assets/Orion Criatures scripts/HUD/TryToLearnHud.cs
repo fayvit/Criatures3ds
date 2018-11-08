@@ -104,7 +104,7 @@ public Text LabelDaHud
 
                 Destacar(opcaoEscolhida);
             }else
-             if (CommandReader.ButtonDown(0, GameController.g.Manager.Control))
+             if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
             {
                 fase = FasesDaqui.painelSuspenso;
                 QualGolpeEsquecer(opcaoEscolhida);

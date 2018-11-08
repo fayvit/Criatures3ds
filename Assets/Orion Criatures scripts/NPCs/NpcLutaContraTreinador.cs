@@ -98,9 +98,8 @@ public class NpcLutaContraTreinador : NPCdeConversa
             case EstadoInterno.esperandoResposta:
                 GameController.g.HudM.Menu_Basico.MudarOpcao();
 
-                if (CommandReader.ButtonDown(0, GameController.g.Manager.Control))
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
-                    Debug.Log("controlador de acao removido");
                     estadoInterno = EstadoInterno.emEspera;
                     IniciarOuNao(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
                 }

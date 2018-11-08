@@ -68,6 +68,8 @@ public class MbEncontros
 
             if (!luta && andado >= proxEncontro )
             {
+                ColetorDeLixo.Coleta();
+
                 IniciaEncontro();
             }
 
@@ -199,4 +201,13 @@ public class MbEncontros
     }
 
     #endregion
+}
+
+public static class ColetorDeLixo
+{
+    public static void Coleta()
+    {
+        System.GC.Collect();
+        Resources.UnloadUnusedAssets();
+    }
 }

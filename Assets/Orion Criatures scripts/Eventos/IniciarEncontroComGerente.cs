@@ -4,7 +4,7 @@ using System.Collections;
 public class IniciarEncontroComGerente : MonoBehaviour
 {
     
-    [SerializeField]    private string chave;
+    [SerializeField]    private string ID;
     [SerializeField]    private CriatureBase C;
     [SerializeField]    private bool golpeDeInspector = false;
     [SerializeField]    private bool pvDeInspector = false;
@@ -21,12 +21,17 @@ public class IniciarEncontroComGerente : MonoBehaviour
 
     public string Chave
     {
-        get { return chave; }
+        get { return ID; }
+    }
+
+    private void OnValidate()
+    {
+        BuscadorDeID.Validate(ref ID, this);
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player" && !GameController.g.MyKeys.VerificaAutoShift(chave))
+        if (col.gameObject.tag == "Player" && !GameController.g.MyKeys.VerificaAutoShift(ID))
         {
             cm = InsereInimigoEmCampo.RetornaInimigoEmCampo(C);
 
@@ -43,7 +48,7 @@ public class IniciarEncontroComGerente : MonoBehaviour
             GameController.g.EncontroAgoraCom(cm);
             tutorManager.IniciouLuta(cm, this);
         }
-        else if (GameController.g.MyKeys.VerificaAutoShift(chave))
+        else if (GameController.g.MyKeys.VerificaAutoShift(ID))
             gameObject.SetActive(false);
     }
 }

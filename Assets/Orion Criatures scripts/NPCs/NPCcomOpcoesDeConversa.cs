@@ -80,11 +80,11 @@ public class NPCcomOpcoesDeConversa : NPCdeConversa
                 
                 GameController.g.HudM.Menu_Basico.MudarOpcao();
 
-                if(CommandReader.ButtonDown(0,GameController.g.Manager.Control))
+                if(ActionManager.ButtonUp(0,GameController.g.Manager.Control))
                     OpcaoEscolhida(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
 
 
-                if (CommandReader.ButtonDown(1,GameController.g.Manager.Control))
+                if (ActionManager.ButtonUp(1,GameController.g.Manager.Control))
                 {
                     FinalizaConversa();
                     GameController.g.HudM.Menu_Basico.FinalizarHud();
