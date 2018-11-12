@@ -42,12 +42,11 @@ public class AplicadorDeCamera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //basica.Start(transform);
+        basica.Start(transform);
         if (ExistenciaDoController.AgendaExiste(Start, this))
         {
             cam = this;
-            
-            
+
             cDir = new CameraDirecionavel(new CaracteristicasDeCamera() {
                 alvo = GameController.g.Manager.transform,
                 minhaCamera = transform });
@@ -61,9 +60,9 @@ public class AplicadorDeCamera : MonoBehaviour
         switch (Estilo)
         {
             case EstiloDeCamera.passeio:
-                if(cDir!=null)
-                    cDir.AplicaCamera(1);
-                //basica.Update();
+                //if(cDir!=null)
+                  //  cDir.AplicaCamera(1);
+                basica.Update();
             break;
             case EstiloDeCamera.luta:
                     if (MyN3dsCommandDefines.FocarCamera())

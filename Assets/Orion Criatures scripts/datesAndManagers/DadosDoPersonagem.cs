@@ -228,19 +228,15 @@ public class DadosDoPersonagem
 [System.Serializable]
 public struct UltimoArmagedomVisitado
 {
-    private  NomesCenas nomeDaCena;
-    private  float[] V;
+    private float[] V;
 
     public UltimoArmagedomVisitado(Vector3 pos, NomesCenas cena)
     {
         V = new float[3] { pos[0], pos[1], pos[2] };
-        nomeDaCena = cena;
+        NomeDaCena = cena;
     }
 
-    public NomesCenas NomeDaCena
-    {
-        get { return nomeDaCena; }
-    }
+    public NomesCenas NomeDaCena { get; private set; }
 
     public Vector3 posHeroi
     {

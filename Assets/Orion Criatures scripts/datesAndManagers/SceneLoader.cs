@@ -98,8 +98,8 @@ public class SceneLoader:MonoBehaviour
             }
             else
             {
-                NomesCenas[] N = PegueAsCenasPorCarregar_b();
-                NomesCenas[] N2 = DescarregarCenasDesnecessarias_b();
+                NomesCenas[] N = PegueAsCenasPorCarregar_b(S.VariaveisChave.CenasAtivas.ToArray());
+                NomesCenas[] N2 = DescarregarCenasDesnecessarias_b(S.VariaveisChave.CenasAtivas.ToArray());
                 a2 = new AsyncOperation[N.Length];
                 for (int i = 0; i < N.Length; i++)
                 {
@@ -162,9 +162,9 @@ public class SceneLoader:MonoBehaviour
         }
     }
 
-    NomesCenas[] PegueAsCenasPorCarregar_b()
+    public static NomesCenas[] PegueAsCenasPorCarregar_b(NomesCenas[] N)
     {
-        NomesCenas[] N = S.VariaveisChave.CenasAtivas.ToArray();
+        
         System.Collections.Generic.List<NomesCenas> retorno = new System.Collections.Generic.List<NomesCenas>();
         for (int i = 0; i < N.Length; i++)
         {
@@ -182,9 +182,8 @@ public class SceneLoader:MonoBehaviour
         return retorno.ToArray();
     }
 
-    NomesCenas[] DescarregarCenasDesnecessarias_b()
+    public static NomesCenas[] DescarregarCenasDesnecessarias_b(NomesCenas[] N)
     {
-        NomesCenas[] N = S.VariaveisChave.CenasAtivas.ToArray();
         System.Collections.Generic.List<NomesCenas> retorno = new System.Collections.Generic.List<NomesCenas>();
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {

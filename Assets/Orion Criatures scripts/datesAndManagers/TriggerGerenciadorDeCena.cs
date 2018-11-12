@@ -58,8 +58,7 @@ public class TriggerGerenciadorDeCena : MonoBehaviour
         if (cenaParaAtivars.isLoaded)
         {
             InvocarSetScene(cenaParaAtivars);
-            System.GC.Collect();
-            Resources.UnloadUnusedAssets();
+            ColetorDeLixo.Coleta();
             
         }
         else {
@@ -67,7 +66,7 @@ public class TriggerGerenciadorDeCena : MonoBehaviour
         }
     }
 
-    static void SetarCenaPrincipal(Scene scene, LoadSceneMode mode)
+    public static void SetarCenaPrincipal(Scene scene, LoadSceneMode mode)
     {
         if (scene.name != "comunsDeFase")
         {
@@ -113,5 +112,17 @@ public enum NomesCenas
     planicieDeInfinity,
     represa,
     represa_c,
-    planicieDeInfinity_b
+    planicieDeInfinity_b,
+    outraModularScene,
+    modularScene,
+    infinity_A,
+    infinity_B,
+    infinity_C,
+    infinity_D,
+    infinity_EF,
+    infinity_G,
+    infinity_H,
+    infinity_I,
+    infinity_J,
+
 }

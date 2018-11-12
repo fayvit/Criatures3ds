@@ -49,7 +49,7 @@ public class StringParaEnum
             }
             catch (System.ArgumentException e)
             {
-                Debug.LogError("string para enum: "+typeof(T)+" invalida no enum \n" + e.StackTrace);
+                Debug.LogError("string "+chaveDaConversaGambiarraString+" para enum: "+typeof(T)+" invalida no enum \n" + e.StackTrace);
             }
         }
 

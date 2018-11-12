@@ -19,7 +19,7 @@ public class MbItens:System.ICloneable
 
     [System.NonSerialized] private float tempoDecorrido = 0;
 
-    public const float INTERVALO_DO_USO_DE_ITEM = 15;
+    public const float INTERVALO_DO_USO_DE_ITEM = 20;
 
     public MbItens(ContainerDeCaracteristicasDeItem cont)
     {

@@ -456,6 +456,7 @@
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\PT_BR\TextosDeMarjanPT_BR.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\StringParaChaveDeTexto.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\TriggerGerenciadorDeCena.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\TriggerGerenciadorDeCenas3x3.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\tipos.cs" />
     <Compile Include="Assets\Orion Criatures scripts\encontros\ApresentaDerrota.cs" />
     <Compile Include="Assets\Orion Criatures scripts\encontros\ApresentaFim.cs" />

@@ -15,6 +15,8 @@ public class GetSceneConfigs
             break;
             case NomesCenas.planicieDeInfinity:
             case NomesCenas.planicieDeInfinity_b:
+            case NomesCenas.outraModularScene:
+            case NomesCenas.modularScene:
                 S = new PlanicieDeInfinityConfigs();
             break;
             case NomesCenas.represa:
