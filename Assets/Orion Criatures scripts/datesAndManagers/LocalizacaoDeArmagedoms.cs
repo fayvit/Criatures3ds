@@ -14,7 +14,7 @@ public class LocalizacaoDeArmagedoms
         } },
         { IndiceDeArmagedoms.deKatids, new VisitasParaArmagedom() {
             Endereco = new Vector3(761, 1.2f, 1872),
-            nomeDasCenas = new NomesCenas[2]{NomesCenas.katidsTerrain,NomesCenas.katidsVsTempleZone }
+            nomeDasCenas = new NomesCenas[2]{NomesCenas.planicieDeInfinity,NomesCenas.katidsVsTempleZone }
         } },
         { IndiceDeArmagedoms.miniKatidsVsTemple, new VisitasParaArmagedom() {
             Endereco = new Vector3(530,1f,2540),

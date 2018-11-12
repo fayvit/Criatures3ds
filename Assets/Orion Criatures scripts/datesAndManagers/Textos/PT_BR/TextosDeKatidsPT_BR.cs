@@ -7,16 +7,16 @@ public class TextosDeKatidsPT_BR
     {
         {ChaveDeTexto.katids1, new List<string>()
             {
-            "Olá estranho, aqui é a cidade de <color=yellow>Katids</color>",
+            "Olá estranho, aqui é a cidade de <color=yellow>Infinity</color>",
             "Se você olhar para o leste verá a grande represa do rio Mariinque",
             "A necessidade por energia dos tempos antigos motivou a construção de represas no rio Mariinque",
             "As represas acabaram separando as planícies de Orion",
-            "Atraves da represa pelo caminho do rio podemos alcaçar a planície de <color=yellow>Infinity</color>"
+            "Atraves da represa pelo caminho do rio podemos alcaçar a cidade de <color=yellow>AxeOdion</color>"
         }
         },
         { ChaveDeTexto.katids2,new List<string>()
         {
-            "Seguindo pelos caminhos do sul é possível alcançar a cidade de <color=yellow>Marjan</color>",
+            "Seguindo pelos caminhos do sul é possível alcançar a cidade de <color=yellow>Ive</color>",
             "Nesse caminho é necessário passar por algumas pequenas cavernas e pelo campo de um templo Agnun",
             "Da cidade de Marjan é possível ver a <color=yellow>Torre da Vida Eterna</color>"
         }

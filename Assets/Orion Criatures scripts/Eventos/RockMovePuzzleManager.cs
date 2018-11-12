@@ -13,6 +13,7 @@ public class RockMovePuzzleManager : AtivadorDeBotao
     [SerializeField]private bool iniciarVisaoDeFeito = false;
     private Vector3 posInicial;
     private float contadorDeTempo = 0;
+    private bool ativo = false;
     
     // Use this for initialization
     void Start()
@@ -55,9 +56,14 @@ public class RockMovePuzzleManager : AtivadorDeBotao
     {
         base.Update();
 
-        if (GameController.g.HudM.Menu_Basico.EstaAtivo)
+        if (ativo&& GameController.g.HudM.Menu_Basico.EstaAtivo)
         {
             GameController.g.HudM.Menu_Basico.MudarOpcao();
+
+            if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+            {
+                Respostas(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
+            }
         }
 
         if (iniciarVisaoDeFeito)
@@ -136,16 +142,20 @@ public class RockMovePuzzleManager : AtivadorDeBotao
 
     public override void FuncaoDoBotao()
     {
-        FluxoDeBotao();GameController.g.HudM.Painel.AtivarNovaMens(
+        ativo = true;
+        base.FluxoDeBotao();
+        GameController.g.HudM.Painel.AtivarNovaMens(
             BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.resetPuzzle),25
             );
         GameController.g.HudM.Menu_Basico.IniciarHud(Respostas,
             BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.simOuNao).ToArray());
 
+       /*
         ActionManager.ModificarAcao(transform, 
             () => {
                 Respostas(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
             });
+            */
     }
 
     void Respostas(int indice)
@@ -199,7 +209,7 @@ public class RockMovePuzzleManager : AtivadorDeBotao
         GameController.g.HudM.ligarControladores();*/
         GameController.g.HudM.Menu_Basico.FinalizarHud();
         GameController.g.HudM.Painel.EsconderMensagem();
-        
+        ativo = false;
     }
 }
 

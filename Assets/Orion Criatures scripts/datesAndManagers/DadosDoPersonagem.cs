@@ -62,8 +62,8 @@ public class DadosDoPersonagem
     {
         
         CriaturesAtivos = new List<CriatureBase>() {
-            new CriatureBase(nomesCriatures.Xuash,1),/*
-            new CriatureBase(nomesCriatures.Florest,2),
+            new CriatureBase(nomesCriatures.Xuash,1),
+            new CriatureBase(nomesCriatures.Florest,2)/*,
             new CriatureBase(nomesCriatures.PolyCharm,3),
             new CriatureBase(nomesCriatures.Iruin,2),
             new CriatureBase(nomesCriatures.Cabecu,10)*/

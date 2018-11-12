@@ -7,7 +7,7 @@ public class TextosDeKatidsEN_G
     {
         {ChaveDeTexto.katids1, new List<string>()
             {
-            "Hello, this is the city of <color=yellow> Katids </color>",
+            "Hello, this is the city of <color=yellow> Infinity </color>",
             "If you look east you will see the great dam of the Mariinque River",
             "The need for energy from ancient times motivated the construction of dams on the Mariinque River",
             "The dams ended up separating the plains of Orion",

@@ -38,6 +38,7 @@ public class SceneLoader:MonoBehaviour
         {
             SceneManager.LoadSceneAsync("CenaDeCarregamento",LoadSceneMode.Additive);
             SceneManager.sceneLoaded += IniciarCarregamentoComComuns;
+            Camera.main.farClipPlane = 0.1f;
             Time.timeScale = 0;
         }
         else
@@ -74,6 +75,10 @@ public class SceneLoader:MonoBehaviour
     {
         if (ExistenciaDoController.AgendaExiste(ComunsCarregado, this))
             {
+
+            SceneManager.sceneLoaded -= CarregouComuns;
+            SceneManager.sceneLoaded += SetarCenaPrincipal;
+
             Debug.Log("carregou comuns chamado");
             fase = FasesDoLoad.carregando;
 
@@ -93,20 +98,30 @@ public class SceneLoader:MonoBehaviour
             }
             else
             {
-                DescarregarCenasDesnecessarias();
-                NomesCenas[] N = S.VariaveisChave.CenasAtivas.ToArray();//PegueAsCenasPorCarregar();
-
+                NomesCenas[] N = PegueAsCenasPorCarregar_b();
+                NomesCenas[] N2 = DescarregarCenasDesnecessarias_b();
                 a2 = new AsyncOperation[N.Length];
                 for (int i = 0; i < N.Length; i++)
                 {
                     a2[i] = SceneManager.LoadSceneAsync(N[i].ToString(), LoadSceneMode.Additive);
-                 //   Debug.Log(a2[i]+": "+N[i]);
+                    //   Debug.Log(a2[i]+": "+N[i]);
                 }
-            }
-            Time.timeScale = 0;
 
-            SceneManager.sceneLoaded -= CarregouComuns;
-            SceneManager.sceneLoaded += SetarCenaPrincipal;
+                for (int i = N.Length; i < N.Length + N2.Length; i++)
+                {
+                    SceneManager.UnloadSceneAsync(N2[i - N.Length].ToString());
+                    //Debug.Log("tamanha: " + N2.Length + " : " + N2[i - N.Length]);
+                    // Debug.Log(a2[i]+" : "+N2[i - N.Length]);
+                }
+
+                if (N.Length == 0)
+                {
+                    SetarCenaPrincipal(SceneManager.GetActiveScene(),LoadSceneMode.Single);
+                }
+                Time.timeScale = 0;
+            }
+
+            
         }
     }
 
@@ -145,8 +160,60 @@ public class SceneLoader:MonoBehaviour
                 }
             }
         }
+    }
 
-      
+    NomesCenas[] PegueAsCenasPorCarregar_b()
+    {
+        NomesCenas[] N = S.VariaveisChave.CenasAtivas.ToArray();
+        System.Collections.Generic.List<NomesCenas> retorno = new System.Collections.Generic.List<NomesCenas>();
+        for (int i = 0; i < N.Length; i++)
+        {
+            /*
+            Debug.Log(
+                SceneManager.GetSceneByName(N[i].ToString()) + " : " + 
+                N[i].ToString() + " : " + 
+                SceneManager.GetSceneByName(N[i].ToString()).isLoaded);*/
+            if (!SceneManager.GetSceneByName(N[i].ToString()).isLoaded)
+            {
+                retorno.Add(N[i]);
+            }
+        }
+
+        return retorno.ToArray();
+    }
+
+    NomesCenas[] DescarregarCenasDesnecessarias_b()
+    {
+        NomesCenas[] N = S.VariaveisChave.CenasAtivas.ToArray();
+        System.Collections.Generic.List<NomesCenas> retorno = new System.Collections.Generic.List<NomesCenas>();
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene S = SceneManager.GetSceneAt(i);
+
+            if (S.isLoaded && S.name != "comunsDeFase" && S.name != "CenaDeCarregamento")
+            {
+
+                //  Debug.Log("nomesCenas" + S.name);
+
+                if (S.isLoaded)
+                {
+                    bool foi = false;
+                    for (int j = 0; j < N.Length; j++)
+                    {
+
+                        if (S.name == N[j].ToString())
+                            foi = true;
+
+                        //   Debug.Log(S.name + " : " + N[j] + " : " + foi);
+                    }
+
+                    if (!foi)
+                        retorno.Add(StringParaEnum.ObterEnum<NomesCenas>(S.name));
+                }
+            }
+        }
+
+        return retorno.ToArray();
     }
 
     private void MySceneUnloaded(Scene arg0)
@@ -241,7 +308,7 @@ public class SceneLoader:MonoBehaviour
 
 
             AplicadorDeCamera.cam.transform.position = new Vector3(49, 15f, 155); //new Vector3(411, 15f, 1569);
-            manager.transform.position = new Vector3(-108f, 15f, 174); /****************new Vector3(39, 5.4f, 155);*/ //new Vector3(519, 5.4f, 1894);
+            manager.transform.position = new Vector3(-164f, 15f, 260); /****************new Vector3(39, 5.4f, 155);*/ //new Vector3(519, 5.4f, 1894);
             manager.transform.rotation = Quaternion.LookRotation(Vector3.left);
             GameController.g.ReiniciarContadorDeEncontro();
 
@@ -290,14 +357,20 @@ public class SceneLoader:MonoBehaviour
                 tempo += Time.fixedDeltaTime;
 
                 float progresso = 0;
-
-                for (int i = 0; i < a2.Length; i++)
+                if (a2.Length > 0)
                 {
-                   // Debug.Log(a2[i]);
-                    progresso += a2[i].progress;
-                }
+                    for (int i = 0; i < a2.Length; i++)
+                    {
+                        // Debug.Log(a2[i]);
+                        progresso += a2[i].progress;
+                    }
 
-                progresso /= a2.Length;
+                    progresso /= a2.Length;
+
+                }
+                else
+                    progresso = 1;
+
 
                 //Debug.Log(progresso + " : " + (tempo / tempoMin) + " : " + Mathf.Min(progresso, tempo / tempoMin, 1));
 
@@ -314,10 +387,8 @@ public class SceneLoader:MonoBehaviour
                     GlobalController.g.FadeV.IniciarFadeOut();
                     EventAgregator.AddListener(EventKey.fadeOutComplete, OnFadeOutComplete);
                     fase = FasesDoLoad.eventInProgress;
-                    //FadeView pm = gameObject.AddComponent<FadeView>();
                     
-                    //fase = FasesDoLoad.eventInProgress;
-                    //tempo = 0;
+
                 }
                 
             break;
@@ -351,6 +422,7 @@ public class SceneLoader:MonoBehaviour
 
     private void OnFadeOutComplete(IGameEvent obj)
     {
+        Camera.main.farClipPlane = 1000;
         GlobalController.g.FadeV.IniciarFadeIn();
         EventAgregator.AddListener(EventKey.fadeInComplete, OnFadeInComplete);
         

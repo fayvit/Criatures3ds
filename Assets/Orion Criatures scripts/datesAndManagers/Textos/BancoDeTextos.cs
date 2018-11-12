@@ -247,5 +247,6 @@ public enum ChaveDeTexto
     menuDePause,
     menuDeArmagedom,
     hooliganSeApresenta,
-    lanceSeApresenta
+    lanceSeApresenta,
+    pedraDiferente
 }

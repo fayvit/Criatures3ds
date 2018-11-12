@@ -110,5 +110,8 @@ public enum NomesCenas
     cavernaIntro_b,
     cavernaIntro_x,
     //novidades
-    planicieDeInfinity
+    planicieDeInfinity,
+    represa,
+    represa_c,
+    planicieDeInfinity_b
 }

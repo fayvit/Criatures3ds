@@ -64,7 +64,11 @@ public static class TextosDeInfoEN_G
             "Use <color=cyan> X [Right Click, Left Alt] </color> on the keyboard or <color=magenta> RS </color> on the XBOX control to center the camera"
         }
         },
-
+        {ChaveDeTexto.pedraDiferente, new List<string>()
+        {
+            "Looks like there's something different about this stone !!"
+        }
+        },
 
     };
 }

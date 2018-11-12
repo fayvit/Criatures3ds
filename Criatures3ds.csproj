@@ -275,6 +275,8 @@
     <Compile Include="Assets\Orion Criatures scripts\PropsPorScript.cs" />
     <Compile Include="Assets\Orion Criatures scripts\SceneConfigs\CavernaIntroConfigs.cs" />
     <Compile Include="Assets\Orion Criatures scripts\SceneConfigs\GetSceneConfigs.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\SceneConfigs\PlanicieDeInfinityConfigs.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\SceneConfigs\RepresaConfigs.cs" />
     <Compile Include="Assets\Orion Criatures scripts\SceneConfigs\SceneConfigs.cs" />
     <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\AdicionaStatusSimples.cs" />
     <Compile Include="Assets\Orion Criatures scripts\StatusTemporarios\Amedrontado.cs" />

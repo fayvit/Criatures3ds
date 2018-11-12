@@ -78,7 +78,7 @@ public class MbMudeCena : MonoBehaviour
         {
             if (col.tag == "Player")
             {
-                DontDestroyOnLoad(gameObject);
+                //DontDestroyOnLoad(gameObject);
                 dirDeMove = col.transform.forward;
                 IniciarCarregamentoDeCena();
             }

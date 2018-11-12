@@ -105,7 +105,11 @@ public class GlobalController : MonoBehaviour {
         for (int i = 0; i < audios.Length; i++)
         {
             if (!ativos.Contains(audios[i]))
+            {
+                Debug.Log("audio: "+i);
+                ativos.Add(audios[i]);
                 return audios[i];
+            }
         }
 
         return ativos[0];

@@ -136,8 +136,36 @@ public class MbEncontros
 
     protected virtual bool LugarSeguro()
     {
+        bool retorno = false;
+        NomesCenas nomeDaCena = NomesCenas.cavernaIntro;
 
-        return ListaDeLocaisSeguros.LocalSeguro();
+        try
+        {
+            nomeDaCena = (NomesCenas)System.Enum.Parse(typeof(NomesCenas), 
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
+        catch
+        {
+            Debug.Log("Algo errado ao converter nome da cena[lista de locais seguros]");
+            //Debug.Log("cena indisponivel");
+        }
+
+        retorno = GetSceneConfigs.Get(nomeDaCena).LocaisSeguros();
+
+        /*
+        switch (nomeDaCena)
+        {
+            case NomesCenas.planicieDeInfinity:
+                retorno = GetSceneConfigs.Get(NomesCenas.planicieDeInfinity).LocaisSeguros();
+            break;
+            case NomesCenas.TempleZone:
+                retorno = LocaisSegurosDeTempleZone.LocalSeguro();
+            break;
+            case NomesCenas.Marjan:
+                retorno = LocaisSegurosDeMarjan.LocalSeguro();
+            break;
+        }*/
+        return retorno;
     }
 
     protected float SorteiaPassosParaEncontro()
@@ -148,7 +176,9 @@ public class MbEncontros
     protected virtual List<Encontravel> listaEncontravel()
     {
         //return new List<Encontravel>() { new Encontravel(nomesCriatures.Nessei, 1, 3, 5) };//ListaDeEncontraveis.EncontraveisDaqui;
-        return ListaDeEncontraveis.EncontraveisDaqui;
+        NomesCenas nomeDaCena = (NomesCenas)System.Enum.Parse(typeof(NomesCenas), 
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        return GetSceneConfigs.Get(nomeDaCena).ListaEncontravel; ;//ListaDeEncontraveis.EncontraveisDaqui;
     }
 
     Encontravel criatureEncontrado()

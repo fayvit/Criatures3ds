@@ -13,6 +13,18 @@ public class GetSceneConfigs
             case NomesCenas.cavernaIntro:
                 S = new CavernaIntroConfigs();
             break;
+            case NomesCenas.planicieDeInfinity:
+            case NomesCenas.planicieDeInfinity_b:
+                S = new PlanicieDeInfinityConfigs();
+            break;
+            case NomesCenas.represa:
+            case NomesCenas.represa_c:
+                S = new RepresaConfigs();
+            break;
+            default:
+                Debug.Log("Scenes Config retornou o valor default");
+                Debug.LogWarning("Scenes Config retornou o valor default");
+            break;
         }
         return S;
     }

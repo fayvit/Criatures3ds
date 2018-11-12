@@ -19,7 +19,7 @@ public class SceneConfigs {
                     };
 
 
-    public List<Encontravel> ListaEncontravel
+    public virtual List<Encontravel> ListaEncontravel
     {
         get
         {

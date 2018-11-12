@@ -61,14 +61,14 @@ public class NpcIan : NPCdeConversa
 
                 GameController.g.HudM.Menu_Basico.MudarOpcao();
 
-                if (CommandReader.ButtonDown(0, GameController.g.Manager.Control))
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
                     Debug.Log("controlador de acao removido");
                     OpcaoEscolhida(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
                 }
 
 
-                if (Input.GetButtonDown("Cancel") && !ActionManager.useiCancel)
+                if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
                     PreFinal();
                 }
@@ -98,7 +98,7 @@ public class NpcIan : NPCdeConversa
             case EstadoInterno.aguardandoSimOuNao:
                 GameController.g.HudM.Menu_Basico.MudarOpcao();
 
-                if (CommandReader.ButtonDown(0, GameController.g.Manager.Control))
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
                     Debug.Log("controlador de acao removido");
                     ComprarOuNaoComprar(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
@@ -107,7 +107,7 @@ public class NpcIan : NPCdeConversa
             case EstadoInterno.fraseInsuficiente:
                 if (!disparaT.LendoMensagemAteOCheia())
                 {
-                    if (CommandReader.ButtonDown(0, GameController.g.Manager.Control))
+                    if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                     {
                         Debug.Log("controlador de acao removido");
                         disparaT.DesligarPaineis();
@@ -118,7 +118,7 @@ public class NpcIan : NPCdeConversa
             case EstadoInterno.fraseDeBoaCompra:
                 if (!disparaT.LendoMensagemAteOCheia())
                 {
-                    if (CommandReader.ButtonDown(0,GameController.g.Manager.Control))
+                    if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                     {
                         Debug.Log("controlador de acao removido");
                         MonoBehaviour.Destroy(
@@ -146,7 +146,7 @@ public class NpcIan : NPCdeConversa
                 if (!disparaT.LendoMensagemAteOCheia())
                 {
 
-                    if (CommandReader.ButtonDown(0, GameController.g.Manager.Control))
+                    if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                     {
                         Debug.Log("controlador de acao removido");
                         GameController.g.HudM.MostrarItem.DesligarPainel();

@@ -77,10 +77,9 @@ public class SaveAndLoadInJolt
             S2 = sr.ReadLine();
             sr.Close();
 
-            Debug.Log(S2);
         }
 
-        Debug.Log(S2);
+
 
         UnityEngine.N3DS.FileSystemSave.Unmount();
 

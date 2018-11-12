@@ -34,6 +34,7 @@ public class CameraExibicionista
         baseDeMovimento.position = daCamera.position;
         baseDeMovimento.name = "baseDeMovimentoExibicionista";
     }
+
     public void MostrandoUmCriature()
     {
         baseDeMovimento.RotateAround(foco.position, Vector3.up, 15 * Time.deltaTime);

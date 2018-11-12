@@ -10,6 +10,7 @@ public class InicializadorDoJogo
         CA = MonoBehaviour.Instantiate(CA, transform.position - 3 * transform.forward, Quaternion.identity)
             as GameObject;
         
+        if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("comunsDeFase").isLoaded)
         UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(CA,
             UnityEngine.SceneManagement.SceneManager.GetSceneByName("comunsDeFase")
             );

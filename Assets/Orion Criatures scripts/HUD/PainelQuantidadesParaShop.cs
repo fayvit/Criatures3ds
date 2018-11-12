@@ -74,7 +74,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
                     if (!GameController.g.HudM.DisparaT.LendoMensagemAteOCheia())
                     {
                         estado = EstadoDaqui.finalizacao;
-                        ActionManager.ModificarAcao(transform, () => { gameObject.SetActive(false); });
+                      //  ActionManager.ModificarAcao(transform, () => { gameObject.SetActive(false); });
                     }
                 break;
                 case EstadoDaqui.finalizacao:
@@ -168,6 +168,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
                 estado = EstadoDaqui.emEspera;
                 GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(ReligarBotoes, textos[9]);
                 AtualizaQuantidade(1, esseItem.Valor);
+                estado = EstadoDaqui.emEspera;
             }
             else
                 AtualizaQuantidade(quantidade - tanto, esseItem.Valor);
@@ -261,6 +262,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
                     string.Format(textos[11], dados.Cristais / esseItem.Valor, MbItens.NomeEmLinguas(esseItem.ID))
                     );
                 AtualizaQuantidade(1, esseItem.Valor);
+                estado = EstadoDaqui.emEspera;
             }
             else
             {

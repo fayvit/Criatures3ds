@@ -4,9 +4,11 @@ using System.Collections;
 public class InfoInGame : AtivadorDeBotao
 {
     [SerializeField] private string paraChaveDeTexto = "";
+    [SerializeField] private bool exigirTrigger = false;
 
     private string[] conversa;
     private EstadoDaInfoGame estado = EstadoDaInfoGame.emEspera;
+    
 
     private enum EstadoDaInfoGame
     {
@@ -17,7 +19,9 @@ public class InfoInGame : AtivadorDeBotao
     void Start()
     {
         textoDoBotao = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.textoBaseDeAcao)[1];
-        SempreEstaNoTrigger();
+        if(!exigirTrigger)
+            SempreEstaNoTrigger();
+
         conversa = BancoDeTextos.RetornaListaDeTextoDoIdioma(StringParaEnum.ObterEnum<ChaveDeTexto>(paraChaveDeTexto)).ToArray();
     }
 

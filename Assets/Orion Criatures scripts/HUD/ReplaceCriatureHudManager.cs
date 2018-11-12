@@ -27,9 +27,17 @@ public class ReplaceCriatureHudManager : UiDeOpcoes
 
     public void AcaoDeOpcaoEscolhida()
     {
-        painelDeTamanhoVariavel.GetChild(OpcaoEscolhida + 1).GetComponent<UmaOpcao>().FuncaoDoBotao();
-        podeMudar = false;
-        Debug.Log("A opção escolhida é: " + OpcaoEscolhida);
+        if (painelDeTamanhoVariavel.transform.parent.parent.gameObject.activeSelf)
+        {
+            painelDeTamanhoVariavel.GetChild(OpcaoEscolhida + 1).GetComponent<UmaOpcao>().FuncaoDoBotao();
+            podeMudar = false;
+            Debug.Log("A opção escolhida é: " + OpcaoEscolhida);
+        }
+        else
+        {
+            Debug.LogWarning("AcaoDeOpcaoEscolhida chamada indevidamente!!! é preciso saber o porque");
+            ActionManager.ModificarAcao(GameController.g.transform, null);
+        }
     }
 
     public void Update()

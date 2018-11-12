@@ -185,11 +185,17 @@ public class Bau : AtivadorDeBotao
 public class ItemDeBau
 {
     [SerializeField] private nomeIDitem item;
+    [SerializeField] private string itemString="";
     [SerializeField] private int quantidade;
 
     public nomeIDitem Item
     {
-        get { return item; }
+        get {
+            nomeIDitem n = item;
+            if (itemString!="")
+                n = StringParaEnum.ObterEnum<nomeIDitem>(itemString);
+            return n;
+        }
         set { item = value; }
     }
 

@@ -1,16 +1,19 @@
 sceneSetups:
-- path: Assets/cenas/cavernaIntro.unity
-  isLoaded: 1
-  isActive: 1
 - path: Assets/cenas/comunsDeFase.unity
   isLoaded: 1
   isActive: 0
-- path: Assets/cenas/CenaDeCarregamento.unity
+- path: Assets/cenas/planicieDeInfinity_b.unity
+  isLoaded: 1
+  isActive: 1
+- path: Assets/cenas/represa_b.unity
   isLoaded: 0
   isActive: 0
-- path: Assets/cenas/planicieDeInfinity.unity
+- path: Assets/cenas/cavernaIntro.unity
   isLoaded: 0
   isActive: 0
 - path: Assets/cenas/Inicial 1.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/cenas/represa_c.unity
   isLoaded: 0
   isActive: 0
