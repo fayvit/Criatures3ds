@@ -123,6 +123,7 @@
     <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\AnimadorHumano.cs" />
     <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\AplicadorDeCamera.cs" />
     <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\CameraBasica.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\CameraContraParedes.cs" />
     <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\CameraDeLuta.cs" />
     <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\CameraDirecionavel.cs" />
     <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\CameraExibicionista.cs" />

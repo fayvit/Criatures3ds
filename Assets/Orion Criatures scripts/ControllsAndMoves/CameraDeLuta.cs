@@ -81,61 +81,8 @@ public class CameraDeLuta
                                         position,
                                         50 * Time.deltaTime);
 
-         contraParedes(transform, alvo, escalA);
+         CameraContraParedes.ContraParedes(transform, alvo, escalA);
 
-    }
-
-    public static bool contraParedes(Transform cameraP, Transform alvo, float escalA, bool suave = false)
-    {
-        RaycastHit raioColisor;
-        Debug.DrawLine(cameraP.position, alvo.position + escalA * Vector3.up, Color.blue);
-
-
-        Debug.DrawLine(alvo.position + 2 * Vector3.up, alvo.position -
-                       Vector3.Project(alvo.position - cameraP.position, alvo.forward) + 2 * Vector3.up,
-                       Color.green);
-        if (Physics.Linecast(alvo.position + escalA * Vector3.up, cameraP.position, out raioColisor, 9))
-        { 
-            Debug.DrawLine(cameraP.position, raioColisor.point, Color.red);
-            
-            if (raioColisor.transform.tag != "Player"
-               &&
-               raioColisor.transform.tag != "Criature"
-               &&
-               raioColisor.transform.tag != "desvieCamera"
-               )
-            {
-                if (suave)
-                {
-                    cameraP.position = Vector3.Lerp(cameraP.position,
-                        raioColisor.point + raioColisor.normal*0.2f, 25 * Time.deltaTime);
-                }
-                else
-                    cameraP.position = //Vector3.Lerp(cameraP.position,
-                        raioColisor.point + cameraP.forward * 0.2f;
-                    //           50*Time.deltaTime);
-                    //					doMovimento = true;
-                    /*
-                    float raio = 0.5f;
-                    if (Physics.SphereCast(cameraP.position, raio, alvo.position-cameraP.position, out raioColisor, 7,9))
-                    {
-                    if (raioColisor.transform.tag != "Player"
-                       &&
-                       raioColisor.transform.tag != "Criature"
-                       &&
-                       raioColisor.transform.tag != "desvieCamera"
-                       )
-                        {
-                            Debug.Log(raioColisor.collider.gameObject.name);
-                            cameraP.position = raioColisor.point + 0.1f*raio * raioColisor.normal;
-                        }
-                    }*/
-                return true;
-            }
-
-        }
-
-        return false;
     }
 
     /*

@@ -50,6 +50,7 @@ public class AplicadorDeCamera : MonoBehaviour
             cDir = new CameraDirecionavel(new CaracteristicasDeCamera() {
                 alvo = GameController.g.Manager.transform,
                 minhaCamera = transform });
+            NovoFocoBasico(GameController.g.Manager.transform, 10, 10, true);
         }
     }
 
@@ -85,11 +86,13 @@ public class AplicadorDeCamera : MonoBehaviour
 
     public void FocarBasica(Transform T,float altura,float distancia)
     {
+        /*
         cDir.SetarCaracteristicas(new CaracteristicasDeCamera()
         { alvo = T,
             minhaCamera = transform,
             altura = altura,
-            distancia = distancia });
+            distancia = distancia });*/
+        NovoFocoBasico(T, 10, 10, true);
         Estilo = EstiloDeCamera.passeio;
     }
 

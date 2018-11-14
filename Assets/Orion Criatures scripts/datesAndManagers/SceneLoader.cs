@@ -424,9 +424,9 @@ public class SceneLoader:MonoBehaviour
         Camera.main.farClipPlane = 1000;
         GlobalController.g.FadeV.IniciarFadeIn();
         EventAgregator.AddListener(EventKey.fadeInComplete, OnFadeInComplete);
-        
+
         //FindObjectOfType<Canvas>().enabled = false;
-        
+        Debug.Log("nome da cena ativa: " + GameController.g.MyKeys.CenaAtiva);
         SceneManager.SetActiveScene(
            SceneManager.GetSceneByName(GameController.g.MyKeys.CenaAtiva.ToString()));
         InformacoesDeCarregamento.FacaModificacoes();

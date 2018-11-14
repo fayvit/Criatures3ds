@@ -54,7 +54,7 @@ public class ApresentaDerrota
                 if (contadorDeTempo > TEMPO_PARA_MOSTRAR_MENSAGEM_INICIAL)
                 {
                     GameController.g.HudM.Painel.AtivarNovaMens(string.Format(textos[0],
-                        manager.CriatureAtivo.MeuCriatureBase.NomeEmLinguas),30);
+                        manager.CriatureAtivo.MeuCriatureBase.NomeEmLinguas),32);
                     fase = FaseDaDerrota.esperandoFecharMensagemDeDerrota;
                 }
             break;
@@ -154,7 +154,7 @@ public class ApresentaDerrota
 
     void IniciarHudEntra()
     {
-        GameController.g.HudM.Painel.AtivarNovaMens(textos[1], 20);
+        GameController.g.HudM.Painel.AtivarNovaMens(textos[1], 32);
         GameController.g.HudM.EntraCriatures.IniciarEssaHUD(manager.Dados.CriaturesAtivos.ToArray(), AoEscolherUmCriature);
         fase = FaseDaDerrota.hudEntraCriatureAberta;
     }

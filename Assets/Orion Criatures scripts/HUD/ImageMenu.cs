@@ -360,6 +360,7 @@ public class ImageMenu : FerramentasDeHud
 
 public enum TipoHud
 {
+    nulo=-1,
     items,
     criatures,
     golpes

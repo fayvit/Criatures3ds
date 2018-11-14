@@ -135,6 +135,7 @@ public class GameController : MonoBehaviour
         encontros.Start();
         HudM.StatusHud.Start();
         imgMenu = FindObjectOfType<ImageMenuN3ds>();//Instantiate((GameObject)Resources.Load("HUD_Itens")).GetComponent<ImageMenu>();
+        
     }
 
     // Update is called once per frame

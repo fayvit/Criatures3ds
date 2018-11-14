@@ -116,7 +116,11 @@ public class CharacterManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        
+        if (Input.GetKeyDown(KeyCode.BackQuote))
+        {
+            Debug.Log("mudou para teclado");
+            Control = Controlador.teclado;
+        }
         //bControle.Update();
 
         switch (estado)

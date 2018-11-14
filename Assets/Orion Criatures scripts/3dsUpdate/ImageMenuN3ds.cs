@@ -10,7 +10,7 @@ public class ImageMenuN3ds : FerramentasDeHud/*ferramentas de hud será removida
     [SerializeField] private Text textoDoItem;
 
     private DadosDoPersonagem dados;
-    private TipoHud tipo = TipoHud.items;
+    private TipoHud tipo = TipoHud.nulo;
 
     private int numeroDeElementos;
 
@@ -39,6 +39,9 @@ public class ImageMenuN3ds : FerramentasDeHud/*ferramentas de hud será removida
                 break;
                 case TipoHud.items:
                     numeroDeElementos = dados.Itens.Count;
+                break;
+                case TipoHud.nulo:
+                    Esconde();
                 break;
             }
 
@@ -218,12 +221,14 @@ public class ImageMenuN3ds : FerramentasDeHud/*ferramentas de hud será removida
             Esconde();
             this.tipo = tipo;
             Start();
-
-            
         }
 
         for (int i = 0; i < 5; i++)
         {
+            if(i==2
+                ||
+                numeroDeElementos>=2
+                )
             imagensDaHud[i].enabled = true;
 
             if (tipo == TipoHud.items &&!textosDasQuantidades[i].enabled)

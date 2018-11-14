@@ -46,12 +46,21 @@ public class CameraBasica{
             Vector3.Distance(dirAlvo, transform.position) / Mathf.Sqrt(Mathf.Pow(altura, 2) + Mathf.Pow(distanciaHorizontal, 2)
             ));
 
-        transform.position = Vector3.Lerp(transform.position,
-            dirAlvo
-            , velDeLerp * Time.deltaTime);
-
-        if (contraParedes)
-            CameraDeLuta.contraParedes(transform, alvo, 1);
+        bool vai = true;
+        if(contraParedes)
+            if (CameraContraParedes.VerificaParedeNoCaminho(dirAlvo,alvo.position+1.5f*Vector3.up))
+            {
+                CameraContraParedes.ContraParedes(dirAlvo, transform, alvo, 1.5f, true);
+                    vai = false;
+            }
+        
+        if(vai)
+        {
+            transform.position = Vector3.Lerp(transform.position,
+                dirAlvo
+                , velDeLerp * Time.deltaTime);
+        }
+            
     }
 
     public void NovoFoco(Transform alvo, float altura, float distancia, bool contraParedes,bool forwardDoObj)

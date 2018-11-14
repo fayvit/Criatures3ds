@@ -113,7 +113,7 @@ public class IntroManager : MonoBehaviour {
                             caracPulo = new CaracteristicasDePulo()
                         }, 
                         GameController.g.Manager.transform);
-                        cMove.ModificarOndeChegar(GameController.g.Manager.transform.position + Vector3.right * 10, 2);
+                        cMove.ModificarOndeChegar(GameController.g.Manager.transform.position + Vector3.left * 10, 2);
                     }
                 break;
                 case FaseDaConversa.horaDoCorean:
@@ -126,6 +126,7 @@ public class IntroManager : MonoBehaviour {
                 break;
                 case FaseDaConversa.finalizar:
                     AplicadorDeCamera.cam.enabled = true;
+                    AplicadorDeCamera.cam.FocarBasica(GameController.g.Manager.transform, 10, 10);
                     GameController.g.Manager.enabled = true;
                     faseFala = FaseDaConversa.emEspera;
                     faseCam = FaseDaCamera.emEspera;

@@ -38,7 +38,7 @@ public class ShopManager
         switch (fase)
         {
             case FasesDoShop.iniciouConversaNoShop:
-                AplicadorDeCamera.cam.FocarPonto(2, 8,-1,true);
+                AplicadorDeCamera.cam.FocarPonto(2, 8, -1, true);
                 if (dispara.UpdateDeTextos(t, fotoDoNPC)
                     ||
                     dispara.IndiceDaConversa > t.Length - 2
@@ -46,7 +46,7 @@ public class ShopManager
                 {
                     EntraFrasePossoAjudar();
                 }
-            break;
+                break;
             case FasesDoShop.escolhaInicial:
 
                 if (!dispara.LendoMensagemAteOCheia())
@@ -58,14 +58,14 @@ public class ShopManager
                         ActionManager.ModificarAcao(GameController.g.transform, null);
                     });*/
                 }
-            break;
+                break;
             case FasesDoShop.esperandoEscolhaInicial:
-                if (ActionManager.ButtonUp(1,GameController.g.Manager.Control))
+                if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
                     ActionManager.ModificarAcao(GameController.g.transform, null);
                     ActionManager.useiCancel = true;
                     SairDoShop();
-                }else
+                } else
                 if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
                     ComprarVender(menuBasico.OpcaoEscolhida);
@@ -73,7 +73,7 @@ public class ShopManager
                 }
 
                 menuBasico.MudarOpcao();
-            break;
+                break;
             case FasesDoShop.fraseDeVenda:
                 if (!dispara.LendoMensagemAteOCheia())
                 {
@@ -94,7 +94,7 @@ public class ShopManager
                     menuDeShop.IniciarHud(true, OpcaoEscolhidaParaCompra, opcoes);
                     menuDeShop.SetActive(true);
                 }
-            break;
+                break;
             case FasesDoShop.esperandoEscolhaDeCompra:
                 if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
@@ -111,7 +111,7 @@ public class ShopManager
                 }
 
                 menuDeShop.MudarOpcao();
-            break;
+                break;
             case FasesDoShop.esperandoEscolhaDeVenda:
                 if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
@@ -138,10 +138,10 @@ public class ShopManager
 
                     for (int i = 0; i < meusItens.Count; i++)
                     {
-                        if(meusItens[i].Valor>0)
+                        if (meusItens[i].Valor > 0)
                             opcoes2.Add(meusItens[i].ID.ToString());
                     }
-                    
+
                     ActionManager.ModificarAcao(GameController.g.transform, () => {
                         OpcaoEscolhidaParaVenda(menuDeShop.OpcaoEscolhida);
                     });
@@ -149,7 +149,7 @@ public class ShopManager
                     menuDeShop.IniciarHud(false, OpcaoEscolhidaParaVenda, opcoes2.ToArray());
                     menuDeShop.SetActive(true);
                 }
-            break;
+                break;
             case FasesDoShop.quantidadesAbertas:
                 if (!painelQuantidades.gameObject.activeSelf)
                 {
@@ -161,16 +161,18 @@ public class ShopManager
                     else
                         ComprarVender(1);
                 }
-            break;
+                break;
             case FasesDoShop.saindoDoShop:
                 if (!dispara.LendoMensagemAteOCheia())
                 {
                     fase = FasesDoShop.esperandoFim;
                     //ActionManager.ModificarAcao(GameController.g.transform, Finalizacao);
                 }
-            break;
+                break;
             case FasesDoShop.esperandoFim:
-                if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
+                if (ActionManager.ButtonUp(1, GameController.g.Manager.Control)
+                    || 
+                    ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
                     Finalizacao();
                 }

@@ -122,7 +122,7 @@ public class CameraDirecionavel
 
             SetarTransformsDeRetorno();
 
-            CameraDeLuta.contraParedes(caracteristicas.minhaCamera, caracteristicas.alvo, altura + caracteristicas.AlturaDoPersonagem);
+            CameraContraParedes.ContraParedes(caracteristicas.minhaCamera, caracteristicas.alvo, altura + caracteristicas.AlturaDoPersonagem);
         }
         else
             caracteristicas.alvo = GameController.g.Manager.transform;

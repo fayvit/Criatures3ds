@@ -45,9 +45,9 @@ public class CameraExibicionista
 
         baseDeMovimento.LookAt(foco);
 
-        if (CameraDeLuta.contraParedes(baseDeMovimento, foco, alturaDoPersonagem, true))
+        if (CameraContraParedes.ContraParedes(baseDeMovimento, foco, alturaDoPersonagem, true))
         {
-            CameraDeLuta.contraParedes(transform, foco, alturaDoPersonagem, true);
+            CameraContraParedes.ContraParedes(transform, foco, alturaDoPersonagem, true);
         } else
         {
             transform.position = baseDeMovimento.position;
@@ -59,7 +59,7 @@ public class CameraExibicionista
         Vector3 posInicialDMovimento = default(Vector3),bool focoDoTransform = false,Vector3 deslFocoCamera = default(Vector3)
         )
     {
-        //Debug.Log(foco);
+        Debug.Log(foco+" : "+foco.position); 
         if (altura < 0)
             altura = alturaDoPersonagem;
 
@@ -87,7 +87,7 @@ public class CameraExibicionista
                 );
             
             if(contraParedes)
-                CameraDeLuta.contraParedes(transform, foco, altura, true);
+                CameraContraParedes.ContraParedes(transform, foco, altura, true);
 
             if (!tempo && Vector3.Distance(transform.position, posAlvo) < 0.5f && Vector3.Distance(transform.forward, dirAlvo) < 0.5f)
             {

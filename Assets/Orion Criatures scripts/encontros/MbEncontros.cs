@@ -146,7 +146,8 @@ public class MbEncontros
         }
         catch
         {
-            Debug.Log("Algo errado ao converter nome da cena[lista de locais seguros]");
+            Debug.Log("Algo errado ao converter nome da cena[lista de locais seguros] "
+                + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
             //Debug.Log("cena indisponivel");
         }
 

@@ -24,7 +24,6 @@ public class MbMudeCena : MonoBehaviour
     {
         if (iniciarCarregamento)
         {
-            
             GameController.g.ReiniciarContadorDeEncontro();
             GameController.g.Manager.Mov.AplicadorDeMovimentos(dirDeMove);
         }

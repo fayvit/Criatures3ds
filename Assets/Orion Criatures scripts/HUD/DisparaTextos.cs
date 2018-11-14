@@ -65,9 +65,8 @@ public class DisparaTexto
         }
 
 
-        if (CommandReader.ButtonDown(0, GameController.g.Manager.Control))
+        if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
         {
-            Debug.Log("controlador de acao removido");
             Toque();
         }
 
@@ -120,7 +119,6 @@ public class DisparaTexto
         {
             if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
             {
-                Debug.Log("controlador de acao removido");
                 Toque();
             }
             return true;
