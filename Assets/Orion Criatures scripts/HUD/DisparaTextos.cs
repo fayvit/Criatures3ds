@@ -70,7 +70,7 @@ public class DisparaTexto
             Toque();
         }
 
-        if (CommandReader.ButtonDown(1,GameController.g.Manager.Control) && painelDaPressa.activeSelf)
+        if (ActionManager.ButtonUp(1,GameController.g.Manager.Control) && painelDaPressa.activeSelf)
         {
             ActionManager.useiCancel = true;
             DesligarPaineis();
@@ -180,10 +180,12 @@ public class DisparaTexto
         switch (fase)
         {
             case FasesDaMensagem.mensagemEnchendo:
+                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, "Cursor2", EventKey.disparaSom));
                 textoDaUI.text = texto;
                 fase = FasesDaMensagem.mensagemCheia;
             break;
             case FasesDaMensagem.mensagemCheia:
+                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, "Cursor2", EventKey.disparaSom));
                 fase = FasesDaMensagem.caixaSaindo;
                 contadorDeTempo = 0;
             break;

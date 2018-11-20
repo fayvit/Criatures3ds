@@ -21,7 +21,6 @@ public class PainelDeConfirmacao : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (ActionManager.ButtonUp(0,GlobalController.g.Control))
         {
             BotaoSim();

@@ -18,7 +18,8 @@ public class GosmaDeInsetoG2 : ProjetilBase
         tempoDeMoveMin = 0.15f,
         tempoDeDestroy = 2,
         TempoNoDano = 0.75f,
-        velocidadeDeGolpe = 10
+        velocidadeDeGolpe = 10,
+        somDoGolpe = "Slash2"
     }
         )
     {

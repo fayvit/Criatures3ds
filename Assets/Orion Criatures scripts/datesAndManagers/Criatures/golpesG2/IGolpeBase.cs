@@ -26,6 +26,8 @@ public interface IGolpeBase
     float TempoDeDestroy { get; }
 
     float ColisorScale { get; }
+    string SomDoGolpe { get; }
+    string SomDoImpacto { get; }
 
     Vector3 DirDeREpulsao { get; set; }
 
@@ -33,6 +35,8 @@ public interface IGolpeBase
     void UpdateGolpe(GameObject G);
     void FinalizaEspecificoDoGolpe();
     void VerificaAplicaStatus(CriatureBase atacante, CreatureManager atacado);
+
+    
 
 }
 
@@ -64,6 +68,9 @@ public class ContainerDeCaracteristicasDeGolpe
     public float tempoDeDestroy = 1;
 
     public float colisorScale = 1;
+
+    public string somDoGolpe = "Evasion1";
+    public string somDoImpacto = "043-Knock04";
 }
 
 

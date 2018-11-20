@@ -23,6 +23,9 @@ public class GetSceneConfigs
             case NomesCenas.represa_c:
                 S = new RepresaConfigs();
             break;
+            case NomesCenas.represaTopCam:
+                S = new RepresaTopCamConfig();
+            break;
             default:
                 Debug.Log("Scenes Config retornou o valor default");
                 Debug.LogWarning("Scenes Config retornou o valor default");

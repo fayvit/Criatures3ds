@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using GameJolt.API;
+//using GameJolt.API;
 using System.Collections;
 
 public class LoginJoltManager : MonoBehaviour
@@ -94,7 +94,7 @@ public class LoginJoltManager : MonoBehaviour
 
     void AgendeODiferenteDeZero()
     {
-
+        #if UNITY_WEBGL
         Debug.Log(Manager.Instance.CurrentUser.ID);
         if (Manager.Instance.CurrentUser.ID != 0)
         {
@@ -103,14 +103,17 @@ public class LoginJoltManager : MonoBehaviour
         }
         else
             Invoke("AgendeODiferenteDeZero", 0.25f);
+#endif
     }
 
     public void FazerLogin()
     {
+        #if UNITY_WEBGL
         bool isSignedIn = Manager.Instance.CurrentUser != null;
 
         if (!isSignedIn)
             GameJolt.UI.Manager.Instance.ShowSignIn(OnLoad);
+#endif
     }
 
     public void ContinuarSemLogin()

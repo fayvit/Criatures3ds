@@ -8,7 +8,7 @@ public class EscondeCoisa
     [SerializeField] private Vector3 posDeEscondido;
     [SerializeField] private Vector3 posInicial;
     [SerializeField] private GameObject particulaDeAcao;
-    [SerializeField] private KeyShift chaveEspecial = KeyShift.nula;
+    //[SerializeField] private KeyShift chaveEspecial = KeyShift.nula;
     [SerializeField] private string chave = "";
     [SerializeField] private float tempoParaEsconder = 4;
     [SerializeField] private int numeroDePartuiculas = 10;
@@ -17,12 +17,23 @@ public class EscondeCoisa
     private float contadorDeTempo = 0;
     private int particulasInstanciadas = 0;
 
+    public void Start(string chave)
+    {
+        this.chave = chave;
+        Start();
+    }
     // Use this for initialization
     public void Start()
     {
         if (escondivel)
         {
             posInicial = escondivel.position;
+
+            if (posDeEscondido == Vector3.zero)
+            {
+                posDeEscondido = posInicial - 11f * Vector3.up;
+            }
+
             if (ExistenciaDoController.AgendaExiste(Start, GameObject.FindObjectOfType<MonoBehaviour>()))
             {
                 if (GameController.g.MyKeys.VerificaAutoShift(chave))
@@ -56,6 +67,7 @@ public class EscondeCoisa
             GameObject G = MonoBehaviour.Instantiate(particulaDeAcao, particulaDeAcao.transform.position, particulaDeAcao.transform.rotation,escondivel.parent);
             MonoBehaviour.Destroy(G, 5);
             G.SetActive(true);
+            EventAgregator.Publish(new StandardSendStringEvent(escondivel.gameObject, "040-Knock01", EventKey.disparaSom));
         }
 
         if (contadorDeTempo > tempoParaEsconder)
@@ -64,7 +76,7 @@ public class EscondeCoisa
             //GameController.g.HudM.ligarControladores();
             //AndroidController.a.LigarControlador();
             GameController.g.MyKeys.MudaAutoShift(chave, true);
-            GameController.g.MyKeys.MudaShift(chaveEspecial, true);
+            //GameController.g.MyKeys.MudaShift(chaveEspecial, true);
             FinalizaEspecifico();
             escondivel.gameObject.SetActive(false);
             

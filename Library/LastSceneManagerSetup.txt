@@ -1,37 +1,10 @@
 sceneSetups:
-- path: Assets/cenas/legado/cavernaIntro.unity
-  isLoaded: 1
-  isActive: 0
 - path: Assets/cenas/legado/comunsDeFase.unity
   isLoaded: 1
   isActive: 0
-- path: Assets/cenas/legado/planicieDeInfinity_b.unity
+- path: Assets/cenas/AsRepresas/represaTopCam_C.unity
+  isLoaded: 1
+  isActive: 0
+- path: Assets/cenas/AsRepresas/represaTopCam.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/cenas/infinity_H.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/infinity_EF.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/infinity_A.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/infinity_C.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/infinity_B.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/infinity_D.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/infinity_G.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/infinity_J.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/infinity_I.unity
-  isLoaded: 1
-  isActive: 0

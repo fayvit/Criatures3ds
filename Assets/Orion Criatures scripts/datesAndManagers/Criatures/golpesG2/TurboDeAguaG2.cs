@@ -23,6 +23,7 @@ public class TurboDeAguaG2 : ProjetilBase
     }
         )
     {
+        SomDoGolpe = "rajadaDeAgua";
         carac = new CaracteristicasDeProjetil()
         {
             noImpacto = NoImpacto.impactoDeAgua,

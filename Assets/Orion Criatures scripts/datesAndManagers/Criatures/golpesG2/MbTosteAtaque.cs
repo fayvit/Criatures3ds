@@ -21,7 +21,8 @@ public class MbTosteAtaque : ImpactoAereoBase
         velocidadeDeRepulsao = 33,
         tempoDeMoveMin = 0.75f,//74
         tempoDeMoveMax = 1.6f,
-        tempoDeDestroy = 1.7f
+        tempoDeDestroy = 1.7f,
+        somDoGolpe = "rajadaDeAgua"
     }
         )
     {

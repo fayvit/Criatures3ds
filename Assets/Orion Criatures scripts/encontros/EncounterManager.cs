@@ -100,13 +100,21 @@ public class EncounterManager
             break;
             case EncounterState.morreuEmLuta:
                 ApresentaDerrota.RetornoDaDerrota R = apresentaDerrota.Update();
-                if (R!=ApresentaDerrota.RetornoDaDerrota.atualizando)
+                if (R != ApresentaDerrota.RetornoDaDerrota.atualizando)
                 {
                     if (R == ApresentaDerrota.RetornoDaDerrota.voltarParaPasseio)
                         estado = EncounterState.verifiqueVida;
                     else
                     if (R == ApresentaDerrota.RetornoDaDerrota.deVoltaAoArmagedom)
+                    {
+                        if (inimigo)
+                            MonoBehaviour.Destroy(inimigo.gameObject);
+
+                        //MonoBehaviour.Destroy(manager.CriatureAtivo.gameObject);
+                        GameObject cilindro = GameObject.Find("cilindroEncontro");
+                        MonoBehaviour.Destroy(cilindro);
                         estado = EncounterState.emEspera;
+                    }
                 }
             break;
             case EncounterState.passouDeNivel:
@@ -150,11 +158,15 @@ public class EncounterManager
 
         if (aDoI.PV.Corrente <= 0 && aDoH.PV.Corrente > 0)
         {
-           UmaVitoria();
+            GlobalController.g.Musica.PararMusicas();
+            UmaVitoria();
         }
 
         if (aDoH.PV.Corrente <= 0)
+        {
+            GlobalController.g.Musica.PararMusicas();
             UmaDerrota();
+        }
 
     }
 
@@ -189,6 +201,7 @@ public class EncounterManager
 
     protected virtual void depoisDeTerminarAApresentacao()
     {
+        EventAgregator.Publish(EventKey.startFight, null);
         estado = EncounterState.comecaLuta;
     }
 
@@ -197,6 +210,7 @@ public class EncounterManager
         contadorDeTempo += Time.deltaTime;
         if (contadorDeTempo > 0.5f)
         {
+            EventAgregator.Publish(EventKey.enemyPresentation, null);
             estado = EncounterState.apresentaAdversario;
             cam = AplicadorDeCamera.cam;
             contadorDeTempo = 0;

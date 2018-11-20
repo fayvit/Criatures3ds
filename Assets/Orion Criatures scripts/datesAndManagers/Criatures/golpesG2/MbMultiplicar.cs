@@ -26,7 +26,8 @@ public class MbMultiplicar : GolpeBase
         tempoDeDestroy = 12,
         TempoNoDano = 0.75f,
         velocidadeDeGolpe = 18,
-        podeNoAr = true
+        podeNoAr = true,
+        somDoGolpe = "Slash2"
     }
         )
     {
@@ -58,7 +59,7 @@ public class MbMultiplicar : GolpeBase
             GameObject G2 = GameController.g.El.retorna(C.MeuCriatureBase.NomeID);
             Vector3 pos = Vector3.zero;
             Transform alvo = CriaturesPerto.procureUmBomAlvo(G, 450);
-
+            EventAgregator.Publish(new StandardSendStringEvent(G, "043-Knock04", EventKey.disparaSom));
             if (alvo)
                 G.transform.rotation = Quaternion.LookRotation(
                     Vector3.ProjectOnPlane(alvo.position-G.transform.position,Vector3.up)

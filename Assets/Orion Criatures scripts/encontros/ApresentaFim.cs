@@ -50,6 +50,7 @@ public class ApresentaFim
             {
                 if (!ligouMensagemDeFim)
                 {
+                    EventAgregator.Publish(EventKey.showEndFight, null);
                     Atributos A = inimigoDerrotado.MeuCriatureBase.CaracCriature.meusAtributos;
                     GameController.g.HudM.Painel.AtivarNovaMens(
                         string.Format(BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.apresentaFim),
@@ -59,7 +60,7 @@ public class ApresentaFim
                     ligouMensagemDeFim = true;
                 }
                 else if (
-                    CommandReader.ButtonDown(0,GameController.g.Manager.Control) 
+                    ActionManager.ButtonUp(0,GameController.g.Manager.Control) 
                     || 
                     contadorDeTempo > TEMPO_PARA_FECHAR_APRESENTA_FIM)
                 {

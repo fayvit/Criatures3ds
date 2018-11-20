@@ -70,7 +70,7 @@ public class TextosDeKatidsPT_BR
             ChaveDeTexto.falandoPrimeiroComDerek,new List<string>()
             {
                 "Ola viajante, eu sou <color=orange>Derek</color>, sou um paladino de <color=cyan>Laurense</color>, o deus da coragem",
-                "Estou aqui descansando um pouco antes de retomar minha viajem.",
+                "Estou aqui descansando um pouco antes de retomar minha viagem.",
                 "Estou numa missão muito importante e preciso chegar até o templo da sabedoria",
                 "mas faz algum tempo estou sendo seguido por um sujeitinho mal encarado",
                 "Acredito que ele esteja agora me aguardando na sombra da represa",
@@ -133,7 +133,7 @@ public class TextosDeKatidsPT_BR
         {
             ChaveDeTexto.NPCdaRepresa,new List<string>()
             {
-                "Ola viajante, aqui é a grande represa de Katids, ela é responsável pelo abastecimento de agua de...",
+                "Ola viajante, aqui é a grande represa de Infinity, ela é responsável pelo abastecimento de agua de...",
                 "... várias cidades de Orion",
                 "O lago da represa liga algumas planícies que dão acesso a cidades",
                 "Sei que você deve estar interssado em entrar na represa para alcançar essas planícies, mas...",
@@ -176,6 +176,34 @@ public class TextosDeKatidsPT_BR
                 "A oeste há um altar dedicado a <color=cyan>Laurense</color> deus da coragem e da força",
                 "Pessoas de fé dizem que você pode conseguir a benção dos deuses visitando seus altares",
                 "Será que vale a pena ir até lá?"
+            }
+        },
+        {
+            ChaveDeTexto.encontroComInkNaRepresa,new List<string>()
+            {
+                "Hey..., olá <color=cyan>Cesar Corean</color> bom ver que você continua conosco nessa jornada",
+                "Muitos desistem com as dificuldades no caminho, mas vejo que você realmente é uma pessoa de valor",
+                "é muito bom ter um companheiro como você somando-se a  nossa causa",
+                "bem... tenho algo a te mostrar...",
+                "Venha comigo..."
+            }
+        },
+        {
+            ChaveDeTexto.InkMostraSegredoAgnun,new List<string>()
+            {
+                "Nós estamos utilizando um segredo da antiga civilização <color=yellow>Agnun</color> para disfarçar elementos de suporte para nossa resistencia",
+                "Veja esse conjunto de pedras...",
+                "ao empurrar a pedra maior para junto das menores você aciona um mecanismo escondido",
+                "utilize um ataque de impacto de um de seus criatures para empurrar a pedra"
+            }
+        },
+        {
+            ChaveDeTexto.InkDepoisDeSegredoRevelado,new List<string>()
+            {
+                "Nós estamos instalando estações de contato com armagedom pelas plánicies de Orion",
+                "Nelas você pode recuperar a energia de seus criatures",
+                "Ao longo da sua jornada você deve encontrar outras estações como essa",    
+                "continue em frente Cesar Corean, é bom saber que existe alguem de tanto valor como você em nossa causa."
             }
         }
     };

@@ -248,5 +248,8 @@ public enum ChaveDeTexto
     menuDeArmagedom,
     hooliganSeApresenta,
     lanceSeApresenta,
-    pedraDiferente
+    pedraDiferente,
+    encontroComInkNaRepresa,
+    InkMostraSegredoAgnun,
+    InkDepoisDeSegredoRevelado
 }

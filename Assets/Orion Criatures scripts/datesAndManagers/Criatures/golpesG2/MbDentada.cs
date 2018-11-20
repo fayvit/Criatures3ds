@@ -30,7 +30,9 @@ public class MbDentada : ImpactoAereoBase
             Trails.dentada,
             ToqueAoChao.impactoAoChao,
             PreparaSalto.impactoBaixo,
-            ImpactoAereoFinal.AvanceEPareAbaixo
+            ImpactoAereoFinal.AvanceEPareAbaixo,
+            true,
+            "Shot1"
             );
 
     }

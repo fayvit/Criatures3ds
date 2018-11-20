@@ -27,6 +27,7 @@ public class Pulo
         caracteristicas.estouPulando = true;
         elementos.controle.Move(Vector3.up * caracteristicas.impulsoInicial);
         elementos.Animador.AnimaIniciaPulo();
+        EventAgregator.Publish(new StandardSendStringEvent(elementos.transform.gameObject, "064-Swing03", EventKey.disparaSom));
     }
 
     public void VerificaPulo(Vector3 direcaoMovimento)

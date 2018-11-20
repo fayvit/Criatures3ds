@@ -135,7 +135,36 @@ public class GameController : MonoBehaviour
         encontros.Start();
         HudM.StatusHud.Start();
         imgMenu = FindObjectOfType<ImageMenuN3ds>();//Instantiate((GameObject)Resources.Load("HUD_Itens")).GetComponent<ImageMenu>();
+
+        EventAgregator.AddListener(EventKey.returnForFreeAfterFight, EventoSalvador);
+
+        ModificacoesDaCena();
         
+    }
+
+    
+    public void ModificacoesDaCena()
+    {
+        string nomeCena = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        if ( nomeCena!= "CenaDeCarregamento" && nomeCena != "comunsDeFase")
+        {
+            
+            SceneConfigs sc = GetSceneConfigs.Get(StringParaEnum.ObterEnum<NomesCenas>(nomeCena));
+            Camera.main.backgroundColor = sc.CamColor;
+            Debug.Log(sc.SceneMusic);
+            GlobalController.g.Musica.IniciarMusica(LocalResources.l.Mlocal.Musica, LocalResources.l.Mlocal.Volume);
+        }
+    }
+
+
+    private void OnDestroy()
+    {
+        EventAgregator.RemoveListener(EventKey.returnForFreeAfterFight, EventoSalvador);
+    }
+
+    void EventoSalvador(IGameEvent e)
+    {
+        Salvador.SalvarAgora();
     }
 
     // Update is called once per frame
@@ -297,10 +326,12 @@ public class GameController : MonoBehaviour
     }
 
     public void BotaTrocarCriature()
-    { DadosDoPersonagem dados = manager.Dados;
+    {
+        DadosDoPersonagem dados = manager.Dados;
         if (dados.CriaturesAtivos[dados.CriatureSai + 1].CaracCriature.meusAtributos.PV.Corrente > 0)
         {
             FinalizaHuds();
+            EventAgregator.Publish(new StandardSendStringEvent(gameObject, "chamadaParaAcao", EventKey.disparaSom));
             replace = new ReplaceManager(manager, manager.CriatureAtivo.transform,
                 manager.Estado == EstadoDePersonagem.comMeuCriature ?
                 FluxoDeRetorno.criature :
@@ -462,7 +493,7 @@ public class GameController : MonoBehaviour
         //hudM.DesligaControladores();
         g.imgMenu.Esconde();
 
-
+        ColetorDeLixo.Coleta();
         g.Manager.Estado = EstadoDePersonagem.parado;
     }
 

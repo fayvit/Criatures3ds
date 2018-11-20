@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class AplicadorDeCamera : MonoBehaviour
 {
@@ -52,6 +53,18 @@ public class AplicadorDeCamera : MonoBehaviour
                 minhaCamera = transform });
             NovoFocoBasico(GameController.g.Manager.transform, 10, 10, true);
         }
+
+        EventAgregator.AddListener(EventKey.returnForFreeAfterFight, LongClipPlaneevent);
+    }
+
+    private void OnDestroy()
+    {
+        EventAgregator.RemoveListener(EventKey.returnForFreeAfterFight, LongClipPlaneevent);
+    }
+
+    private void LongClipPlaneevent(IGameEvent obj)
+    {
+        GetComponent<Camera>().farClipPlane = 1000;
     }
 
     // Update is called once per frame

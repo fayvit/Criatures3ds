@@ -22,6 +22,8 @@ public class ImpactoAereoBase : GolpeBase
         GameObject instancia = GameController.g.El.retorna(carac.prepara.ToString());
         MonoBehaviour.Destroy(
         MonoBehaviour.Instantiate(instancia, G.transform.position, Quaternion.LookRotation(G.transform.forward)), 5);
+
+        EventAgregator.Publish(EventKey.disparaSom, new StandardSendStringEvent(G, carac.somDoPreparar, EventKey.disparaSom));
     }
 
     public override void UpdateGolpe(GameObject G)
@@ -46,6 +48,8 @@ public struct CaracteristicasDeImpactoComSalto
     public PreparaSalto prepara;
     public ImpactoAereoFinal final;
     public bool parentearNoOsso;
+    public string somDoPreparar;
+    public string somDoToqueAoChao;
 
     public CaracteristicasDeImpactoComSalto(
         NoImpacto noImpacto,
@@ -53,8 +57,10 @@ public struct CaracteristicasDeImpactoComSalto
         ToqueAoChao toque,
         PreparaSalto prepara,
         ImpactoAereoFinal final,
-        bool parentearNoOsso = true
-        )
+        bool parentearNoOsso = true,
+        string somDoPreparar = "Shot3",
+        string somDoToqueAoChao = "Slash1"
+    )
     {
         this.noImpacto = noImpacto;
         this.trail = trail;
@@ -62,6 +68,8 @@ public struct CaracteristicasDeImpactoComSalto
         this.prepara = prepara;
         this.final = final;
         this.parentearNoOsso = parentearNoOsso;
+        this.somDoPreparar = somDoPreparar;
+        this.somDoToqueAoChao = somDoToqueAoChao;
     }
 
     public CaracteristicasDeImpacto deImpacto

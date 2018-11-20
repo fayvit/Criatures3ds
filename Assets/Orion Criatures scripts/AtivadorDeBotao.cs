@@ -80,5 +80,10 @@ public abstract class AtivadorDeBotao : MonoBehaviour
         }
     }
 
+    public virtual void SomDoIniciar()
+    {
+        EventAgregator.Publish(new StandardSendStringEvent(gameObject, "Decision1", EventKey.disparaSom));
+    }
+
     public abstract void FuncaoDoBotao();
 }

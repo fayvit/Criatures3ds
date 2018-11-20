@@ -29,6 +29,7 @@ public class AtivadorDoBotaoConversa : AtivadorDeBotao
 
     public void BotaoConversa()
     {
+        SomDoIniciar();
         FluxoDeBotao();
 
         //Transform T = TransformPosDeConversa.MeAjude(transform);

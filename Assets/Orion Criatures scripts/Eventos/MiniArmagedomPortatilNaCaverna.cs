@@ -34,6 +34,10 @@ public class MiniArmagedomPortatilNaCaverna : AtivadorDoBotaoConversa
                 GameController.g.El.retorna(DoJogo.curaDeArmagedom),
                 GameController.g.Manager.transform.position,
                 Quaternion.identity),5);
+
+            EventAgregator.Publish(new StandardSendStringEvent(gameObject, "106-Heal02", EventKey.disparaSom));
+            GlobalController.g.Musica.IniciarMusicaGuardandoAtual(NameMusic.Field2);
+
             GameController.g.Manager.Dados.TodosCriaturesPerfeitos();
             GameController.g.HudM.AtualizaDadosDaHudVida(false);
             GameController.g.Manager.Dados.UltimoArmagedom = indiceDeArmagedom;

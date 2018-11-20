@@ -136,6 +136,7 @@ public class NPCdeConversa
 
     protected virtual void FinalizaConversa()
     {
+        EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, "Book1", EventKey.disparaSom));
         estado = EstadoDoNPC.finalizadoComBotao;
         meuTransform.rotation = Quaternion.LookRotation(dirGuardada);
         //MonoBehaviour.Destroy(destrutivel.gameObject);
@@ -145,17 +146,20 @@ public class NPCdeConversa
         //AndroidController.a.LigarControlador();
     }
 
-    public virtual void IniciaConversa(/*Transform Destrutivel*/)
+    public virtual void IniciaConversa()
     {
         ColetorDeLixo.Coleta();
 
         //destrutivel = Destrutivel;
+
+        
         siga.PareAgora();
 
         dirGuardada = meuTransform.forward;
         meuTransform.rotation = Quaternion.LookRotation(
             Vector3.ProjectOnPlane(GameController.g.Manager.transform.position - meuTransform.position, Vector3.up)
             );
+        
         GameController.g.HudM.DisparaT.IniciarDisparadorDeTextos(podeFechar);
         GameController.g.HudM.DisparaT.IndiceDaConversa = modificarIndiceDeInicio;
         //GameController.g.HudM.Botaozao.IniciarBotao(FinalizaConversa, 

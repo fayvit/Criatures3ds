@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using System;
 
 [System.Serializable]
 public class SceneLoader:MonoBehaviour
@@ -114,9 +113,10 @@ public class SceneLoader:MonoBehaviour
                     // Debug.Log(a2[i]+" : "+N2[i - N.Length]);
                 }
 
-                if (N.Length == 0)
+
+                if (N.Length == 0|| SceneManager.GetSceneByName(GameController.g.MyKeys.CenaAtiva.ToString()).isLoaded)
                 {
-                    SetarCenaPrincipal(SceneManager.GetActiveScene(),LoadSceneMode.Single);
+                    SetarCenaPrincipal(SceneManager.GetSceneByName(GameController.g.MyKeys.CenaAtiva.ToString()),LoadSceneMode.Single);
                 }
                 Time.timeScale = 0;
             }
@@ -143,7 +143,7 @@ public class SceneLoader:MonoBehaviour
     void DescarregarCenasDesnecessarias()
     {
         
-        System.Collections.Generic.List<NomesCenas> retorno = new System.Collections.Generic.List<NomesCenas>();
+        //System.Collections.Generic.List<NomesCenas> retorno = new System.Collections.Generic.List<NomesCenas>();
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
             Scene S = SceneManager.GetSceneAt(i);
@@ -269,7 +269,7 @@ public class SceneLoader:MonoBehaviour
     {
         if (S != null)
         {
-            //Debug.Log(S.VariaveisChave.CenaAtiva.ToString()+" : "+ scene.name);
+            Debug.Log(S.VariaveisChave.CenaAtiva.ToString()+" : "+ scene.name);
             if (scene.name == S.VariaveisChave.CenaAtiva.ToString())
             {
                 InvocarSetScene(scene);
@@ -337,9 +337,7 @@ public class SceneLoader:MonoBehaviour
     {
         //Debug.Log(scene.name);
         SceneManager.SetActiveScene(scene);
-        SceneConfigs sc = GetSceneConfigs.Get(StringParaEnum.ObterEnum<NomesCenas>(scene.name));
-        Camera.main.backgroundColor = sc.CamColor;
-        GlobalController.g.IniciarMusica(sc.SceneMusic,sc.MusicVolume);
+        
         //Debug.Log(GameController.g+" : "+scene.name);
         if (SceneManager.GetActiveScene() != scene)
             StartCoroutine(setarScene(scene));
@@ -360,7 +358,7 @@ public class SceneLoader:MonoBehaviour
                 {
                     for (int i = 0; i < a2.Length; i++)
                     {
-                        // Debug.Log(a2[i]);
+                        //Debug.Log(a2[i].progress);
                         progresso += a2[i].progress;
                     }
 
@@ -386,7 +384,6 @@ public class SceneLoader:MonoBehaviour
                     GlobalController.g.FadeV.IniciarFadeOut();
                     EventAgregator.AddListener(EventKey.fadeOutComplete, OnFadeOutComplete);
                     fase = FasesDoLoad.eventInProgress;
-                    
 
                 }
                 
@@ -412,7 +409,6 @@ public class SceneLoader:MonoBehaviour
                 tempo += Time.fixedDeltaTime;
                 if (tempo > 0.5f)
                 {
-                    
                     Destroy(gameObject);
                 }
             break;
@@ -438,6 +434,9 @@ public class SceneLoader:MonoBehaviour
 
     private void OnFadeInComplete(IGameEvent obj)
     {
+        Debug.Log("cena ativa para musica: " + SceneManager.GetActiveScene().name);
+        GameController.g.ModificacoesDaCena();
+
         GameController.g.ContarPassos = true;
         Destroy(gameObject);
     }

@@ -30,7 +30,9 @@ public class MbChicoteDeMao : ImpactoAereoBase
             Trails.doisCubos,
             ToqueAoChao.impactoAoChao,
             PreparaSalto.preparaImpactoAoChao,
-            ImpactoAereoFinal.MaisAltoQueOAlvo
+            ImpactoAereoFinal.MaisAltoQueOAlvo,
+            true,
+            "Skill3"
             )
             ;
 

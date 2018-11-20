@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using GameJolt.API;
+//using GameJolt.API;
 using System.IO;
 
 public class SaveAndLoadInJolt

@@ -67,9 +67,9 @@ public class SigaOLider
         {
             if (nav.enabled && nav.isOnNavMesh)
             {
-                
+
                 //if(!nav.isActiveAndEnabled)
-                    nav.Resume();
+                nav.isStopped = false; //nav.Resume();
 
                // if(nav.isActiveAndEnabled)
                     nav.destination = posAlvo;
@@ -85,7 +85,7 @@ public class SigaOLider
         if (nav.enabled)
         {
             nav.destination = nav.transform.position;
-            nav.Stop();
+            nav.isStopped = true; //nav.Stop();
         }
     }
 }

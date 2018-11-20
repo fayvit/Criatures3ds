@@ -56,9 +56,6 @@ public class MbEncontros
             if (!luta)
                 posHeroi = manager.transform.position;
 
-            //  if (!heroiMB)
-            //    heroiMB = tHeroi.GetComponent<movimentoBasico>();
-
             if (!LugarSeguro() && !luta && MovimentacaoBasica.noChaoS(manager.Mov.Controle,0.01f) && contarPassos)
             {
                 andado += (posHeroi - posAnterior).magnitude;
@@ -69,18 +66,17 @@ public class MbEncontros
             if (!luta && andado >= proxEncontro )
             {
                 ColetorDeLixo.Coleta();
-
                 IniciaEncontro();
             }
 
             if (gerenteDeEncontro.Update() && luta)
             {
-                
                 RetornaParaModoPasseio();
-                AplicadorDeCamera.cam.GetComponent<Camera>().farClipPlane = 1000;
-                GameController.g.Salvador.SalvarAgora();
-                //System.GC.Collect();
-                //Resources.UnloadUnusedAssets();
+                ColetorDeLixo.Coleta();
+
+                EventAgregator.Publish(EventKey.returnForFreeAfterFight,
+                    null);
+                
             }
 
 
@@ -120,7 +116,7 @@ public class MbEncontros
         proxEncontro = SorteiaPassosParaEncontro();
         encontrado = criatureEncontrado();
         IniciarEncontroCom(InsereInimigoEmCampo.RetornaInimigoEmCampo(encontrado, manager),false);
-
+        EventAgregator.Publish(EventKey.encounterEvent, null);
     }
 
     void RetornaParaModoPasseio()

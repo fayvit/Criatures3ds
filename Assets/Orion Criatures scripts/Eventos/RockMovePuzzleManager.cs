@@ -4,11 +4,9 @@ using System.Collections;
 public class RockMovePuzzleManager : AtivadorDeBotao
 {
     [SerializeField]private RockShift[] rockShift;
-    [SerializeField]private Vector3 posDeEscondido = Vector3.zero;
-    [SerializeField]private GameObject particulaDeFim;
-    //[SerializeField]private KeyShift chaveEspecial;
+    [SerializeField] private EscondeCoisa escondePedra;
+    [SerializeField]private KeyShift chaveEspecial;
     [SerializeField]private string ID;    
-    [SerializeField]private float tempoParaEsconder = 3;
 
     [SerializeField]private bool iniciarVisaoDeFeito = false;
     private Vector3 posInicial;
@@ -22,6 +20,9 @@ public class RockMovePuzzleManager : AtivadorDeBotao
         
         if (ExistenciaDoController.AgendaExiste(Start, this))
             {
+
+            escondePedra.Start(ID);
+
             if (GameController.g.MyKeys.VerificaAutoShift(ID))
             {
                 for (int i = 0; i < rockShift.Length; i++)
@@ -32,8 +33,6 @@ public class RockMovePuzzleManager : AtivadorDeBotao
             }
             else
             {
-                if (posDeEscondido == Vector3.zero)
-                    posDeEscondido = new Vector3(transform.position.x, -2.5f, transform.position.z);
 
                 for (int i = 0; i < rockShift.Length; i++)
                 {
@@ -68,19 +67,24 @@ public class RockMovePuzzleManager : AtivadorDeBotao
 
         if (iniciarVisaoDeFeito)
         {
+            /*
             contadorDeTempo += Time.deltaTime;
             transform.position = Vector3.Lerp(posInicial,posDeEscondido,contadorDeTempo/tempoParaEsconder);
 
-            if (contadorDeTempo > tempoParaEsconder)
+            if (contadorDeTempo > tempoParaEsconder)*/
+            if(escondePedra.Update())
             {
 
                 GameController.g.Manager.AoHeroi();
                 //GameController.g.HudM.ligarControladores();
                 //AndroidController.a.LigarControlador();
                 GameController.g.MyKeys.MudaAutoShift(ID, true);
-                //GameController.g.MyKeys.MudaShift(chaveEspecial, true);
+                GameController.g.MyKeys.MudaShift(chaveEspecial, true);
+
                 FinalizaEspecifico();
                 gameObject.SetActive(false);
+                EventAgregator.Publish(new StandardSendStringEvent(gameObject, "coisaBoaRebot", EventKey.disparaSom));
+                GlobalController.g.Musica.ReiniciarMusicas();
             }
         }
     }
@@ -120,9 +124,11 @@ public class RockMovePuzzleManager : AtivadorDeBotao
 
         if (retorno)
         {
-            AplicadorDeCamera.cam.NovoFocoBasico(transform.parent, 8, 10, true, true);
-            iniciarVisaoDeFeito = retorno;
-            particulaDeFim.SetActive(true);
+            AplicadorDeCamera.cam.NovoFocoBasico(transform.parent, 8, 16, true, true);
+            iniciarVisaoDeFeito = retorno; 
+            escondePedra.AtivarParticula();
+            GlobalController.g.Musica.PararMusicas();
+            //particulaDeFim.SetActive(true);
         }
 
         return retorno;

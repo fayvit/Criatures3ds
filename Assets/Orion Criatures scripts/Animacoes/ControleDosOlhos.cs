@@ -82,20 +82,20 @@ public class ControleDosOlhos : MonoBehaviour
         {
             case estadoOlho.fechar:
                 procedimentoFechar(piscar);
-                break;
+            break;
             case estadoOlho.impacto:
                 procedimentoFechar(olhosDeImpacto);
-                break;
+            break;
             case estadoOlho.piscar:
                 procedimentoPiscar();
-                break;
+            break;
             case estadoOlho.morto:
                 procedimentoFechar(olhosDeMorto);
-                break;
+            break;
             case estadoOlho.aberto:
                 if (skinned.materials[materialDosOlhos].mainTextureOffset != piscar[0])
                     skinned.materials[materialDosOlhos].mainTextureOffset = piscar[0];
-                break;
+            break;
         }
 
     }

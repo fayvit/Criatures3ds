@@ -148,6 +148,7 @@ public class NpcDoPrimeiroMiniArmagedom : NPCdeConversa
 
     protected override void FinalizaConversa()
     {
+        GlobalController.g.Musica.IniciarMusicaGuardada();
         base.FinalizaConversa();
         if (!GameController.g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto))
             GameController.g.HudM.ModoLimpo();

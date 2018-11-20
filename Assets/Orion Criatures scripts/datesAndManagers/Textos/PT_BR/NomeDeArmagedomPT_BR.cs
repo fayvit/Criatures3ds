@@ -9,10 +9,10 @@ public class NomeDeArmagedomPT_BR : MonoBehaviour
             IndiceDeArmagedoms.cavernaIntro,"Caverna da resistencia"
         },
         {
-            IndiceDeArmagedoms.saidaDaCaverna,"Saída da caverna"
+            IndiceDeArmagedoms.secretoDaRepresa,"Secreto Da Represa"
         },
         {
-            IndiceDeArmagedoms.deKatids,"Katids"
+            IndiceDeArmagedoms.planicieDeInfinity_b,"Planicie de Infinity"
         },
         {
             IndiceDeArmagedoms.miniKatidsVsTemple,"Mini armagedom da area do templo"

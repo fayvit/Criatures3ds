@@ -205,6 +205,8 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
     void EscolhaDeComprarPergaminho(int escolha)
     {
         GameController.g.HudM.Menu_Basico.FinalizarHud();
+        GameController.g.HudM.DisparaT.DesligarPaineis();
+
         switch (escolha)
         {
             case 0:
@@ -321,6 +323,11 @@ public class AtivadorDoBotaoArmagedom : AtivadorDeBotao
         GameController.g.HudM.EntraCriatures
             .IniciarEssaHUD(GameController.g.Manager.Dados.CriaturesAtivos.ToArray(), SubstituiArmagedado,true);
         fase = fasesDoArmagedom.armagedadosAberto;
+
+        ActionManager.ModificarAcao(GameController.g.transform, () => {
+            fase = fasesDoArmagedom.menuSuspenso;
+            GameController.g.HudM.EntraCriatures.AcaoDeOpcaoEscolhida();
+        });
     }
 
     void InstanciaVisaoDeCura()

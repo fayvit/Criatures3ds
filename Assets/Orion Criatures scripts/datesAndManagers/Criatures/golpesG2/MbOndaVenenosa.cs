@@ -19,7 +19,8 @@ public class MbOndaVenenosa : ProjetilBase
         tempoDeMoveMin = 0.3f,
         tempoDeDestroy = 2,
         TempoNoDano = 0.75f,
-        velocidadeDeGolpe = 18
+        velocidadeDeGolpe = 18,
+        somDoGolpe = "Slash2"
     }
         )
     {

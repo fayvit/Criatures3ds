@@ -35,6 +35,7 @@ public class MbPergaminhoDeArmagedom : MbItens
     public override void IniciaUsoComCriature(GameObject dono)
     {
         fluxo = FluxoDeRetorno.heroi;
+        GameController.g.FinalizaHuds();
         if (GameController.g.estaEmLuta)
         {
             GameController.g.HudM.Painel.AtivarNovaMens(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.mensLuta)[0], 25, 2);
@@ -210,7 +211,7 @@ public class MbPergaminhoDeArmagedom : MbItens
 
     void EntraFaseDoTransporte()
     {
-        GameController.g.gameObject.AddComponent<FadeView>();
+        GlobalController.g.FadeV.IniciarFadeOut();
         GameController.g.StartCoroutine(VoltaArmagedom());
     }
 
@@ -218,6 +219,7 @@ public class MbPergaminhoDeArmagedom : MbItens
     {
         yield return new WaitForSeconds(1);
         VisitasParaArmagedom V = LocalizacaoDeArmagedoms.L[GameController.g.MyKeys.LocalArmag[opcaoEscolhida]];
+        GlobalController.g.FadeV.IniciarFadeIn();
 
         CharacterManager manager = GameController.g.Manager;
         manager.transform.position = V.Endereco;

@@ -62,15 +62,17 @@ public class DadosDoPersonagem
     {
         
         CriaturesAtivos = new List<CriatureBase>() {
-            new CriatureBase(nomesCriatures.Xuash,1),
-            new CriatureBase(nomesCriatures.Florest,2)/*,
-            new CriatureBase(nomesCriatures.PolyCharm,3),
-            new CriatureBase(nomesCriatures.Iruin,2),
-            new CriatureBase(nomesCriatures.Cabecu,10)*/
+            new CriatureBase(nomesCriatures.Iruin,7),
+            new CriatureBase(nomesCriatures.Cabecu,10),
+            new CriatureBase(nomesCriatures.Babaucu,2),
+            new CriatureBase(nomesCriatures.Florest,7),
+            new CriatureBase(nomesCriatures.PolyCharm,7),
+            
+            
 
         };
 
-       // CriaturesAtivos[2].CaracCriature.meusAtributos.PV.Corrente = 0;
+        //CriaturesAtivos[0].CaracCriature.meusAtributos.PV.Corrente = 1;
 
         CriaturesArmagedados = new List<CriatureBase>() {
             new CriatureBase(nomesCriatures.Onarac,1),
@@ -89,7 +91,7 @@ public class DadosDoPersonagem
         {
             PegaUmItem.Retorna(nomeIDitem.pergaminhoDePerfeicao,14),
             PegaUmItem.Retorna(nomeIDitem.maca,16),
-            PegaUmItem.Retorna(nomeIDitem.pergVentosCortantes,2),
+            PegaUmItem.Retorna(nomeIDitem.pergArmagedom,2),
             PegaUmItem.Retorna(nomeIDitem.pergFuracaoDeFolhas,5),
             PegaUmItem.Retorna(nomeIDitem.pergaminhoDeFuga,10),
             PegaUmItem.Retorna(nomeIDitem.regador,10),

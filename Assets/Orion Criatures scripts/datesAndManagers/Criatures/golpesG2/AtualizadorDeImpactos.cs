@@ -45,8 +45,9 @@ public class AtualizadorDeImpactos
         if (!addView)
         {
             tempoDecorrido += ativa.TempoDeMoveMin;
+            Debug.Log(ativa.Nome+" : "+ativa.SomDoGolpe);
             ColisorDeGolpe.AdicionaOColisor(G,ativa,caracteristica,tempoDecorrido);
-
+            EventAgregator.Publish(EventKey.disparaSom, new StandardSendStringEvent(G, ativa.SomDoGolpe, EventKey.disparaSom));
             addView = true;
 
         }

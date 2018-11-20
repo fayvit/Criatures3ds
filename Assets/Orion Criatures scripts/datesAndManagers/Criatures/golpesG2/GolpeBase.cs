@@ -186,6 +186,17 @@ public class GolpeBase : IGolpeBase
         }
     }
 
+    public string SomDoGolpe
+    {
+        get { return container.somDoGolpe; }
+        protected set { container.somDoGolpe = value; }
+    }
+
+    public string SomDoImpacto {
+        get { return container.somDoImpacto; }
+        protected set { container.somDoImpacto = value; }
+    }
+
     public virtual void IniciaGolpe(GameObject G)
     {
         throw new NotImplementedException();

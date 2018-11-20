@@ -15,6 +15,7 @@ public class IntroManager : MonoBehaviour {
     private FaseDaConversa faseFala = FaseDaConversa.emEspera;
     private DisparaTexto dispara;
     private ControlledMoveForCharacter cMove;
+    private Quaternion originalCamQ;
     
 
     private const float TEMPO_DO_DESLOCAMENTO_UM = 6;
@@ -38,6 +39,7 @@ public class IntroManager : MonoBehaviour {
 
         if (ExistenciaDoController.AgendaExiste(Start, this))
         {
+
             if (GameController.g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto))
                 Destroy(gameObject);
             else
@@ -45,13 +47,26 @@ public class IntroManager : MonoBehaviour {
                 falas = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.entradinha).ToArray();
                 dispara = GameController.g.HudM.DisparaT;
                 dispara.IniciarDisparadorDeTextos();
-                StartCoroutine(DesligaCamera());
+                
+                StartCoroutine(PreparaCamera());
                 GameController.g.Manager.enabled = false;
                 GameController.g.Manager.transform.position = posEscondeheroi.position;
                 
             }
         }
 
+    }
+    IEnumerator PreparaCamera()
+    {
+        yield return new WaitForEndOfFrame();
+
+        if (Camera.main.transform.rotation == Quaternion.identity)
+            StartCoroutine(PreparaCamera());
+        else
+        {
+            originalCamQ = Camera.main.transform.rotation;
+            StartCoroutine(DesligaCamera());
+        }
     }
 
     IEnumerator DesligaCamera()
@@ -60,9 +75,15 @@ public class IntroManager : MonoBehaviour {
 
         if (AplicadorDeCamera.cam != null)
         {
+            GameController.g.ModificacoesDaCena();
             AplicadorDeCamera.cam.enabled = false;
             Camera.main.transform.position = transform.position;
             Camera.main.transform.rotation = transform.rotation;
+            Debug.Log(Camera.main.transform.rotation+" : "+Quaternion.identity+" : "+originalCamQ);
+            if (Camera.main.transform.rotation == originalCamQ)
+                StartCoroutine(DesligaCamera());
+
+            /*
 
             yield return new WaitForEndOfFrame();
             Camera.main.transform.rotation = transform.rotation;
@@ -75,6 +96,12 @@ public class IntroManager : MonoBehaviour {
 
             yield return new WaitForSeconds(1f);
             Camera.main.transform.rotation = transform.rotation;
+
+            yield return new WaitForSeconds(2f);
+            Camera.main.transform.rotation = transform.rotation;
+
+            yield return new WaitForSeconds(3f);
+            Camera.main.transform.rotation = transform.rotation;*/
         }
         else
             StartCoroutine(DesligaCamera());

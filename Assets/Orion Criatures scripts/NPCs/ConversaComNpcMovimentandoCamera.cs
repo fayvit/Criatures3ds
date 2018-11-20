@@ -9,6 +9,19 @@ public class ConversaComNpcMovimentandoCamera : NPCdeConversa
 
     private float alturaDaCamera = -1;
     private float distanciaDaCamera = 6;
+    private int indiceDaConversaCondiciona = 0;
+
+    public MovimentoDeCamera[] Movs
+    {
+        get { return movs; }
+        private set { movs = value; }
+    }
+
+    public int IndiceDaConversaCondiciona
+    {
+        get { return indiceDaConversaCondiciona; }
+        set { indiceDaConversaCondiciona = value; }
+    }
 
     public override bool Update()
     {
@@ -16,7 +29,9 @@ public class ConversaComNpcMovimentandoCamera : NPCdeConversa
         {
             
             for (int i = 0; i < movs.Length; i++)
-                if (GameController.g.HudM.DisparaT.IndiceDaConversa == movs[i].IndiceDeInicioDeMovimento)
+                if (GameController.g.HudM.DisparaT.IndiceDaConversa == movs[i].IndiceDeInicioDeMovimento &&
+                    indiceDaConversaCondiciona == movs[i].indiceDaCondicional
+                    )
                 {
                     if (movs[i].AlvoDoMovimento != null)
                     {
@@ -43,6 +58,7 @@ public class MovimentoDeCamera
 {
     public float alturaDaCamera = 1;
     public float distanciaDaCamera = 6;
+    public int indiceDaCondicional = 0;
     [SerializeField] private int indiceDeInicioDeMovimento;
     [SerializeField] private Transform alvoDoMovimento;
 

@@ -70,12 +70,14 @@ public class ColisorDeDanoBase : MonoBehaviour
             if (noTransform)
                 impacto = (GameObject)Instantiate(impacto, emQ.transform.position, Qparticles);
 
-                /*
-                if (colocaImpactos)
-                    aG.impactos++;
-                    */
-                    
-       // }
+        EventAgregator.Publish(EventKey.disparaSom, new StandardSendStringEvent(dono, esseGolpe.SomDoImpacto, EventKey.disparaSom));
+
+        /*
+        if (colocaImpactos)
+            aG.impactos++;
+            */
+
+        // }
 
         if (impacto)
             Destroy(impacto, 1.5f);

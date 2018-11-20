@@ -36,6 +36,7 @@ public class InfoInGame : AtivadorDeBotao
                 if (GameController.g.HudM.DisparaT.UpdateDeTextos(conversa))
                 {
                     //CommandReader.useiAcao = true;
+                    EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, "Book1", EventKey.disparaSom));
                     GameController.g.HudM.DisparaT.DesligarPaineis();
                     estado = EstadoDaInfoGame.emEspera;
                     GameController.g.Manager.AoHeroi();
@@ -46,6 +47,7 @@ public class InfoInGame : AtivadorDeBotao
     public override void FuncaoDoBotao()
     {
         FluxoDeBotao();
+        SomDoIniciar();
         GameController.g.HudM.DisparaT.IniciarDisparadorDeTextos(true);
         estado = EstadoDaInfoGame.lendoTexto;
     }

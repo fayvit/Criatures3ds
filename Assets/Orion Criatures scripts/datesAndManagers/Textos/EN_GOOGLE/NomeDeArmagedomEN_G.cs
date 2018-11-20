@@ -10,10 +10,10 @@ public class NomeDeArmagedomEN_G : MonoBehaviour
             IndiceDeArmagedoms.cavernaIntro,"Resistence cave"
         },
         {
-            IndiceDeArmagedoms.saidaDaCaverna,"Exit of Cave"
+            IndiceDeArmagedoms.secretoDaRepresa,"Secret of Dam"
         },
         {
-            IndiceDeArmagedoms.deKatids,"Katids"
+            IndiceDeArmagedoms.planicieDeInfinity_b,"Infinity"
         },
         {
             IndiceDeArmagedoms.miniKatidsVsTemple,"Mini armagedom in temple zone"

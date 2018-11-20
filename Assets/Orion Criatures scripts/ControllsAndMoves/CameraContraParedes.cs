@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class CameraContraParedes {
 
-
+    static float velAlvo = 25;
     static void RaiosVisualizadores(Transform cameraP,Transform alvo,float escalA)
     {
         Debug.DrawLine(cameraP.position, alvo.position + escalA * Vector3.up, Color.blue);
@@ -39,8 +39,28 @@ public static class CameraContraParedes {
             {
                 if (suave)
                 {
-                    cameraP.position = Vector3.Lerp(cameraP.position,
-                        raioColisor.point - raioColisor.normal * 0.3f, 25 * Time.deltaTime);
+                    
+                    Vector3 posAlvo = raioColisor.point + raioColisor.normal * 0.2f+escalA*Vector3.up;
+                    float vel = 25;
+                    //Debug.Log(Vector3.Distance(alvo.position, posAlvo));
+
+                    if (Vector3.Distance(alvo.position, posAlvo) < 3f)
+                    {
+                        posAlvo = raioColisor.point - raioColisor.normal * 0.4f + escalA * Vector3.up;
+                        velAlvo = 10f;
+                        vel = 10;
+                    }
+                    else if (Vector3.Distance(alvo.position, posAlvo) > 10f)
+                    {
+                        posAlvo = raioColisor.point + raioColisor.normal * 1f + escalA * Vector3.up;
+                        velAlvo = 10f;
+                        vel = 10;
+                    }
+                    else
+                        velAlvo = Mathf.Lerp(velAlvo, vel, Time.deltaTime);
+
+                    cameraP.position = Vector3.Lerp(cameraP.position,posAlvo
+                        , velAlvo * Time.deltaTime);
                 }
                 else
                     cameraP.position = 

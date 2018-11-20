@@ -156,6 +156,8 @@ public class RockMovePuzzle:EventoComGolpe
                 umAlvo = hit.transform;
                 Destroy(
                 Instantiate(GameController.g.El.retorna("teletransporte"), hit.transform.position, Quaternion.identity), 5);
+                EventAgregator.Publish(new StandardSendStringEvent(hit.gameObject, "bemFeito", EventKey.disparaSom));
+                
                 GameController.g.MyKeys.MudaAutoShift(ID, true);
                 estado = RockMoveState.finalizar;
             }

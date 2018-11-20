@@ -14,7 +14,9 @@ public static class TextosDeBarreirasPT_BR
             "Nossa!! Isso é coco! Alguém precisa jogar uma terra em cima disso",
             "São muitos insetos! Inseticida não daria conta, somente um veneno muito poderoso",
             "É notável pelo tamanho da tubulação que alguem pode caminhar ai dentro. Se não fossem as grades poderiamos entrar.",
-            "Mais grades bloqueando nosso caminho!!"
+            "Mais grades bloqueando nosso caminho!!",
+            /*ID=8*/
+            "Isso me lembra uma musica que diz \" Pedrada na vidraça, tudo que tenho consegui na raça.\""
         } }
     };
 }

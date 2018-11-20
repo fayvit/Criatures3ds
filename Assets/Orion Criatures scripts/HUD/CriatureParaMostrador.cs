@@ -45,6 +45,7 @@ public class CriatureParaMostrador : UmaOpcao
 
         if (int.Parse(txtPVnum.text.Split('/')[0]) > 0)
         {
+            GameController.g.HudM.EntraCriatures.PodeMudar = true;
             string texto =
                 !armagedom ? string.Format(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.criatureParaMostrador)[0], nomeCriature.text)
                 : string.Format(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeArmagedom)[7], nomeCriature.text,txtNivelNum.text);

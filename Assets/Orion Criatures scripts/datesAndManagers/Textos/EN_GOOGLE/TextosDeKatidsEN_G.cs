@@ -133,7 +133,7 @@ public class TextosDeKatidsEN_G
         {
             ChaveDeTexto.NPCdaRepresa,new List<string>()
             {
-                "Ola traveler, here is the great Katids dam, she is responsible for the water supply of ...",
+                "Ola traveler, here is the great Infinity dam, she is responsible for the water supply of ...",
                 "... several cities of Orion",
                 "The dam lake connects some plains that give access to cities",
                 "I know you must be interested in entering the dam to reach these plains, but ...",

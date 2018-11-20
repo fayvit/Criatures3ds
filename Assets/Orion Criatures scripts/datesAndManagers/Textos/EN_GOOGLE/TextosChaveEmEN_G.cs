@@ -214,7 +214,8 @@ public static class TextosChaveEmEN_G
                     " Cesar Corean can not use this item in this location",
                     "{0} does not need to use this item at this time",
                     "You can not use items through the menu while fighting.",
-                    "You do not have any items at this time."
+                    "You do not have any items at this time.",
+                    "Cesar Corean uses item <color=cyan>{0}</color>"
                 }},
                 {ChaveDeTexto.bau,new List<string>()
                 {

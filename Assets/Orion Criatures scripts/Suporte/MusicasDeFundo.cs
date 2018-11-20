@@ -3,9 +3,8 @@ using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class MusicasDeFundo
-{    
+{
     [SerializeField] private AudioSource[] audios;
-
 
     private int inicia = -1;
     private int termina = -1;
@@ -13,8 +12,43 @@ public class MusicasDeFundo
     private string cenaIniciada = "";
     private bool parando;
     private float volumeAlvo = 0.5f;
+    private float velocidadeAtiva = 0.25f;
 
-    private const int VELOCIDADE_DE_MUDANCA = 1;
+    private const float VELOCIDADE_DE_MUDANCA = 0.25f;
+
+    public MusicaComVolumeConfig MusicaGuardada { get; private set; }
+    public MusicaComVolumeConfig MusicaAtualAtiva { get; private set; }
+
+    public float VelocidadeAtiva
+    {
+        get { return velocidadeAtiva; }
+        set { velocidadeAtiva = value; }
+    }
+
+    public void ResetaVelAtiva()
+    {
+        velocidadeAtiva = VELOCIDADE_DE_MUDANCA;
+    }
+
+   
+
+    public void IniciarMusicaGuardada()
+    {
+        Debug.Log(MusicaGuardada.Musica + " ué");
+        IniciarMusica(MusicaGuardada.Musica,MusicaGuardada.Volume);
+    }
+
+    public void IniciarMusicaGuardandoAtual(AudioClip esseClip, float volumeAlvo = 1)
+    {
+        MusicaGuardada = MusicaAtualAtiva;
+        IniciarMusica(esseClip, volumeAlvo);
+    }
+
+    public void IniciarMusicaGuardandoAtual(NameMusic esseClip, float volumeAlvo = 1)
+    {
+        MusicaGuardada = MusicaAtualAtiva;
+        IniciarMusica((AudioClip)Resources.Load(esseClip.ToString()), volumeAlvo);
+    }
 
     public void IniciarMusica(NameMusic esseClip,float volumeAlvo = 1)
     {
@@ -23,9 +57,16 @@ public class MusicasDeFundo
 
     public void IniciarMusica(AudioClip esseClip, float volumeAlvo = 1)
     {
+
+        MusicaAtualAtiva = new MusicaComVolumeConfig() {
+            Musica = esseClip,
+            Volume = volumeAlvo
+        };
+
         parando = false;
         this.volumeAlvo = volumeAlvo;
         AudioSource au = audios[0];
+
         if (au.isPlaying)
         {
             termina = 0;
@@ -50,6 +91,11 @@ public class MusicasDeFundo
             audios[inicia].Play();
         }
         Debug.Log(parando + " : " + volumeAlvo + " :" + inicia + " : " + termina + " : " + audios[inicia].clip + " : " + audios[termina].clip);
+    }
+
+    public void PararMusicas(float vel)
+    {
+        parando = true;
     }
 
     public void PararMusicas()
@@ -80,7 +126,7 @@ public class MusicasDeFundo
 
 
                     if (audios[inicia].volume < 0.9f*volumeAlvo)
-                        audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, volumeAlvo, Time.deltaTime * VELOCIDADE_DE_MUDANCA);
+                        audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, volumeAlvo, Time.deltaTime * velocidadeAtiva);
                     else
                         audios[inicia].volume = volumeAlvo;
 
@@ -90,7 +136,7 @@ public class MusicasDeFundo
                         audios[termina].Stop();
                     }
                     else
-                        audios[termina].volume = Mathf.Lerp(audios[termina].volume, 0, Time.deltaTime * 3 * VELOCIDADE_DE_MUDANCA);
+                        audios[termina].volume = Mathf.Lerp(audios[termina].volume, 0, Time.deltaTime * 3 * velocidadeAtiva);
 
                 }
                 //VerificaCena();
@@ -98,10 +144,10 @@ public class MusicasDeFundo
             else
             {
                 if(termina!=-1)
-                    audios[termina].volume = Mathf.Lerp(audios[termina].volume, 0, Time.fixedDeltaTime * 2 * VELOCIDADE_DE_MUDANCA);
+                    audios[termina].volume = Mathf.Lerp(audios[termina].volume, 0, Time.fixedDeltaTime * 2 * velocidadeAtiva);
 
                 if(inicia!=-1)
-                    audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, 0, Time.fixedDeltaTime * 2 * VELOCIDADE_DE_MUDANCA);
+                    audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, 0, Time.fixedDeltaTime * 2 * velocidadeAtiva);
             }
 
 
@@ -146,6 +192,7 @@ public enum NameMusic
 {
     nula=-1,
     Field2,
-    Mushrooms
+    Mushrooms,
+    Battle8
 }
 

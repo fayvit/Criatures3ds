@@ -20,7 +20,8 @@ public class MbCortinaDeTerra : HitNoChaoBase
         velocidadeDeRepulsao = 33,
         tempoDeMoveMin = 2,//74
         tempoDeMoveMax = 0.8f,
-        tempoDeDestroy = 2.5f
+        tempoDeDestroy = 2.5f,
+        somDoGolpe = "Shot3"
     }
         )
     {

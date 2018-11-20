@@ -8,20 +8,23 @@ public class LocalizacaoDeArmagedoms
     {
 
         { IndiceDeArmagedoms.cavernaIntro, new VisitasParaArmagedom() {
-            Endereco = new Vector3(-184f, 11, 150),
-            nomeDasCenas = new NomesCenas[1]{NomesCenas.cavernaIntro},
-            DirRotation = "s"
+            Endereco = new Vector3(-87f, 11, 325),
+            nomeDasCenas = new NomesCenas[1]{NomesCenas.cavernaIntro}
         } },
-        { IndiceDeArmagedoms.deKatids, new VisitasParaArmagedom() {
-            Endereco = new Vector3(761, 1.2f, 1872),
-            nomeDasCenas = new NomesCenas[2]{NomesCenas.planicieDeInfinity,NomesCenas.katidsVsTempleZone }
-        } },
-        { IndiceDeArmagedoms.miniKatidsVsTemple, new VisitasParaArmagedom() {
-            Endereco = new Vector3(530,1f,2540),
+        { IndiceDeArmagedoms.planicieDeInfinity_b, new VisitasParaArmagedom() {
+            Endereco = new Vector3(166, 1.2f, 322),
             nomeDasCenas = new NomesCenas[3]{
-                NomesCenas.TempleZone,
-                NomesCenas.katidsVsTempleZone,
-                NomesCenas.TempleZoneVsMarjan }
+                NomesCenas.planicieDeInfinity_b,
+                NomesCenas.infinity_I,
+                NomesCenas.infinity_EF }
+        } },
+        { IndiceDeArmagedoms.secretoDaRepresa, new VisitasParaArmagedom() {
+            Endereco = new Vector3(590, 2f, 97),
+            nomeDasCenas = new NomesCenas[4]{
+                NomesCenas.represaTopCam,
+                NomesCenas.represaTopCam_C,
+                NomesCenas.represaTopCam_B,
+                NomesCenas.represaTopCam_A }
         } },
         { IndiceDeArmagedoms.Marjan, new VisitasParaArmagedom() {
             Endereco = new Vector3(580,-49f,3360),
@@ -102,10 +105,9 @@ public enum IndiceDeArmagedoms
 {
     // Registrar no nome em linguas
     cavernaIntro,   
-
     daCavernaInicial,
-    deKatids,
-    saidaDaCaverna,
+    planicieDeInfinity_b,
+    secretoDaRepresa,
     miniKatidsVsTemple,
     Marjan
 }

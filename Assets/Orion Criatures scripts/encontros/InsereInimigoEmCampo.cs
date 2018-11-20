@@ -62,7 +62,10 @@ public class InsereInimigoEmCampo
         instancia = InsereElementosDoEncontro.emBuscaDeUmaBoaPosicao(instancia, M.transform.lossyScale.y);//melhoraPF.novaPos(instancia, M.transform.lossyScale.y);
 
         GameObject InimigoX = MonoBehaviour.Instantiate(M, instancia, Quaternion.identity) as GameObject;
-
+        if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("comunsDeFase").isLoaded)
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(InimigoX,
+                UnityEngine.SceneManagement.SceneManager.GetSceneByName("comunsDeFase")
+                );
 
         return InimigoX.GetComponent<CreatureManager>();
     }

@@ -58,7 +58,7 @@ public class TriggerGerenciadorDeCena : MonoBehaviour
         if (cenaParaAtivars.isLoaded)
         {
             InvocarSetScene(cenaParaAtivars);
-            ColetorDeLixo.Coleta();
+            //ColetorDeLixo.Coleta();
             
         }
         else {
@@ -124,5 +124,10 @@ public enum NomesCenas
     infinity_H,
     infinity_I,
     infinity_J,
-
+    infinityVsRepresa,
+    represaTopCam,
+    represaTopCam_A,
+    represaTopCam_B,
+    represaTopCam_C,
+    represaTopCam_D
 }

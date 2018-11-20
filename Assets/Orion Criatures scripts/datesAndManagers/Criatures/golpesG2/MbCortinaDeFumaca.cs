@@ -21,6 +21,7 @@ public class MbCortinaDeFumaca : HitNoChaoBase
         tempoDeMoveMin = 2,//74
         tempoDeMoveMax = 0.8f,
         tempoDeDestroy = 2.5f,
+        somDoGolpe = "Shot3"
     }
         )
     {

@@ -215,7 +215,8 @@ public static class TextosChaveEmPT_BR
                     " Cesar Corean não pode usar esse item nesse local",
                     "{0} não precisa usar esse item nesse momento",
                     "Você não pode usar itens pelo menu enquanto estiver em luta",
-                    "Você não tem nenhum item no momento."
+                    "Você não tem nenhum item no momento.",
+                    "Cesar Corean usa o item <color=cyan>{0}</color>"
                 }},
                 {ChaveDeTexto.bau,new List<string>()
                 {

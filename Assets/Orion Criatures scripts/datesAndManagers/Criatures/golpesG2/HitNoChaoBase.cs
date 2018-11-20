@@ -37,6 +37,8 @@ public class HitNoChaoBase : GolpeBase
     
     void ApareceDesaparece(bool aparecer, GameObject G)
     {
+        EventAgregator.Publish(EventKey.disparaSom, new StandardSendStringEvent(G, SomDoGolpe, EventKey.disparaSom));
+
         SkinnedMeshRenderer[] skinned = G.GetComponentsInChildren<SkinnedMeshRenderer>();
         foreach (SkinnedMeshRenderer sk in skinned)
         {

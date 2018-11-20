@@ -55,6 +55,7 @@ public class RajadaDeAguaG2 : GolpeBase
             if (golpeP.TempoDeInstancia > 0)
                 posInicial = Emissor.UseOEmissor(G, Nome);
             AuxiliarDeInstancia.InstancieEDestrua(Nome, posInicial, DirDeREpulsao, TempoDeDestroy);
+            EventAgregator.Publish(EventKey.disparaSom, new StandardSendStringEvent(G, "rajadaDeAgua", EventKey.disparaSom));
             addView = true;
         }
 
@@ -110,8 +111,8 @@ public class RajadaDeAguaG2 : GolpeBase
                     if (impactos == 0)
                     {
                         Dano.VerificaDano(hit.transform.gameObject, G, this);
+                        EventAgregator.Publish(EventKey.disparaSom, new StandardSendStringEvent(G, SomDoImpacto, EventKey.disparaSom));
 
-                        
                     }
 
                 }

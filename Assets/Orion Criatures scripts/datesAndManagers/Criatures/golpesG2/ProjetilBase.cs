@@ -11,7 +11,7 @@ public class ProjetilBase : GolpeBase
     protected CaracteristicasDeProjetil carac = new CaracteristicasDeProjetil()
     {
         noImpacto = NoImpacto.impactoComum,
-        tipo = TipoDoProjetil.basico
+        tipo = TipoDoProjetil.basico,
     };
 
     protected bool AnimaEmissor
@@ -20,7 +20,7 @@ public class ProjetilBase : GolpeBase
         set { animaEmissor = value; }
     }
 
-    public ProjetilBase(ContainerDeCaracteristicasDeGolpe C) : base(C) { }
+    public ProjetilBase(ContainerDeCaracteristicasDeGolpe C) : base(C) { SomDoGolpe = "Slash2"; }
 
     public override void IniciaGolpe(GameObject G)
     {
@@ -32,6 +32,8 @@ public class ProjetilBase : GolpeBase
             AnimadorCriature.AnimaAtaque(G, "emissor");
         else
             AnimadorCriature.AnimaAtaque(G,this.Nome.ToString());
+
+        EventAgregator.Publish(new StandardSendStringEvent(G, SomDoGolpe, EventKey.disparaSom));
     }
 
     public override void UpdateGolpe(GameObject G)

@@ -47,12 +47,13 @@ public class CameraExibicionista
 
         if (CameraContraParedes.ContraParedes(baseDeMovimento, foco, alturaDoPersonagem, true))
         {
-            CameraContraParedes.ContraParedes(transform, foco, alturaDoPersonagem, true);
+            CameraContraParedes.ContraParedes(baseDeMovimento.position, transform, foco, alturaDoPersonagem, true);
         } else
         {
             transform.position = baseDeMovimento.position;
-            transform.rotation = baseDeMovimento.rotation;
         }
+
+        transform.rotation = baseDeMovimento.rotation;
     }
 
     public bool MostrarFixa(float velocidadeTempoDeFoco, float distancia = 6, float altura = -1, bool tempo = false,

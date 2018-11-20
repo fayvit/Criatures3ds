@@ -206,6 +206,11 @@ public class MbItens:System.ICloneable
 
         AnimaB = new AnimaBraco(Manager.transform, alvoDoItem);
 
+        GameController.g.HudM.Painel.AtivarNovaMens(string.Format(
+                   BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.itens)[12], NomeEmLinguas(nomeID)), 28, 5);
+
+        GameController.g.FinalizaHuds();
+
     }
 
     protected void FecharMensagem()

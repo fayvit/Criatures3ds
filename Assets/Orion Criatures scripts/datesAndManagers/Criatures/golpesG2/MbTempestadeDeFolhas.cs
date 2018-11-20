@@ -21,7 +21,8 @@ public class MbTespestadeDeFolhas : ImpactoAereoBase
         velocidadeDeRepulsao = 33,
         tempoDeMoveMin = 0.65f,//74
         tempoDeMoveMax = 1.3f,
-        tempoDeDestroy = 1.45f
+        tempoDeDestroy = 1.45f,
+        somDoGolpe = "rajadaDeAgua"
     }
         )
     {
@@ -31,7 +32,8 @@ public class MbTespestadeDeFolhas : ImpactoAereoBase
             ToqueAoChao.poeiraAoVento,
             PreparaSalto.impactoBaixoDeFolhas,
             ImpactoAereoFinal.AvanceEPareAbaixo,
-            false
+            false,
+            "Shot1"
             )
             ;
 

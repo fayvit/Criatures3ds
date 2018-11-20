@@ -6,16 +6,16 @@ public class PlanicieDeInfinityConfigs : SceneConfigs {
 
     public PlanicieDeInfinityConfigs()
     {
-        SceneMusic = NameMusic.Mushrooms;
+        SceneMusic = NameMusic.Field2;
     }
 
     public override bool LocaisSeguros()
     {
         bool retorno = false;
         Vector3 pos = GameController.g.Manager.transform.position;
-        if ((pos.x > 248 && pos.z > 111 && pos.x < 390 && pos.z < 198)
+        if ((pos.x > 117 && pos.z > 250 && pos.x < 259 && pos.z < 337)
             ||
-            (pos.x > 280 && pos.z > 190 && pos.x < 350 && pos.z < 220)
+            (pos.x > 160 && pos.z > 230 && pos.x < 220 && pos.z < 252)
             //||
             //(pos.x > 73 && pos.z > 168 && pos.x < 123 && pos.z < 118)
                 )

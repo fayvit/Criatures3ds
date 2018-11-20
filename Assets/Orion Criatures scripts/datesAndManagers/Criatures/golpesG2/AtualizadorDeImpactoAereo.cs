@@ -57,7 +57,10 @@ public class AtualizadorDeImpactoAereo
             /* aproveitado da geração 1 de scripts*/
             ao = G.AddComponent<impactoAoChao>();
             ao.aoChao = caracteristica.toque.ToString();
+            ao.som = caracteristica.somDoToqueAoChao;
             /* ******************* */
+
+            EventAgregator.Publish(new StandardSendStringEvent(G, ativa.SomDoGolpe, EventKey.disparaSom));
         }
 
         if (!adview && tempoDecorrido>colocarColisor)

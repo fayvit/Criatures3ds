@@ -19,7 +19,8 @@ public class LaminaDeFolhaG2 : ProjetilBase {
         tempoDeDestroy = 2,
         TempoNoDano = 0.75f,
         velocidadeDeGolpe = 18 ,
-        podeNoAr = true
+        podeNoAr = true,
+        somDoGolpe = "Slash2"
     }
         )
     {

@@ -69,7 +69,7 @@ public class ApresentaDerrota
                     }
                     else
                     {
-                        GameController.g.HudM.Painel.AtivarNovaMens(textos[2],24);
+                        GameController.g.HudM.Painel.AtivarNovaMens(textos[2],26);
                         fase = FaseDaDerrota.mensDoArmagedom;
                         // Aqui vamos de volta para o armagedom
                         //return RetornoDaDerrota.deVoltaAoArmagedom;
@@ -91,18 +91,23 @@ public class ApresentaDerrota
                 contadorDeTempo += Time.deltaTime;
                 if (contadorDeTempo > TEMPO_PARA_ESCURECER)
                 {
+                    GlobalController.g.Musica.PararMusicas();
+
                     CharacterManager manager = GameController.g.Manager;
                     VisitasParaArmagedom V = LocalizacaoDeArmagedoms.L[manager.Dados.UltimoArmagedom];
                     manager.transform.position = V.Endereco;//manager.Dados.UltimoArmagedom.posHeroi;
                     manager.transform.rotation = V.Rot;
                     manager.Dados.TodosCriaturesPerfeitos();
                     AplicadorDeCamera.cam.GetComponent<Camera>().farClipPlane = 1000;
+                    Debug.Log(V.nomeDasCenas[0]);
                     GameController.g.Salvador.SalvarAgora(V.nomeDasCenas);
+                    GlobalController.g.FadeV.IniciarFadeIn();
                     GameObject G = new GameObject();
                     SceneLoader loadScene = G.AddComponent<SceneLoader>();
                     loadScene.CenaDoCarregamento(GameController.g.Salvador.IndiceDoJogoAtual);
                     GameController.g.Manager.AoHeroi();
                     fase = FaseDaDerrota.emEspera;
+                    return RetornoDaDerrota.deVoltaAoArmagedom;
                 }
             break;
             case FaseDaDerrota.entrandoUmNovo:

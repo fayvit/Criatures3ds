@@ -90,6 +90,7 @@ public class AnimaBraco
                 {
                     luz = ParticulasDeSubstituicao.InsereParticulaDaLuva(oAnimado.gameObject, false);
                     raio = ParticulasDeSubstituicao.InsereParticulaDoRaio(posCriature, oAnimado.gameObject, false);
+                    EventAgregator.Publish(new StandardSendStringEvent(oAnimado.gameObject, "Collapse1", EventKey.disparaSom));
                     estadoEnvia = EstadoDoAnimaEnvia.Instancia;
                     tempoDecorrido = 0;
                 }
@@ -194,6 +195,7 @@ public class AnimaBraco
                 {
                     luz = ParticulasDeSubstituicao.InsereParticulaDaLuva(gerente, true);
                     raio = ParticulasDeSubstituicao.InsereParticulaDoRaio(posCriature, gerente);
+                    EventAgregator.Publish(new StandardSendStringEvent(oAnimado.gameObject, "Collapse1", EventKey.disparaSom));
                     estado = EstadoDoAnimaBraco.InsereRaioDeLuva;
                     tempoDecorrido = 0;
                 }

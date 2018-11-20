@@ -18,7 +18,8 @@ public class MbAgulhaVenenosa : ProjetilBase
         tempoDeMoveMin = 0.3f,
         tempoDeDestroy = 2,
         TempoNoDano = 0.75f,
-        velocidadeDeGolpe = 10
+        velocidadeDeGolpe = 10,
+        somDoGolpe = "Slash2"
     }
         )
     {
