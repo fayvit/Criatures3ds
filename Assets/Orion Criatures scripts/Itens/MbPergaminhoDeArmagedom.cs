@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 [System.Serializable]
 public class MbPergaminhoDeArmagedom : MbItens
@@ -212,6 +213,20 @@ public class MbPergaminhoDeArmagedom : MbItens
     void EntraFaseDoTransporte()
     {
         GlobalController.g.FadeV.IniciarFadeOut();
+        EventAgregator.AddListener(EventKey.fadeOutComplete, VoltaArmagedomFadeOut);
+        
+    }
+
+    private void VoltaArmagedomFadeOut(IGameEvent obj)
+    {
+        SkinnedMeshRenderer[] sKs = GameController.g.Manager.GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (SkinnedMeshRenderer sk in sKs)
+            sk.enabled = true;
+
+        sKs = GameController.g.Manager.CriatureAtivo.GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (SkinnedMeshRenderer sk in sKs)
+            sk.enabled = true;
+
         GameController.g.StartCoroutine(VoltaArmagedom());
     }
 

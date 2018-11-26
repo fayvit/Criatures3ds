@@ -155,6 +155,7 @@
     <Compile Include="Assets\Orion Criatures scripts\Events\StandardGameEvent.cs" />
     <Compile Include="Assets\Orion Criatures scripts\Events\StandardSendIntAndStringEvent.cs" />
     <Compile Include="Assets\Orion Criatures scripts\Events\StandardSendIntEvent.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Events\StandardSendStringAndFloatEvent.cs" />
     <Compile Include="Assets\Orion Criatures scripts\Events\StandardSendStringEvent.cs" />
     <Compile Include="Assets\Orion Criatures scripts\GetKeyFromText.cs" />
     <Compile Include="Assets\Orion Criatures scripts\HUD\ActionManager.cs" />
@@ -462,6 +463,7 @@
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\PT_BR\TextosDeMarjanPT_BR.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\Textos\StringParaChaveDeTexto.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\TriggerGerenciadorDeCena.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\TriggerGerenciadorDeCena_b.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\TriggerGerenciadorDeCenas3x3.cs" />
     <Compile Include="Assets\Orion Criatures scripts\datesAndManagers\tipos.cs" />
     <Compile Include="Assets\Orion Criatures scripts\encontros\ApresentaDerrota.cs" />

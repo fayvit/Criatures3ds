@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
 
 [System.Serializable]
-public class SceneLoader:MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
 
-    [SerializeField]private LoadBar loadBar;
+    [SerializeField] private LoadBar loadBar;
 
     private SaveDates S;
     private AsyncOperation[] a2;
@@ -35,13 +36,16 @@ public class SceneLoader:MonoBehaviour
 
         if (SceneManager.GetSceneByName("comunsDeFase").isLoaded)
         {
-            SceneManager.LoadSceneAsync("CenaDeCarregamento",LoadSceneMode.Additive);
+
+            Debug.Log("pelo sim");
+            SceneManager.LoadSceneAsync("CenaDeCarregamento", LoadSceneMode.Additive);
             SceneManager.sceneLoaded += IniciarCarregamentoComComuns;
-            Camera.main.farClipPlane = 0.1f;
+            Camera.main.farClipPlane = 0.4f;
             Time.timeScale = 0;
         }
         else
         {
+            Debug.Log("pelo não");
             SceneManager.LoadScene("CenaDeCarregamento");
             SceneManager.sceneLoaded += IniciarCarregamento;
         }
@@ -55,9 +59,9 @@ public class SceneLoader:MonoBehaviour
         ComunsCarregado();
     }
 
-    void IniciarCarregamento(Scene cena,LoadSceneMode mode)
+    void IniciarCarregamento(Scene cena, LoadSceneMode mode)
     {
-        
+
         loadBar = FindObjectOfType<LoadBar>();
 
         SceneManager.LoadSceneAsync("comunsDeFase", LoadSceneMode.Additive);
@@ -73,17 +77,18 @@ public class SceneLoader:MonoBehaviour
     void ComunsCarregado()
     {
         if (ExistenciaDoController.AgendaExiste(ComunsCarregado, this))
-            {
+        {
 
             SceneManager.sceneLoaded -= CarregouComuns;
             SceneManager.sceneLoaded += SetarCenaPrincipal;
+            SceneManager.sceneLoaded += TatudoCarregado;
 
             Debug.Log("carregou comuns chamado");
-            fase = FasesDoLoad.carregando;
+
 
             //S = new LoadAndSaveGame().Load(indiceDoJogo);
-            
-            if (SaveDatesForJolt.s.SavedGames.Count> indiceDoJogo)
+
+            if (SaveDatesForJolt.s.SavedGames.Count > indiceDoJogo)
                 S = SaveDatesForJolt.s.SavedGames[indiceDoJogo];
             else
                 S = null;
@@ -91,37 +96,82 @@ public class SceneLoader:MonoBehaviour
             //Debug.Log(S);
             if (S == null)
             {
+                fase = FasesDoLoad.carregando;
+                aSerCarregado = 1;
                 a2 = new AsyncOperation[1];
                 a2[0] = SceneManager.LoadSceneAsync("cavernaIntro", LoadSceneMode.Additive);
                 //a2[1] = SceneManager.LoadSceneAsync(NomesCenas.katidsVsTempleZone.ToString(), LoadSceneMode.Additive);
             }
             else
             {
-                NomesCenas[] N = PegueAsCenasPorCarregar_b(S.VariaveisChave.CenasAtivas.ToArray());
                 NomesCenas[] N2 = DescarregarCenasDesnecessarias_b(S.VariaveisChave.CenasAtivas.ToArray());
-                a2 = new AsyncOperation[N.Length];
-                for (int i = 0; i < N.Length; i++)
-                {
-                    a2[i] = SceneManager.LoadSceneAsync(N[i].ToString(), LoadSceneMode.Additive);
-                    //   Debug.Log(a2[i]+": "+N[i]);
-                }
-
-                for (int i = N.Length; i < N.Length + N2.Length; i++)
-                {
-                    SceneManager.UnloadSceneAsync(N2[i - N.Length].ToString());
-                    //Debug.Log("tamanha: " + N2.Length + " : " + N2[i - N.Length]);
-                    // Debug.Log(a2[i]+" : "+N2[i - N.Length]);
-                }
 
 
-                if (N.Length == 0|| SceneManager.GetSceneByName(GameController.g.MyKeys.CenaAtiva.ToString()).isLoaded)
+
+                numCarregador = 0;
+                aSerCarregado = N2.Length;
+                SceneManager.sceneUnloaded += TatudoDescarregado;
+
+                for (int i = 0; i < N2.Length; i++)
                 {
-                    SetarCenaPrincipal(SceneManager.GetSceneByName(GameController.g.MyKeys.CenaAtiva.ToString()),LoadSceneMode.Single);
+                    SceneManager.UnloadSceneAsync(N2[i].ToString());
                 }
-                Time.timeScale = 0;
+
+                FuncaoCarregadora();
             }
 
-            
+
+        }
+    }
+
+    void FuncaoCarregadora()
+    {
+        fase = FasesDoLoad.carregando;
+        NomesCenas[] N = PegueAsCenasPorCarregar_b(S.VariaveisChave.CenasAtivas.ToArray());
+
+
+        aSerCarregado = N.Length;
+
+        a2 = new AsyncOperation[N.Length];
+        for (int i = 0; i < N.Length; i++)
+        {
+            a2[i] = SceneManager.LoadSceneAsync(N[i].ToString(), LoadSceneMode.Additive);
+            //   Debug.Log(a2[i]+": "+N[i]);
+        }
+
+
+
+        if (N.Length == 0 || SceneManager.GetSceneByName(GameController.g.MyKeys.CenaAtiva.ToString()).isLoaded)
+        {
+            SetarCenaPrincipal(SceneManager.GetSceneByName(GameController.g.MyKeys.CenaAtiva.ToString()), LoadSceneMode.Single);
+            TatudoCarregado(default(Scene), LoadSceneMode.Single);
+        }
+        Time.timeScale = 0;
+    }
+
+    private void TatudoDescarregado(Scene arg0)
+    {
+        // numCarregador++;
+        //if (numCarregador >= aSerCarregado)
+        {
+            //aSerCarregado = 0;
+            //numCarregador = 0;
+            //FuncaoCarregadora();
+            ColetorDeLixo.Coleta();
+            SceneManager.sceneUnloaded -= TatudoDescarregado;
+        }
+    }
+
+    int aSerCarregado = 0;
+    int numCarregador = 0;
+
+    private void TatudoCarregado(Scene arg0, LoadSceneMode arg1)
+    {
+        numCarregador++;
+        if (aSerCarregado <= numCarregador)
+        {
+            podeIr = true;
+            SceneManager.sceneLoaded -= TatudoCarregado;
         }
     }
 
@@ -142,16 +192,16 @@ public class SceneLoader:MonoBehaviour
 
     void DescarregarCenasDesnecessarias()
     {
-        
+
         //System.Collections.Generic.List<NomesCenas> retorno = new System.Collections.Generic.List<NomesCenas>();
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
             Scene S = SceneManager.GetSceneAt(i);
-            
+
             if (S.isLoaded && S.name != "comunsDeFase" && S.name != "CenaDeCarregamento")
             {
 
-              //  Debug.Log("nomesCenas" + S.name);
+                //  Debug.Log("nomesCenas" + S.name);
 
                 if (S.isLoaded)
                 {
@@ -164,15 +214,11 @@ public class SceneLoader:MonoBehaviour
 
     public static NomesCenas[] PegueAsCenasPorCarregar_b(NomesCenas[] N)
     {
-        
+
         System.Collections.Generic.List<NomesCenas> retorno = new System.Collections.Generic.List<NomesCenas>();
         for (int i = 0; i < N.Length; i++)
         {
-            /*
-            Debug.Log(
-                SceneManager.GetSceneByName(N[i].ToString()) + " : " + 
-                N[i].ToString() + " : " + 
-                SceneManager.GetSceneByName(N[i].ToString()).isLoaded);*/
+
             if (!SceneManager.GetSceneByName(N[i].ToString()).isLoaded)
             {
                 retorno.Add(N[i]);
@@ -189,7 +235,7 @@ public class SceneLoader:MonoBehaviour
         {
             Scene S = SceneManager.GetSceneAt(i);
 
-            if (S.isLoaded && S.name != "comunsDeFase" && S.name != "CenaDeCarregamento")
+            if (S.isLoaded && S.name != "comunsDeFase" && S.name != "CenaDeCarregamento" && S.name != "carregamentoEmPasseio")
             {
 
                 //  Debug.Log("nomesCenas" + S.name);
@@ -240,20 +286,20 @@ public class SceneLoader:MonoBehaviour
             for (int i = 0; i < Gs.Length; i++)
                 MonoBehaviour.Destroy(Gs[i]);
 
-            Debug.Log("me diga se estou no tuto: "+GameController.g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto));
+            Debug.Log("me diga se estou no tuto: " + GameController.g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto));
             if (GameController.g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto))
             {
-             //   MonoBehaviour.Destroy(manager.CriatureAtivo.gameObject);
+                //   MonoBehaviour.Destroy(manager.CriatureAtivo.gameObject);
                 manager.InserirCriatureEmJogo();
                 manager.CriatureAtivo.transform.position = S.Posicao + new Vector3(0, 0, 1);//new Vector3(483, 1.2f, 756);
             }
 
-            
+
             manager.Dados.ZeraUltimoUso();
             GameController.g.MyKeys = S.VariaveisChave;
             GameController.g.Salvador.SetarJogoAtual(indiceDoJogo);
 
-            podeIr = true;
+            // podeIr = true;
 
             GameController.g.StartCoroutine(Status());
         }
@@ -269,7 +315,7 @@ public class SceneLoader:MonoBehaviour
     {
         if (S != null)
         {
-            Debug.Log(S.VariaveisChave.CenaAtiva.ToString()+" : "+ scene.name);
+            Debug.Log(S.VariaveisChave.CenaAtiva.ToString() + " : " + scene.name);
             if (scene.name == S.VariaveisChave.CenaAtiva.ToString())
             {
                 InvocarSetScene(scene);
@@ -282,13 +328,13 @@ public class SceneLoader:MonoBehaviour
                     //Debug.Log("cavernaInicial");
                 }
 
-                
+
             }
         }
         else
         if (scene.name != "comunsDeFase")
         {
-            podeIr = true;
+            //podeIr = true;
             InvocarSetScene(scene);
             SceneManager.sceneLoaded -= SetarCenaPrincipal;
 
@@ -301,7 +347,7 @@ public class SceneLoader:MonoBehaviour
             manager.Dados.CriaturesAtivos = new System.Collections.Generic.List<CriatureBase>();
             manager.Dados.CriaturesArmagedados = new System.Collections.Generic.List<CriatureBase>();
             manager.Dados.Itens = new System.Collections.Generic.List<MbItens>();
-            
+
             GameController.g.ComCriature = false;
             /***************************/
 
@@ -327,20 +373,20 @@ public class SceneLoader:MonoBehaviour
         AplicadorDeCamera.cam.FocarDirecionavel();
     }
 
-    IEnumerator setarScene(Scene scene)
+    static IEnumerator setarScene(Scene scene)
     {
         yield return new WaitForSeconds(0.5f);
         InvocarSetScene(scene);
     }
 
-    public void InvocarSetScene(Scene scene)
+    public static void InvocarSetScene(Scene scene)
     {
         //Debug.Log(scene.name);
         SceneManager.SetActiveScene(scene);
-        
+
         //Debug.Log(GameController.g+" : "+scene.name);
         if (SceneManager.GetActiveScene() != scene)
-            StartCoroutine(setarScene(scene));
+            GameController.g.StartCoroutine(setarScene(scene));
 
         //Debug.Log("nomeAtiva: " + SceneManager.GetActiveScene().name);
     }
@@ -350,7 +396,7 @@ public class SceneLoader:MonoBehaviour
         switch (fase)
         {
             case FasesDoLoad.carregando:
-                
+
                 tempo += Time.fixedDeltaTime;
 
                 float progresso = 0;
@@ -358,10 +404,11 @@ public class SceneLoader:MonoBehaviour
                 {
                     for (int i = 0; i < a2.Length; i++)
                     {
-                        //Debug.Log(a2[i].progress);
                         progresso += a2[i].progress;
+                        //Debug.Log(progresso+" : "+a2[i].progress + " : " + i + " progresso e indice");
                     }
 
+                    //Debug.Log(a2.Length);
                     progresso /= a2.Length;
 
                 }
@@ -378,7 +425,7 @@ public class SceneLoader:MonoBehaviour
                 {
                     Debug.Log("ponto x1");
                     GameObject go = GameObject.Find("EventSystem");
-                    if(go)
+                    if (go)
                         SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneByName("comunsDeFase"));
 
                     GlobalController.g.FadeV.IniciarFadeOut();
@@ -386,8 +433,8 @@ public class SceneLoader:MonoBehaviour
                     fase = FasesDoLoad.eventInProgress;
 
                 }
-                
-            break;
+
+                break;
             case FasesDoLoad.escurecendo:
                 tempo += Time.fixedDeltaTime;
                 if (tempo > 0.95f)
@@ -404,14 +451,14 @@ public class SceneLoader:MonoBehaviour
                     SceneManager.UnloadSceneAsync("CenaDeCarregamento");
                     tempo = 0;
                 }
-            break;
+                break;
             case FasesDoLoad.clareando:
                 tempo += Time.fixedDeltaTime;
                 if (tempo > 0.5f)
                 {
                     Destroy(gameObject);
                 }
-            break;
+                break;
         }
     }
 
@@ -422,28 +469,33 @@ public class SceneLoader:MonoBehaviour
         EventAgregator.AddListener(EventKey.fadeInComplete, OnFadeInComplete);
 
         //FindObjectOfType<Canvas>().enabled = false;
-        Debug.Log("nome da cena ativa: " + GameController.g.MyKeys.CenaAtiva);
+        Debug.Log("nome da cena ativa no save: " + GameController.g.MyKeys.CenaAtiva);
+        Debug.Log("nome da cena ativa atual: " + SceneManager.GetActiveScene().name);
+
         SceneManager.SetActiveScene(
            SceneManager.GetSceneByName(GameController.g.MyKeys.CenaAtiva.ToString()));
-        InformacoesDeCarregamento.FacaModificacoes();
+        //InformacoesDeCarregamento.FacaModificacoes();
         GameController.g.Salvador.SalvarAgora();
         fase = FasesDoLoad.eventInProgress;
+
         SceneManager.UnloadSceneAsync("CenaDeCarregamento");
+
         Time.timeScale = 1;
+
+        GameController.g.ModificacoesDaCena();
     }
 
     private void OnFadeInComplete(IGameEvent obj)
     {
         Debug.Log("cena ativa para musica: " + SceneManager.GetActiveScene().name);
-        GameController.g.ModificacoesDaCena();
-
+        // GameController.g.ModificacoesDaCena();
         GameController.g.ContarPassos = true;
         Destroy(gameObject);
     }
 
     private void OnDestroy()
     {
-        EventAgregator.RemoveListener(EventKey.fadeInComplete,OnFadeInComplete);
+        EventAgregator.RemoveListener(EventKey.fadeInComplete, OnFadeInComplete);
         EventAgregator.RemoveListener(EventKey.fadeOutComplete, OnFadeOutComplete);
     }
 }

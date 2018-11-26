@@ -65,9 +65,12 @@ public class ShopManager
                     ActionManager.ModificarAcao(GameController.g.transform, null);
                     ActionManager.useiCancel = true;
                     SairDoShop();
-                } else
+                    EventAgregator.Publish(EventKey.negativeUiInput, null);
+                }
+                else
                 if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
+                    EventAgregator.Publish(EventKey.positiveUiInput, null);
                     ComprarVender(menuBasico.OpcaoEscolhida);
                     ActionManager.ModificarAcao(GameController.g.transform, null);
                 }
@@ -98,16 +101,19 @@ public class ShopManager
             case FasesDoShop.esperandoEscolhaDeCompra:
                 if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
-
+                    EventAgregator.Publish(EventKey.negativeUiInput, null);
                     ActionManager.ModificarAcao(GameController.g.transform, null);
                     VoltarParaAPerguntaInicial();
+
                 }
 
                 if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
                     ActionManager.ModificarAcao(GameController.g.transform, null);
                     GameController.g.HudM.DisparaT.DesligarPaineis();
+                    EventAgregator.Publish(EventKey.positiveUiInput, null);
                     OpcaoEscolhidaParaCompra(menuDeShop.OpcaoEscolhida);
+
                 }
 
                 menuDeShop.MudarOpcao();
@@ -115,13 +121,14 @@ public class ShopManager
             case FasesDoShop.esperandoEscolhaDeVenda:
                 if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                 {
-
+                    EventAgregator.Publish(EventKey.negativeUiInput, null);
                     ActionManager.ModificarAcao(GameController.g.transform, null);
                     VoltarParaAPerguntaInicial();
                 }
 
                 if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
+                    EventAgregator.Publish(EventKey.positiveUiInput, null);
                     ActionManager.ModificarAcao(GameController.g.transform, null);
                     GameController.g.HudM.DisparaT.DesligarPaineis();
                     OpcaoEscolhidaParaVenda(menuDeShop.OpcaoEscolhida);
@@ -171,12 +178,12 @@ public class ShopManager
                 break;
             case FasesDoShop.esperandoFim:
                 if (ActionManager.ButtonUp(1, GameController.g.Manager.Control)
-                    || 
+                    ||
                     ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
                     Finalizacao();
                 }
-            break;
+                break;
         }
     }
 
@@ -242,7 +249,7 @@ public class ShopManager
     void OpcaoEscolhidaParaCompra(int qual)
     {
         painelQuantidades.IniciarEssaHud(PegaUmItem.Retorna(itensAVenda[qual]));
-        
+
         BtnsManager.DesligarBotoes(menuDeShop.gameObjectDoMenu);
         /*GameController.g.HudM.Botaozao.FinalizarBotao();
         GameController.g.HudM.Botaozao.IniciarBotao(DesligarQuantidades);*/
@@ -274,14 +281,14 @@ public class ShopManager
         {
 
         }
-        
+
     }
 
     void VoltarParaAPerguntaInicial()
     {
-       /* BotaoZaoExterno btn = GameController.g.HudM.Botaozao;
-        btn.FinalizarBotao();
-        btn.IniciarBotao(SairDoShop);*/
+        /* BotaoZaoExterno btn = GameController.g.HudM.Botaozao;
+         btn.FinalizarBotao();
+         btn.IniciarBotao(SairDoShop);*/
         menuDeShop.FinalizarHud();
         menuBasico.FinalizarHud();
         EntraFrasePossoAjudar();
@@ -290,12 +297,14 @@ public class ShopManager
     void SairDoShop()
     {
         //GameController g = GameController.g;
-//        AndroidController.a.LigarControlador();
+        //        AndroidController.a.LigarControlador();
         fase = FasesDoShop.saindoDoShop;
         menuBasico.FinalizarHud();
         menuDeShop.FinalizarHud();
         dispara.ReligarPaineis();
         dispara.Dispara(frasesDeShoping[4], fotoDoNPC);
+        EventAgregator.Publish(EventKey.requestMusicBackupReturn, null);
+        EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.XP_Swing03.ToString(), EventKey.disparaSom));
 
         //g.HudM.Botaozao.FinalizarBotao();
 

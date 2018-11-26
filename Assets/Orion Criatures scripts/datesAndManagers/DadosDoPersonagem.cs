@@ -9,7 +9,7 @@ public class DadosDoPersonagem
     [SerializeField] private int cristais = 0;
 
     private List<MbItens> itens = new List<MbItens>();
-    private IndiceDeArmagedoms ultimoArmagedom = IndiceDeArmagedoms.cavernaIntro;
+    private IndiceDeArmagedoms ultimoArmagedom = IndiceDeArmagedoms.planicieDeInfinity_b;
     private float tempoDoUltimoUsoDeItem = 0;
     private int criatureSai = 0;
 
@@ -62,11 +62,11 @@ public class DadosDoPersonagem
     {
         
         CriaturesAtivos = new List<CriatureBase>() {
-            new CriatureBase(nomesCriatures.Iruin,7),
+            new CriatureBase(nomesCriatures.Iruin,7),/*
             new CriatureBase(nomesCriatures.Cabecu,10),
             new CriatureBase(nomesCriatures.Babaucu,2),
             new CriatureBase(nomesCriatures.Florest,7),
-            new CriatureBase(nomesCriatures.PolyCharm,7),
+            new CriatureBase(nomesCriatures.PolyCharm,7),*/
             
             
 

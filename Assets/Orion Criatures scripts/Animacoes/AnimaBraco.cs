@@ -25,18 +25,18 @@ public class AnimaBraco
     private const float TEMPO_DE_REDUCAO_DE_ESCALA = 1f;
     private const float VELOCIDADE_MINIMA_PARA_MOVIMENTO_DE_CAMERA = 5;
 
-//    private const float TEMPO_DA_ANIMA_ENVIA = 3.75F;
-//    private const float TEMPO_DA_ANIMA_ENVIA_TREINADOR = 1.75F;
+    //    private const float TEMPO_DA_ANIMA_ENVIA = 3.75F;
+    //    private const float TEMPO_DA_ANIMA_ENVIA_TREINADOR = 1.75F;
     private const float TEMPO_PARA_INSTANCIAR_CRIATURE = 1F;
 
-    public AnimaBraco(Transform oAnimado, Transform alvo,bool treinador = false)
+    public AnimaBraco(Transform oAnimado, Transform alvo, bool treinador = false)
     {
         this.treinador = treinador;
         this.oAnimado = oAnimado;
         mCamera = AplicadorDeCamera.cam;
         mCamera.InicializaCameraExibicionista(oAnimado, 2.5f);
         animador = (treinador)
-            ?new AnimadorHumano(oAnimado.GetComponent<Animator>())
+            ? new AnimadorHumano(oAnimado.GetComponent<Animator>())
             : GameController.g.Manager.Mov.Animador;
         oAnimado.rotation = Quaternion.LookRotation(
             Vector3.ProjectOnPlane(alvo.position - oAnimado.position, Vector3.up)
@@ -82,19 +82,19 @@ public class AnimaBraco
                 tempoDecorrido = 0;
                 animador.AnimaEnvia();
                 estadoEnvia = EstadoDoAnimaEnvia.animaEnvia;
-            break;
+                break;
             case EstadoDoAnimaEnvia.animaEnvia:
                 //if (tempoDecorrido > ((treinador)?TEMPO_DA_ANIMA_ENVIA_TREINADOR:TEMPO_DA_ANIMA_ENVIA))
                 AnimatorStateInfo A = oAnimado.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
-                if(A.IsName("enviaCriature")&&A.normalizedTime>=1)
+                if (A.IsName("enviaCriature") && A.normalizedTime >= 1)
                 {
                     luz = ParticulasDeSubstituicao.InsereParticulaDaLuva(oAnimado.gameObject, false);
                     raio = ParticulasDeSubstituicao.InsereParticulaDoRaio(posCriature, oAnimado.gameObject, false);
-                    EventAgregator.Publish(new StandardSendStringEvent(oAnimado.gameObject, "Collapse1", EventKey.disparaSom));
+                    EventAgregator.Publish(new StandardSendStringEvent(oAnimado.gameObject, SoundEffectID.Collapse1.ToString(), EventKey.disparaSom));
                     estadoEnvia = EstadoDoAnimaEnvia.Instancia;
                     tempoDecorrido = 0;
                 }
-            break;
+                break;
             case EstadoDoAnimaEnvia.Instancia:
                 if (tempoDecorrido > TEMPO_PARA_INSTANCIAR_CRIATURE)
                 {
@@ -127,10 +127,10 @@ public class AnimaBraco
                     tempoDecorrido = 0;
                     estadoEnvia = EstadoDoAnimaEnvia.AumentaEscala;
                 }
-            break;
+                break;
             case EstadoDoAnimaEnvia.AumentaEscala:
-                if(!treinador)
-                GameController.g.Manager.CriatureAtivo.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+                if (!treinador)
+                    GameController.g.Manager.CriatureAtivo.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
                 if (C.transform.localScale.sqrMagnitude < 2.5f)
                 {
                     C.transform.localScale = Vector3.Lerp(C.transform.localScale, new Vector3(1, 1, 1), 4 * Time.deltaTime);
@@ -147,7 +147,7 @@ public class AnimaBraco
 
                 if (tempoDecorrido < TEMPO_PARA_FINALISAR_RAIO)
                 {
-                    if(!treinador)
+                    if (!treinador)
                         GameController.g.Manager.CriatureAtivo.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
                     ParticulasDeSubstituicao.ReduzVelocidadeDoRaio(raio);
                 }
@@ -179,27 +179,27 @@ public class AnimaBraco
             case EstadoDoAnimaBraco.manipulandoCamera:
                 if (mCamera.FocarPonto(VELOCIDADE_DE_MOVIMENTO_DE_CAMERA
                     * Mathf.Max(Vector3.Distance(gerente.transform.position, alvo.transform.position),
-                    VELOCIDADE_MINIMA_PARA_MOVIMENTO_DE_CAMERA),6,3,true,mCamera.transform.position))
+                    VELOCIDADE_MINIMA_PARA_MOVIMENTO_DE_CAMERA), 6, 3, true, mCamera.transform.position))
                     estado = EstadoDoAnimaBraco.animaTroca;
-            break;
+                break;
             case EstadoDoAnimaBraco.animaTroca:
                 animador.AnimaTroca();
                 estado = EstadoDoAnimaBraco.AnimandoTroca;
                 tempoDecorrido = 0;
-            break;
+                break;
             case EstadoDoAnimaBraco.AnimandoTroca:
                 //if (tempoDecorrido > TEMPO_DA_PRIMEIRA_ANIMACAO)
                 AnimatorStateInfo A = oAnimado.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
-                
-                if(A.IsName("chamaCriature") &&A.normalizedTime>=1)
+
+                if (A.IsName("chamaCriature") && A.normalizedTime >= 1)
                 {
                     luz = ParticulasDeSubstituicao.InsereParticulaDaLuva(gerente, true);
                     raio = ParticulasDeSubstituicao.InsereParticulaDoRaio(posCriature, gerente);
-                    EventAgregator.Publish(new StandardSendStringEvent(oAnimado.gameObject, "Collapse1", EventKey.disparaSom));
+                    EventAgregator.Publish(new StandardSendStringEvent(oAnimado.gameObject, SoundEffectID.Collapse1.ToString(), EventKey.disparaSom));
                     estado = EstadoDoAnimaBraco.InsereRaioDeLuva;
                     tempoDecorrido = 0;
                 }
-            break;
+                break;
             case EstadoDoAnimaBraco.InsereRaioDeLuva:
                 if (tempoDecorrido > TEMPO_PARA_INSTANCIAR_PARTICULA_CHAO && alvo.transform.localScale.sqrMagnitude > 0.01f)
                 {
@@ -208,10 +208,10 @@ public class AnimaBraco
                         estado = EstadoDoAnimaBraco.DiminuiEscalaDoCriature;
                     else
                     {
-                       
-                        mCamera.InicializaCameraExibicionista(alvo.transform, 2*alvo.GetComponent<CharacterController>().height);
-                        
-                        
+
+                        mCamera.InicializaCameraExibicionista(alvo.transform, 2 * alvo.GetComponent<CharacterController>().height);
+
+
                         estado = EstadoDoAnimaBraco.TerminaORaio;
                     }
                     tempoDecorrido = 0;
@@ -223,7 +223,7 @@ public class AnimaBraco
                     alvo.transform.localScale = Vector3.Lerp(alvo.transform.localScale, Vector3.zero, 2 * Time.deltaTime);
                 }
                 else
-                {                    
+                {
                     estado = EstadoDoAnimaBraco.TerminaORaio;
                     tempoDecorrido = 0;
                 }
@@ -243,10 +243,10 @@ public class AnimaBraco
                 }
 
                 if (eItem)
-                {                
+                {
                     if (mCamera.FocarPonto(VELOCIDADE_DE_MOVIMENTO_DE_CAMERA *
                         Mathf.Max(Vector3.Distance(gerente.transform.position, alvo.transform.position),
-                    VELOCIDADE_MINIMA_PARA_MOVIMENTO_DE_CAMERA),6,3,true,mCamera.transform.position))
+                    VELOCIDADE_MINIMA_PARA_MOVIMENTO_DE_CAMERA), 6, 3, true, mCamera.transform.position))
                     {
                         MudarParaAnimaBracoFinalizado();
                         return false;

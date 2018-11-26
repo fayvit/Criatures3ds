@@ -16,31 +16,34 @@ public class ParticulaDeCoisasBoas
         rt2.anchoredPosition += new Vector2(multiplicador * DESLOCAMENTO_DAS_PARTICULAS, 0);
     }
 
-    static IEnumerator AgendaDestroy(GameObject G,float tempo)
+    static IEnumerator AgendaDestroy(GameObject G, float tempo)
     {
         yield return new WaitForSecondsRealtime(tempo);
         MonoBehaviour.Destroy(G);
     }
 
-    public static IEnumerator ParticulasMaisBotao(RectTransform rt,System.Action finalizar)
+    public static IEnumerator ParticulasMaisBotao(RectTransform rt, System.Action finalizar)
     {
-        
+
         GameObject particulaCoisaBoa = GameController.g.El.retorna(DoJogo.particulasCoisasBoasUI);
         GameObject particulaUpei = GameController.g.El.retorna(DoJogo.particulasUpeiDeNivel);
 
         GameObject G = ParentearNaHUD.Parentear(particulaCoisaBoa, rt);
+        EventAgregator.Publish(new StandardSendStringEvent(null, SoundEffectID.tuin_1ponto3.ToString(), EventKey.disparaSom));
         AdapteParticula(G, -1);
 
         yield return new WaitForSecondsRealtime(INTERVALO_DE_TEMPO_DE_PARTICULAS);
         G = ParentearNaHUD.Parentear(particulaCoisaBoa, rt);
+        EventAgregator.Publish(new StandardSendStringEvent(null, SoundEffectID.tuin_1ponto3.ToString(), EventKey.disparaSom));
         AdapteParticula(G, 0);
 
         yield return new WaitForSecondsRealtime(INTERVALO_DE_TEMPO_DE_PARTICULAS);
         G = ParentearNaHUD.Parentear(particulaUpei, rt);
+        EventAgregator.Publish(new StandardSendStringEvent(null, SoundEffectID.tuimParaNivel.ToString(), EventKey.disparaSom));
         AdapteParticula(G, 1);
-        
-        yield return new WaitForSecondsRealtime(2*INTERVALO_DE_TEMPO_DE_PARTICULAS);
+
+        yield return new WaitForSecondsRealtime(2 * INTERVALO_DE_TEMPO_DE_PARTICULAS);
         finalizar();
-        
+
     }
 }

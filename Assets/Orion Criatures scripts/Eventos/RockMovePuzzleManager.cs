@@ -3,23 +3,23 @@ using System.Collections;
 
 public class RockMovePuzzleManager : AtivadorDeBotao
 {
-    [SerializeField]private RockShift[] rockShift;
+    [SerializeField] private RockShift[] rockShift;
     [SerializeField] private EscondeCoisa escondePedra;
-    [SerializeField]private KeyShift chaveEspecial;
-    [SerializeField]private string ID;    
+    [SerializeField] private KeyShift chaveEspecial;
+    [SerializeField] private string ID;
 
-    [SerializeField]private bool iniciarVisaoDeFeito = false;
+    [SerializeField] private bool iniciarVisaoDeFeito = false;
     private Vector3 posInicial;
     private float contadorDeTempo = 0;
     private bool ativo = false;
-    
+
     // Use this for initialization
     void Start()
     {
         textoDoBotao = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.textoBaseDeAcao)[1];
-        
+
         if (ExistenciaDoController.AgendaExiste(Start, this))
-            {
+        {
 
             escondePedra.Start(ID);
 
@@ -55,7 +55,7 @@ public class RockMovePuzzleManager : AtivadorDeBotao
     {
         base.Update();
 
-        if (ativo&& GameController.g.HudM.Menu_Basico.EstaAtivo)
+        if (ativo && GameController.g.HudM.Menu_Basico.EstaAtivo)
         {
             GameController.g.HudM.Menu_Basico.MudarOpcao();
 
@@ -72,7 +72,7 @@ public class RockMovePuzzleManager : AtivadorDeBotao
             transform.position = Vector3.Lerp(posInicial,posDeEscondido,contadorDeTempo/tempoParaEsconder);
 
             if (contadorDeTempo > tempoParaEsconder)*/
-            if(escondePedra.Update())
+            if (escondePedra.Update())
             {
 
                 GameController.g.Manager.AoHeroi();
@@ -83,7 +83,7 @@ public class RockMovePuzzleManager : AtivadorDeBotao
 
                 FinalizaEspecifico();
                 gameObject.SetActive(false);
-                EventAgregator.Publish(new StandardSendStringEvent(gameObject, "coisaBoaRebot", EventKey.disparaSom));
+                EventAgregator.Publish(new StandardSendStringEvent(gameObject, SoundEffectID.coisaBoaRebot.ToString(), EventKey.disparaSom));
                 GlobalController.g.Musica.ReiniciarMusicas();
             }
         }
@@ -91,7 +91,7 @@ public class RockMovePuzzleManager : AtivadorDeBotao
 
     protected virtual void FinalizaEspecifico() { }
 
-    public bool VerificaTargetOcupado(Transform target,Transform rock)
+    public bool VerificaTargetOcupado(Transform target, Transform rock)
     {
         for (int i = 0; i < rockShift.Length; i++)
         {
@@ -116,7 +116,8 @@ public class RockMovePuzzleManager : AtivadorDeBotao
         return true;
     }
 
-    public bool TodosFeitos() {
+    public bool TodosFeitos()
+    {
         bool retorno = true;
 
         for (int i = 0; i < rockShift.Length; i++)
@@ -125,7 +126,7 @@ public class RockMovePuzzleManager : AtivadorDeBotao
         if (retorno)
         {
             AplicadorDeCamera.cam.NovoFocoBasico(transform.parent, 8, 16, true, true);
-            iniciarVisaoDeFeito = retorno; 
+            iniciarVisaoDeFeito = retorno;
             escondePedra.AtivarParticula();
             GlobalController.g.Musica.PararMusicas();
             //particulaDeFim.SetActive(true);
@@ -151,17 +152,17 @@ public class RockMovePuzzleManager : AtivadorDeBotao
         ativo = true;
         base.FluxoDeBotao();
         GameController.g.HudM.Painel.AtivarNovaMens(
-            BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.resetPuzzle),25
+            BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.resetPuzzle), 25
             );
         GameController.g.HudM.Menu_Basico.IniciarHud(Respostas,
             BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.simOuNao).ToArray());
 
-       /*
-        ActionManager.ModificarAcao(transform, 
-            () => {
-                Respostas(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
-            });
-            */
+        /*
+         ActionManager.ModificarAcao(transform, 
+             () => {
+                 Respostas(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
+             });
+             */
     }
 
     void Respostas(int indice)
@@ -170,10 +171,10 @@ public class RockMovePuzzleManager : AtivadorDeBotao
         {
             case 0:
                 RespondeuSim();
-            break;
+                break;
             case 1:
                 RetornarAoFluxoDeJogo();
-            break;
+                break;
         }
     }
 
@@ -185,17 +186,17 @@ public class RockMovePuzzleManager : AtivadorDeBotao
                 Instantiate(GameController.g.El.retorna(DoJogo.particulaDasPedraPuzzle),
                 rockShift[i].rock.transform.position,
                 Quaternion.identity
-                ),5);
+                ), 5);
             Destroy(
                 Instantiate(GameController.g.El.retorna(DoJogo.particulaDasPedraPuzzle),
                 rockShift[i].posOriginal,
                 Quaternion.identity
-                ),5);
+                ), 5);
             rockShift[i].rock.transform.position = rockShift[i].posOriginal;
             rockShift[i].rock.RestauraShift();
             rockShift[i].rockInTheTarget = -1;
         }
-        Invoke("RetornarAoFluxoDeJogo",0.75f);
+        Invoke("RetornarAoFluxoDeJogo", 0.75f);
 
         Destroy(
                 Instantiate(GameController.g.El.retorna(DoJogo.particulaDasPedraPuzzle),
@@ -222,9 +223,9 @@ public class RockMovePuzzleManager : AtivadorDeBotao
 [System.Serializable]
 public class RockShift
 {
-    [HideInInspector]public Vector3 posOriginal;
+    [HideInInspector] public Vector3 posOriginal;
 
     public RockMovePuzzle rock;
-    public Transform target;    
+    public Transform target;
     public int rockInTheTarget = -1;
 }

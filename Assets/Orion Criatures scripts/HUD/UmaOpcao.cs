@@ -5,19 +5,14 @@ using System.Collections;
 public class UmaOpcao : MonoBehaviour
 {
     [SerializeField] private Image spriteDoItem;
-    private System.Action<int> acao;
-    
+
     public Image SpriteDoItem
     {
         get { return spriteDoItem; }
         set { spriteDoItem = value; }
     }
 
-    protected System.Action<int> Acao
-    {
-        get { return acao; }
-        set { acao = value; }
-    }
+    protected System.Action<int> Acao { get; set; }
 
     public virtual void FuncaoDoBotao()
     {

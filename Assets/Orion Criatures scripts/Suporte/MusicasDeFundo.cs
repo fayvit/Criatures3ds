@@ -30,12 +30,15 @@ public class MusicasDeFundo
         velocidadeAtiva = VELOCIDADE_DE_MUDANCA;
     }
 
-   
+
 
     public void IniciarMusicaGuardada()
     {
-        Debug.Log(MusicaGuardada.Musica + " ué");
-        IniciarMusica(MusicaGuardada.Musica,MusicaGuardada.Volume);
+        if (MusicaGuardada != null)
+        {
+            Debug.Log(MusicaGuardada.Musica + " ué");
+            IniciarMusica(MusicaGuardada.Musica, MusicaGuardada.Volume);
+        }
     }
 
     public void IniciarMusicaGuardandoAtual(AudioClip esseClip, float volumeAlvo = 1)
@@ -46,19 +49,24 @@ public class MusicasDeFundo
 
     public void IniciarMusicaGuardandoAtual(NameMusic esseClip, float volumeAlvo = 1)
     {
-        MusicaGuardada = MusicaAtualAtiva;
-        IniciarMusica((AudioClip)Resources.Load(esseClip.ToString()), volumeAlvo);
+        IniciarMusicaGuardandoAtual(esseClip.ToString(), volumeAlvo); ;
     }
 
-    public void IniciarMusica(NameMusic esseClip,float volumeAlvo = 1)
+    public void IniciarMusicaGuardandoAtual(string esseClip, float volumeAlvo = 1)
     {
-        IniciarMusica((AudioClip)Resources.Load(esseClip.ToString()),volumeAlvo);
+        IniciarMusicaGuardandoAtual((AudioClip)Resources.Load(esseClip), volumeAlvo);
+    }
+
+    public void IniciarMusica(NameMusic esseClip, float volumeAlvo = 1)
+    {
+        IniciarMusica((AudioClip)Resources.Load(esseClip.ToString()), volumeAlvo);
     }
 
     public void IniciarMusica(AudioClip esseClip, float volumeAlvo = 1)
     {
 
-        MusicaAtualAtiva = new MusicaComVolumeConfig() {
+        MusicaAtualAtiva = new MusicaComVolumeConfig()
+        {
             Musica = esseClip,
             Volume = volumeAlvo
         };
@@ -125,7 +133,7 @@ public class MusicasDeFundo
                 {
 
 
-                    if (audios[inicia].volume < 0.9f*volumeAlvo)
+                    if (audios[inicia].volume < 0.9f * volumeAlvo)
                         audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, volumeAlvo, Time.deltaTime * velocidadeAtiva);
                     else
                         audios[inicia].volume = volumeAlvo;
@@ -143,10 +151,10 @@ public class MusicasDeFundo
             }
             else
             {
-                if(termina!=-1)
+                if (termina != -1)
                     audios[termina].volume = Mathf.Lerp(audios[termina].volume, 0, Time.fixedDeltaTime * 2 * velocidadeAtiva);
 
-                if(inicia!=-1)
+                if (inicia != -1)
                     audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, 0, Time.fixedDeltaTime * 2 * velocidadeAtiva);
             }
 
@@ -154,7 +162,7 @@ public class MusicasDeFundo
         }
     }
 
-    void MudaPara(string clip,float volume = 1)
+    void MudaPara(string clip, float volume = 1)
     {
         volumeAlvo = volume;
         IniciarMusica((AudioClip)Resources.Load(clip));
@@ -175,24 +183,46 @@ public class MusicasDeFundo
                 case "Inicial":
                 case "Inicial 1":
                     MudaPara("Kevin_Hartnell_-_09_-_Podcast_Theme");
-                break;
+                    break;
                 case "cavernaIntro":
                     MudaPara("Lobo_Loco_-_03_-_Frisco_Traffic_ID_762");
-                break;
+                    break;
                 case "equipamentos":
                 case "equipamentos_plus":
                 case "Tutorial":
-                 //   MudaPara(equips);
-                break;
+                    //   MudaPara(equips);
+                    break;
             }
     }
 }
 
 public enum NameMusic
 {
-    nula=-1,
+    nula = -1,
     Field2,
     Mushrooms,
     Battle8
+}
+
+public enum SoundEffectID
+{
+    tuin_1ponto3,
+    tuimParaNivel,
+    XP_Heal01,
+    coisaBoaRebot,
+    XP_Swing03,
+    rajadaDeAgua,
+    Book1,
+    paraBau,
+    Collapse1,
+    chamadaParaAcao,
+    XP_Knock04,
+    XP_Knock01,
+    bemFeito,
+    Decision1,
+    XP_Heal02,
+    Item,
+    encontro,
+    VinhetaDoEncontro
 }
 

@@ -12,7 +12,7 @@ public class EscondeCoisa
     [SerializeField] private string chave = "";
     [SerializeField] private float tempoParaEsconder = 4;
     [SerializeField] private int numeroDePartuiculas = 10;
-    
+
 
     private float contadorDeTempo = 0;
     private int particulasInstanciadas = 0;
@@ -50,7 +50,7 @@ public class EscondeCoisa
     {
         contadorDeTempo = 0;
         particulasInstanciadas = 0;
-        GameObject G = MonoBehaviour.Instantiate(particulaDeAcao, particulaDeAcao.transform.position, particulaDeAcao.transform.rotation,escondivel.parent);
+        GameObject G = MonoBehaviour.Instantiate(particulaDeAcao, particulaDeAcao.transform.position, particulaDeAcao.transform.rotation, escondivel.parent);
         MonoBehaviour.Destroy(G, 5);
         G.SetActive(true);
     }
@@ -61,13 +61,13 @@ public class EscondeCoisa
         contadorDeTempo += Time.deltaTime;
         escondivel.position = Vector3.Lerp(posInicial, posDeEscondido, contadorDeTempo / tempoParaEsconder);
 
-        if (contadorDeTempo>particulasInstanciadas*tempoParaEsconder/numeroDePartuiculas)
+        if (contadorDeTempo > particulasInstanciadas * tempoParaEsconder / numeroDePartuiculas)
         {
             particulasInstanciadas++;
-            GameObject G = MonoBehaviour.Instantiate(particulaDeAcao, particulaDeAcao.transform.position, particulaDeAcao.transform.rotation,escondivel.parent);
+            GameObject G = MonoBehaviour.Instantiate(particulaDeAcao, particulaDeAcao.transform.position, particulaDeAcao.transform.rotation, escondivel.parent);
             MonoBehaviour.Destroy(G, 5);
             G.SetActive(true);
-            EventAgregator.Publish(new StandardSendStringEvent(escondivel.gameObject, "040-Knock01", EventKey.disparaSom));
+            EventAgregator.Publish(new StandardSendStringEvent(escondivel.gameObject, SoundEffectID.XP_Knock01.ToString(), EventKey.disparaSom));
         }
 
         if (contadorDeTempo > tempoParaEsconder)
@@ -79,10 +79,10 @@ public class EscondeCoisa
             //GameController.g.MyKeys.MudaShift(chaveEspecial, true);
             FinalizaEspecifico();
             escondivel.gameObject.SetActive(false);
-            
+
             return true;
         }
-            return false;
+        return false;
     }
 
     protected virtual void FinalizaEspecifico()

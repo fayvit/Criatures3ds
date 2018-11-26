@@ -13,14 +13,14 @@ public class RajadaDeAguaG2 : GolpeBase
         potenciaMaxima = 7,
         potenciaMinima = 1,
         tempoDeReuso = 5,
-        tempoDeMoveMax = 1 ,
+        tempoDeMoveMax = 1,
         tempoDeMoveMin = 0,
         tempoDeDestroy = 2,
-        TempoNoDano = 1.75f       
+        TempoNoDano = 1.75f
     }
         )
     {
-        
+
     }
 
 
@@ -29,11 +29,11 @@ public class RajadaDeAguaG2 : GolpeBase
         Essas variaveis são relacionadas com a ação de Golpe
 
     */
-    [System.NonSerialized]private Vector3 posInicial;
+    [System.NonSerialized] private Vector3 posInicial;
     private float tempoDecorrido = 0;
     private int impactos = 0;
     private bool addView = false;
-    [System.NonSerialized]private RaycastHit hit;
+    [System.NonSerialized] private RaycastHit hit;
 
     /********************************************************/
     public override void IniciaGolpe(GameObject G)
@@ -42,8 +42,8 @@ public class RajadaDeAguaG2 : GolpeBase
         addView = false;
         tempoDecorrido = 0;
         posInicial = Emissor.UseOEmissor(G, this.Nome);
-        DirDeREpulsao = G.transform.forward;        
-        AnimadorCriature.AnimaAtaque(G, "emissor");         
+        DirDeREpulsao = G.transform.forward;
+        AnimadorCriature.AnimaAtaque(G, "emissor");
     }
 
     public override void UpdateGolpe(GameObject G)
@@ -55,12 +55,12 @@ public class RajadaDeAguaG2 : GolpeBase
             if (golpeP.TempoDeInstancia > 0)
                 posInicial = Emissor.UseOEmissor(G, Nome);
             AuxiliarDeInstancia.InstancieEDestrua(Nome, posInicial, DirDeREpulsao, TempoDeDestroy);
-            EventAgregator.Publish(EventKey.disparaSom, new StandardSendStringEvent(G, "rajadaDeAgua", EventKey.disparaSom));
+            EventAgregator.Publish(EventKey.disparaSom, new StandardSendStringEvent(G, SoundEffectID.rajadaDeAgua.ToString(), EventKey.disparaSom));
             addView = true;
         }
 
         hit = new RaycastHit();
-        
+
         Vector3 ort = Vector3.Cross(DirDeREpulsao, Vector3.up).normalized;
 
         float deslocadorInicial = tempoDecorrido > 1 ? tempoDecorrido : 1;
@@ -103,7 +103,7 @@ public class RajadaDeAguaG2 : GolpeBase
             {
                 if (impactos % 10 == 0)
                 {
-                    
+
                     GameObject Golpe = GameController.g.El.retorna(DoJogo.impactoDeAgua);
                     Object impacto = MonoBehaviour.Instantiate(Golpe, hit.point, Quaternion.identity);
                     MonoBehaviour.Destroy(impacto, 0.5f);

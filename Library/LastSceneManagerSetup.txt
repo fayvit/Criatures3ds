@@ -1,10 +1,13 @@
 sceneSetups:
+- path: Assets/cenas/legado/cavernaIntro.unity
+  isLoaded: 1
+  isActive: 1
+- path: Assets/cenas/infinityVsRepresa.unity
+  isLoaded: 1
+  isActive: 0
+- path: Assets/cenas/AsInfinitys/infinity_J.unity
+  isLoaded: 1
+  isActive: 0
 - path: Assets/cenas/legado/comunsDeFase.unity
   isLoaded: 1
   isActive: 0
-- path: Assets/cenas/AsRepresas/represaTopCam_C.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/AsRepresas/represaTopCam.unity
-  isLoaded: 1
-  isActive: 1

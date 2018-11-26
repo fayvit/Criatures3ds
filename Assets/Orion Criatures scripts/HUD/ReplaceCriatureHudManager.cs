@@ -6,6 +6,7 @@ public class ReplaceCriatureHudManager : UiDeOpcoes
 {
     private CriatureBase[] listaDeCriatures;
     private System.Action<int> aoClique;
+    private System.Action aaoDesistir;
     private bool podeMudar = true;
     private bool armagedom = false;
 
@@ -15,12 +16,16 @@ public class ReplaceCriatureHudManager : UiDeOpcoes
         set { podeMudar = value; }
     }
 
-    public void IniciarEssaHUD(CriatureBase[] listaDeCriatures,System.Action<int> AoEscolherUmCriature,bool armagedom = false)
+    public void IniciarEssaHUD(CriatureBase[] listaDeCriatures,
+        System.Action<int> AoEscolherUmCriature,
+        System.Action aoDesistir = null,
+        bool armagedom = false)
     {
         this.armagedom = armagedom;
         this.listaDeCriatures = listaDeCriatures;
         PodeMudar = true;
         aoClique += AoEscolherUmCriature;
+        aaoDesistir += aoDesistir;
         IniciarHUD(listaDeCriatures.Length);
         ActionManager.ModificarAcao(GameController.g.transform, AcaoDeOpcaoEscolhida);
     }
@@ -48,11 +53,12 @@ public class ReplaceCriatureHudManager : UiDeOpcoes
 
     public override void SetarComponenteAdaptavel(GameObject G,int indice)
     {
-        G.GetComponent<CriatureParaMostrador>().SetarCriature(listaDeCriatures[indice], aoClique,armagedom);
+        G.GetComponent<CriatureParaMostrador>().SetarCriature(listaDeCriatures[indice], aoClique,armagedom,aaoDesistir);
     }
 
     protected override void FinalizarEspecifico()
     {
         aoClique = null;
+        aaoDesistir = null;
     }
 }

@@ -4,12 +4,12 @@ using System.Collections;
 [System.Serializable]
 public class NPCdeConversa
 {
-    [SerializeField]private Transform[] pontosAlvo;
-    [SerializeField]private ChaveDeTexto chaveDaConversa = ChaveDeTexto.bomDia;
+    [SerializeField] private Transform[] pontosAlvo;
+    [SerializeField] private ChaveDeTexto chaveDaConversa = ChaveDeTexto.bomDia;
     [SerializeField] private string chaveDaConversaGambiarraString = "";
 
-    [SerializeField]protected Sprite fotoDoNPC;
-    [SerializeField]private int modificarIndiceDeInicio = 0;
+    [SerializeField] protected Sprite fotoDoNPC;
+    [SerializeField] private int modificarIndiceDeInicio = 0;
     [SerializeField] protected bool podeFechar = true;
 
     protected EstadoDoNPC estado = EstadoDoNPC.parado;
@@ -18,11 +18,11 @@ public class NPCdeConversa
     private Transform meuTransform;
     private Vector3 dirGuardada = Vector3.zero;
     private SigaOLider siga;
-    
+
     private Vector3 alvo = Vector3.zero;
     private float tempoParado = 0.5f;
     private float contadorDeTempo = 0;
-    
+
 
     private const float TEMPO_MAX_PARADO = 20;
     private const float TEMPO_MIN_PARADO = 8;
@@ -33,12 +33,6 @@ public class NPCdeConversa
         conversando,
         finalizadoComBotao
     }
-
-    /*
-    protected Transform Destrutivel
-    {
-        get { return destrutivel; }
-    }*/
 
     public void MudaChaveDaConversa(ChaveDeTexto chave)
     {
@@ -52,8 +46,8 @@ public class NPCdeConversa
 
     void OnEnable()
     {
-        if(pontosAlvo!=null)
-            if(pontosAlvo.Length>0)
+        if (pontosAlvo != null)
+            if (pontosAlvo.Length > 0)
                 alvo = pontosAlvo[Random.Range(0, pontosAlvo.Length)].position;
     }
 
@@ -67,31 +61,24 @@ public class NPCdeConversa
             }
             catch (System.ArgumentException e)
             {
-                Debug.LogError("string para texto invalida no enum \n"+e.StackTrace);
+                Debug.LogError("string para texto invalida no enum \n" + e.StackTrace);
             }
         }
 
         conversa = BancoDeTextos.RetornaListaDeTextoDoIdioma(chaveDaConversa).ToArray();
     }
-    
+
     public virtual void Start(Transform T)
     {
-        
+
         meuTransform = T;
         SetarConversaOriginal();
-        //tempoParado = Random.Range(TEMPO_MIN_PARADO, TEMPO_MAX_PARADO);
+        
 
-       // if (T.gameObject.name == "Derek_paladinoDeLaurense")
-        //    Debug.Log(T+" : "+siga);
-        //if (siga == null)
-        {
-            if (T.gameObject.name == "Derek_paladinoDeLaurense")
-                Debug.Log(T);
+        siga = new SigaOLider(T, 0.75f, 2, 0.01f);
+        
 
-            siga = new SigaOLider(T, 0.75f ,2,0.01f);
-        }
-
-        if (pontosAlvo==null)
+        if (pontosAlvo == null)
             pontosAlvo = new Transform[1] { T };
     }
 
@@ -102,13 +89,13 @@ public class NPCdeConversa
         {
             case EstadoDoNPC.parado:
                 contadorDeTempo += Time.deltaTime;
-                if (contadorDeTempo > tempoParado && pontosAlvo.Length>0)
+                if (contadorDeTempo > tempoParado && pontosAlvo.Length > 0)
                 {
                     alvo = pontosAlvo[Random.Range(0, pontosAlvo.Length)].position;
                     contadorDeTempo = 0;
                     estado = EstadoDoNPC.caminhando;
                 }
-            break;
+                break;
             case EstadoDoNPC.caminhando:
                 siga.Update(alvo);
 
@@ -118,14 +105,14 @@ public class NPCdeConversa
                     estado = EstadoDoNPC.parado;
                     tempoParado = Random.Range(TEMPO_MIN_PARADO, TEMPO_MAX_PARADO);
                 }
-            break;
+                break;
             case EstadoDoNPC.conversando:
-                //AplicadorDeCamera.cam.FocarPonto(5);
+                
                 if (GameController.g.HudM.DisparaT.UpdateDeTextos(conversa, fotoDoNPC))
                 {
                     FinalizaConversa();
                 }
-            break;
+                break;
             case EstadoDoNPC.finalizadoComBotao:
                 estado = EstadoDoNPC.parado;
                 return true;
@@ -136,35 +123,34 @@ public class NPCdeConversa
 
     protected virtual void FinalizaConversa()
     {
-        EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, "Book1", EventKey.disparaSom));
+        EventAgregator.Publish(
+            new StandardSendStringEvent(
+                GameController.g.gameObject, 
+                SoundEffectID.XP_Swing03.ToString(), 
+                EventKey.disparaSom));
+
         estado = EstadoDoNPC.finalizadoComBotao;
         meuTransform.rotation = Quaternion.LookRotation(dirGuardada);
-        //MonoBehaviour.Destroy(destrutivel.gameObject);
-        //GameController.g.HudM.ligarControladores();
-        //GameController.g.HudM.Botaozao.FinalizarBotao();
+        
         GameController.g.HudM.DisparaT.DesligarPaineis();
-        //AndroidController.a.LigarControlador();
+        
     }
 
     public virtual void IniciaConversa()
     {
         ColetorDeLixo.Coleta();
 
-        //destrutivel = Destrutivel;
 
-        
         siga.PareAgora();
 
         dirGuardada = meuTransform.forward;
         meuTransform.rotation = Quaternion.LookRotation(
             Vector3.ProjectOnPlane(GameController.g.Manager.transform.position - meuTransform.position, Vector3.up)
             );
-        
+
         GameController.g.HudM.DisparaT.IniciarDisparadorDeTextos(podeFechar);
         GameController.g.HudM.DisparaT.IndiceDaConversa = modificarIndiceDeInicio;
-        //GameController.g.HudM.Botaozao.IniciarBotao(FinalizaConversa, 
-         //   bancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.ObrigadoComPressa)
-            //);
+        
         estado = EstadoDoNPC.conversando;
     }
 }

@@ -28,8 +28,8 @@ public class SaveManager
         tempoDecorrido += Time.deltaTime;
         if (tempoDecorrido > INTERVALO_DE_SAVE)
         {
-            ColetorDeLixo.Coleta();
             SalvarAgora();
+            ColetorDeLixo.Coleta();
         }
     }
 

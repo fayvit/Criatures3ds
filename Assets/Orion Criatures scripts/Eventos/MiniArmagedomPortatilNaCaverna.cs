@@ -3,10 +3,10 @@ using System.Collections;
 
 public class MiniArmagedomPortatilNaCaverna : AtivadorDoBotaoConversa
 {
-    [SerializeField]private ChaveDeTexto chaveDeTextoSecundaria = ChaveDeTexto.comoVaiSuaJornada;
-    [SerializeField]private KeyShift chave = KeyShift.estouNoTuto;
-    [SerializeField]private NpcDoPrimeiroMiniArmagedom npcMini;
-    [SerializeField]private IndiceDeArmagedoms indiceDeArmagedom;
+    [SerializeField] private ChaveDeTexto chaveDeTextoSecundaria = ChaveDeTexto.comoVaiSuaJornada;
+    [SerializeField] private KeyShift chave = KeyShift.estouNoTuto;
+    [SerializeField] private NpcDoPrimeiroMiniArmagedom npcMini;
+    [SerializeField] private IndiceDeArmagedoms indiceDeArmagedom;
 
     // Use this for initialization
     new void Start()
@@ -22,7 +22,7 @@ public class MiniArmagedomPortatilNaCaverna : AtivadorDoBotaoConversa
         base.Update();
     }*/
 
-    public override void FuncaoDoBotao  ()
+    public override void FuncaoDoBotao()
     {
         if (GameController.g.MyKeys.VerificaAutoShift(chave))
         {
@@ -33,9 +33,9 @@ public class MiniArmagedomPortatilNaCaverna : AtivadorDoBotaoConversa
             Instantiate(
                 GameController.g.El.retorna(DoJogo.curaDeArmagedom),
                 GameController.g.Manager.transform.position,
-                Quaternion.identity),5);
+                Quaternion.identity), 5);
 
-            EventAgregator.Publish(new StandardSendStringEvent(gameObject, "106-Heal02", EventKey.disparaSom));
+            EventAgregator.Publish(new StandardSendStringEvent(gameObject, SoundEffectID.XP_Heal02.ToString(), EventKey.disparaSom));
             GlobalController.g.Musica.IniciarMusicaGuardandoAtual(NameMusic.Field2);
 
             GameController.g.Manager.Dados.TodosCriaturesPerfeitos();

@@ -16,7 +16,6 @@ public class EncounterManager
     private Atributos aDoI;
     private Atributos aDoH;
 
-
     private enum EncounterState
     {
         emEspera,
@@ -30,7 +29,7 @@ public class EncounterManager
         passouDeNivel,
         gerenciaGolpe,
         aprendeuEsse
-            // O 13 era aprendendo golpe fora, deverá ser feito separadamente
+        // O 13 era aprendendo golpe fora, deverá ser feito separadamente
     }
 
     public CreatureManager Inimigo
@@ -38,7 +37,7 @@ public class EncounterManager
         get { return inimigo; }
     }
 
-    public void InicializarEncounterManager(CreatureManager inimigo,CharacterManager manager,bool treinador,string nomeTreinador)
+    public void InicializarEncounterManager(CreatureManager inimigo, CharacterManager manager, bool treinador, string nomeTreinador)
     {
         if (inimigo)
         {
@@ -48,7 +47,7 @@ public class EncounterManager
 
             VerificaContainerDeAtributos();
 
-            apresentaAdv = new ApresentadorDeAdversario(inimigo,treinador,nomeTreinador);
+            apresentaAdv = new ApresentadorDeAdversario(inimigo, treinador, nomeTreinador);
             estado = EncounterState.truqueDeCamera;
         }
     }
@@ -60,32 +59,32 @@ public class EncounterManager
         {
             case EncounterState.truqueDeCamera:
                 TruqueDeCamera();
-            break;
+                break;
             case EncounterState.apresentaAdversario:
                 contadorDeTempo += Time.deltaTime;
                 if (apresentaAdv.Apresenta(contadorDeTempo, cam))
                     depoisDeTerminarAApresentacao();
-            break;
+                break;
             case EncounterState.comecaLuta:
                 GameController.g.HudM.ModoCriature(true);
                 ((IA_Agressiva)inimigo.IA).PodeAtualizar = true;
                 manager.CriatureAtivo.Estado = CreatureManager.CreatureState.emLuta;
-                cam.InicializaCameraDeLuta(manager.CriatureAtivo,inimigo.transform);
+                cam.InicializaCameraDeLuta(manager.CriatureAtivo, inimigo.transform);
                 estado = EncounterState.verifiqueVida;
-            break;
+                break;
             case EncounterState.verifiqueVida:
                 //GameController.g.HudM.AtualizeHud(manager, inimigo.MeuCriatureBase);
-                VerifiqueVida();                
-            break;
+                VerifiqueVida();
+                break;
             case EncounterState.vitoriaNaLuta:
                 if (!apresentaFim.EstouApresentando(treinador))
                 {
                     RecebePontosDaVitoria();
                 }
-            break;
+                break;
             case EncounterState.VoltarParaPasseio:
 
-                if(inimigo)
+                if (inimigo)
                     MonoBehaviour.Destroy(inimigo.gameObject);
 
                 Debug.Log("treinador = " + treinador);
@@ -97,13 +96,16 @@ public class EncounterManager
 
                 estado = EncounterState.emEspera;
 
-            break;
+                break;
             case EncounterState.morreuEmLuta:
                 ApresentaDerrota.RetornoDaDerrota R = apresentaDerrota.Update();
                 if (R != ApresentaDerrota.RetornoDaDerrota.atualizando)
                 {
                     if (R == ApresentaDerrota.RetornoDaDerrota.voltarParaPasseio)
+                    {
                         estado = EncounterState.verifiqueVida;
+                        GlobalController.g.Musica.ReiniciarMusicas();
+                    }
                     else
                     if (R == ApresentaDerrota.RetornoDaDerrota.deVoltaAoArmagedom)
                     {
@@ -116,13 +118,13 @@ public class EncounterManager
                         estado = EncounterState.emEspera;
                     }
                 }
-            break;
+                break;
             case EncounterState.passouDeNivel:
                 if (passou.Update())
                 {
                     estado = EncounterState.VoltarParaPasseio;
                 }
-            break;
+                break;
         }
         return retorno;
     }
@@ -136,7 +138,7 @@ public class EncounterManager
     void RecebePontosDaVitoria()
     {
         IGerenciadorDeExperiencia G_XP = manager.CriatureAtivo.MeuCriatureBase.CaracCriature.mNivel;
-        G_XP.XP += (treinador)? aDoI.PV.Maximo:(int)((float)aDoI.PV.Maximo/2);
+        G_XP.XP += (treinador) ? aDoI.PV.Maximo : (int)((float)aDoI.PV.Maximo / 2);
         if (G_XP.VerificaPassaNivel())
         {
             G_XP.AplicaPassaNivel(aDoH);
@@ -147,7 +149,7 @@ public class EncounterManager
         else
             estado = EncounterState.VoltarParaPasseio;
 
-        manager.Dados.Cristais += treinador?aDoI.PV.Maximo*2: aDoI.PV.Maximo;
+        manager.Dados.Cristais += treinador ? aDoI.PV.Maximo * 2 : aDoI.PV.Maximo;
     }
 
     protected void VerifiqueVida()
@@ -183,7 +185,7 @@ public class EncounterManager
     {
         aDoI = inimigo.MeuCriatureBase.CaracCriature.meusAtributos;
 
-        if(manager.CriatureAtivo)
+        if (manager.CriatureAtivo)
             aDoH = manager.CriatureAtivo.MeuCriatureBase.CaracCriature.meusAtributos;
     }
 
@@ -191,7 +193,7 @@ public class EncounterManager
     {
         InterrompeFluxoDeLuta();
         apresentaFim = new ApresentaFim(manager.CriatureAtivo, inimigo, cam);
-        estado = EncounterState.vitoriaNaLuta;   
+        estado = EncounterState.vitoriaNaLuta;
     }
 
     void InterrompeFluxoDeLuta()

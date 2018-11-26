@@ -43,7 +43,7 @@ public Text LabelDaHud
         fase = FasesDaqui.selecionavel;
         gameObject.SetActive(true);
         labelDaHud.text = txt;
-        
+
         this.C = C;
         this.golpeNovo = golpeNovo;
         GolpeBase[] meusGolpes = C.GerenteDeGolpes.meusGolpes.ToArray();
@@ -74,7 +74,7 @@ public Text LabelDaHud
 
     private void Update()
     {
-        if (fase==FasesDaqui.selecionavel)
+        if (fase == FasesDaqui.selecionavel)
         {
             int val = CommandReader.ValorDeGatilhos("HDpad", GameController.g.Manager.Control);
             if (val == 0)
@@ -82,6 +82,7 @@ public Text LabelDaHud
 
             if (val != 0)
             {
+                EventAgregator.Publish(EventKey.UiDeOpcoesChange, null);
                 btns[opcaoEscolhida].DaSelecao.sprite = GameController.g.El.uiDefault;
 
 
@@ -100,10 +101,11 @@ public Text LabelDaHud
                         opcaoEscolhida = 4;
                 }
 
-                
+
 
                 Destacar(opcaoEscolhida);
-            }else
+            }
+            else
              if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
             {
                 fase = FasesDaqui.painelSuspenso;
@@ -115,13 +117,13 @@ public Text LabelDaHud
 
     public void AcaoLocal()
     {
-       // podeMudar = false;
+        // podeMudar = false;
         btns[opcaoEscolhida].FuncaoDoBotao();
     }
 
     // adição ao trytolearn
 
-    
+
     void QualGolpeEsquecer(int indice)
     {
         /*observo que o indice é relacionado com os irmãos dentro do GameObject 
@@ -130,6 +132,7 @@ public Text LabelDaHud
         */
 
         indiceParaEsquecer = indice;
+        EventAgregator.Publish(new StandardSendStringEvent(null, SoundEffectID.Decision1.ToString(), EventKey.disparaSom));
 
         if (indiceParaEsquecer < 4)
         {
@@ -149,7 +152,8 @@ public Text LabelDaHud
 
     void NaoQueroAprenderEsse()
     {
-        //BtnsManager.ReligarBotoes(//GameController.g.HudM.H_Tenta.gameObject);
+        EventAgregator.Publish(new StandardSendStringEvent(null, SoundEffectID.Book1.ToString(), EventKey.disparaSom));
+
         HudManager h = GameController.g.HudM;
         h.H_Tenta.Finalizar();
         h.P_Golpe.gameObject.SetActive(false);
@@ -174,7 +178,7 @@ public Text LabelDaHud
 
     void EsquecerEsseGolpe()
     {
-
+        EventAgregator.Publish(new StandardSendStringEvent(null, SoundEffectID.coisaBoaRebot.ToString(), EventKey.disparaSom));
         //BtnsManager.ReligarBotoes(//GameController.g.HudM.H_Tenta.gameObject);
         GameController.g.HudM.H_Tenta.Finalizar();
 
@@ -191,7 +195,7 @@ public Text LabelDaHud
                         C.NomeEmLinguas,
                         C.GerenteDeGolpes.meusGolpes[indiceParaEsquecer].NomeEmLinguas(),
                         GolpeBase.NomeEmLinguas(golpeNovo))
-                        ,26
+                        , 26
                         );
 
         C.GerenteDeGolpes.meusGolpes[indiceParaEsquecer] = PegaUmGolpeG2.RetornaGolpe(golpeNovo);
@@ -207,5 +211,5 @@ public Text LabelDaHud
         //BtnsManager.ReligarBotoes(//GameController.g.HudM.H_Tenta.gameObject);
     }
 
-        //BtnsManager.DesligarBotoes(//GameController.g.HudM.H_Tenta.gameObject);
+    //BtnsManager.DesligarBotoes(//GameController.g.HudM.H_Tenta.gameObject);
 }

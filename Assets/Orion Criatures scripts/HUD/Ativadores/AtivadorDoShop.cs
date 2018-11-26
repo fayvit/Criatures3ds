@@ -23,5 +23,7 @@ public class AtivadorDoShop : AtivadorDeBotao
     public override void FuncaoDoBotao()
     {
         BotaoShop();
+        SomDoIniciar();
+        EventAgregator.Publish(new StandardSendStringAndFloatEvent(gameObject, 1, "VXTown4_ForShop", EventKey.requestMusicWithBackup));
     }
 }

@@ -471,7 +471,8 @@ public static class TextosChaveEmPT_BR
             ChaveDeTexto.menuDePause,new List<string>()
             {
                 "Status", "Itens", "Coleção", "Voltar ao título", "Voltar ao jogo","Encontro Agora",
-                "Inimigo com 1PV","Heroi com 1PV","4 golpes","1XP para Nivel","0 PE","teste Save","carregar save zero"
+                "Inimigo com 1PV","Heroi com 1PV","4 golpes","1XP para Nivel","0 PE","teste Save","carregar save zero",
+                "Muda estilo de Camera"
             }
         },
         {

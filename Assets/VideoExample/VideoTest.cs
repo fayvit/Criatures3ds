@@ -4,7 +4,8 @@ public class VideoTest : MonoBehaviour
 {
 	void OnGUI()
 	{
-		if (UnityEngine.N3DS.Video.IsPlaying == false)
+#if UNITY_N3DS
+        if (UnityEngine.N3DS.Video.IsPlaying == false)
 		{
 			if (GUI.Button(buttonRect1, "Play (Upper Screen)"))
 			{
@@ -38,6 +39,7 @@ public class VideoTest : MonoBehaviour
 				}
 			}
 		}
+#endif
 	}
 
 	private Rect buttonRect1 = new Rect(60, 40, 200, 50);

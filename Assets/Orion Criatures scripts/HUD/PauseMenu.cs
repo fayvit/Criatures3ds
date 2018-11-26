@@ -19,7 +19,8 @@ public class PauseMenu : MonoBehaviour
         janelaSuspensaAbertas
     }
 
-    public bool EmPause {
+    public bool EmPause
+    {
         get { return emPause; }
     }
 
@@ -32,7 +33,7 @@ public class PauseMenu : MonoBehaviour
 
     void OnEnable()
     {
-        
+
     }
     // Use this for initialization
     void Start()
@@ -50,7 +51,6 @@ public class PauseMenu : MonoBehaviour
 
                 if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
-                    Debug.Log("disparaacao");
                     EuFizUmaEscolha(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
                 }
 
@@ -58,10 +58,9 @@ public class PauseMenu : MonoBehaviour
                     ||
                     ActionManager.ButtonUp(7, GameController.g.Manager.Control))
                 {
-                    Debug.Log("disparacancel");
                     VoltarAoJogo();
                 }
-            break;
+                break;
         }
     }
 
@@ -71,7 +70,7 @@ public class PauseMenu : MonoBehaviour
         {
             case 0:
                 BotaoCriature();
-            break;
+                break;
             case 1:
                 if (GameController.g.Manager.Dados.Itens.Count > 0)
                     BotaoItens();
@@ -82,40 +81,43 @@ public class PauseMenu : MonoBehaviour
                     BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.itens)[11]);
                     estado = EstadosDePause.janelaSuspensaAbertas;
                 }
-            break;
+                break;
             case 2:
 
-            break;
+                break;
             case 3:
                 VoltarAoTitulo();
-            break;
+                break;
             case 4:
                 VoltarAoJogo();
-            break;
+                break;
             case 5:
                 GameController.g.EncontroAgora();
-            break;
+                break;
             case 6:
                 GameController.g.InimigoComUmPV();
-            break;
+                break;
             case 7:
                 GameController.g.MeuCriatureComUmPV();
-            break;
+                break;
             case 8:
                 GameController.g.ColocaQuatroGolpesNosCriatures();
-            break;
+                break;
             case 9:
                 GameController.g.UmXpParaNivel();
-            break;
+                break;
             case 10:
                 GameController.g.MeuCriatureComUZeroPE();
-            break;
+                break;
             case 11:
                 GameController.g.TesteSave();
-            break;
+                break;
             case 12:
                 GameController.g.CarregarSaveZero();
-            break;
+                break;
+            case 13:
+                AplicadorDeCamera.cam.usarDirecionavel = !AplicadorDeCamera.cam.usarDirecionavel;
+                break;
         }
 
         GameController.g.HudM.Menu_Basico.FinalizarHud();
@@ -143,33 +145,45 @@ public class PauseMenu : MonoBehaviour
         if (GameController.g.EmEstadoDeAcao() && GameController.g.MyKeys.VerificaAutoShift(KeyShift.estouNoTuto))
         {
             ColetorDeLixo.Coleta();
+            EventAgregator.Publish(EventKey.enterInPause, null);
 
-            GameController g = GameController.g;
-            g.FinalizaHuds();
-            g.HudM.Menu_Basico.IniciarHud(EuFizUmaEscolha, 
+            GameController.g.HudM.Menu_Basico.IniciarHud(EuFizUmaEscolha,
                 BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.menuDePause).ToArray()
             );
-            //gameObject.SetActive(true);
+
             Time.timeScale = 0;
             emPause = true;
             estado = EstadosDePause.menuAberto;
+
+            /*
+            GameController g = GameController.g;
+            
+            g.FinalizaHuds();
             g.HudM.Painel.AtivarNovaMens(BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.jogoPausado), 30);
+             */
+            //gameObject.SetActive(true);
+
+
             //g.HudM.DesligaControladores();
             //g.HudM.MenuDeI.FinalizarHud();
             //AndroidController.a.DesligarControlador();
         }
-        
+
     }
 
     public void VoltarAoJogo()
     {
-        
+        EventAgregator.Publish(EventKey.exitPause, null);
         Time.timeScale = 1;
         emPause = false;
-        
-        GameController.g.HudM.Painel.EsconderMensagem();
+
+
         estado = EstadosDePause.emEspera;
-        GameController.g.HudM.Menu_Basico.FinalizarHud();
+
+        /*
+        GameController.g.HudM.Painel.EsconderMensagem();
+        GameController.g.HudM.Menu_Basico.FinalizarHud();*/
+
         //GameController.g.HudM.ligarControladores();
         //AndroidController.a.LigarControlador();
     }

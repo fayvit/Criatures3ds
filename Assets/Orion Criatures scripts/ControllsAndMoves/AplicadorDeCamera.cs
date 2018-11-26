@@ -12,6 +12,8 @@ public class AplicadorDeCamera : MonoBehaviour
     [SerializeField] private CameraDirecionavel cDir;
 
     private EstiloDeCamera estilo = EstiloDeCamera.passeio;
+    public bool usarDirecionavel = false;
+
     public enum EstiloDeCamera
     {
         passeio,
@@ -43,15 +45,21 @@ public class AplicadorDeCamera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        basica.Start(transform);
+        if (!usarDirecionavel)
+            basica.Start(transform);
+
         if (ExistenciaDoController.AgendaExiste(Start, this))
         {
             cam = this;
 
-            cDir = new CameraDirecionavel(new CaracteristicasDeCamera() {
+            cDir = new CameraDirecionavel(new CaracteristicasDeCamera()
+            {
                 alvo = GameController.g.Manager.transform,
-                minhaCamera = transform });
-            NovoFocoBasico(GameController.g.Manager.transform, 10, 10, true);
+                minhaCamera = transform
+            });
+
+            if (!usarDirecionavel)
+                NovoFocoBasico(GameController.g.Manager.transform, 10, 10, true);
         }
 
         EventAgregator.AddListener(EventKey.returnForFreeAfterFight, LongClipPlaneevent);
@@ -70,48 +78,58 @@ public class AplicadorDeCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(!GameController.g.HudM.MenuDePause.EmPause)
-        switch (Estilo)
-        {
-            case EstiloDeCamera.passeio:
-                //if(cDir!=null)
-                  //  cDir.AplicaCamera(1);
-                basica.Update();
-            break;
-            case EstiloDeCamera.luta:
+        if (!GameController.g.HudM.MenuDePause.EmPause)
+            switch (Estilo)
+            {
+                case EstiloDeCamera.passeio:
+                    if (usarDirecionavel)
+                    {
+                        if (cDir != null)
+                            cDir.AplicaCamera(1);
+                    }
+                    else
+                        basica.Update();
+                    break;
+                case EstiloDeCamera.luta:
                     if (MyN3dsCommandDefines.FocarCamera())
                         estilo = EstiloDeCamera.lutaDir;
-                cDeLuta.Update();
-            break;
-            case EstiloDeCamera.lutaDir:
+                    cDeLuta.Update();
+                    break;
+                case EstiloDeCamera.lutaDir:
                     if (MyN3dsCommandDefines.FocarCamera())
                         estilo = EstiloDeCamera.luta;
                     Cdir.AplicaCamera(1);
-            break;
-            case EstiloDeCamera.mostrandoUmCriature:
-                cExibe.MostrandoUmCriature();
-            break;
-            case EstiloDeCamera.basica:
-                basica.Update();
-            break;
-        }
+                    break;
+                case EstiloDeCamera.mostrandoUmCriature:
+                    cExibe.MostrandoUmCriature();
+                    break;
+                case EstiloDeCamera.basica:
+                    basica.Update();
+                    break;
+            }
     }
 
-    public void FocarBasica(Transform T,float altura,float distancia)
+    public void FocarBasica(Transform T, float altura, float distancia)
     {
-        /*
-        cDir.SetarCaracteristicas(new CaracteristicasDeCamera()
-        { alvo = T,
-            minhaCamera = transform,
-            altura = altura,
-            distancia = distancia });*/
-        NovoFocoBasico(T, 10, 10, true);
+        if (usarDirecionavel)
+        {
+            cDir.SetarCaracteristicas(new CaracteristicasDeCamera()
+            {
+                alvo = T,
+                minhaCamera = transform,
+                altura = altura,
+                distancia = distancia
+            });
+        }
+        else
+            NovoFocoBasico(T, 10, 10, true);
+
         Estilo = EstiloDeCamera.passeio;
     }
 
     public void InicializaCameraExibicionista(Transform focoComCharacterController)
     {
-        InicializaCameraExibicionista(focoComCharacterController, 
+        InicializaCameraExibicionista(focoComCharacterController,
             focoComCharacterController.GetComponent<CharacterController>().height);
     }
 
@@ -119,13 +137,13 @@ public class AplicadorDeCamera : MonoBehaviour
     {
         if (cExibe != null)
             cExibe.OnDestroy();
-        cExibe = new CameraExibicionista(transform, doFoco, altura,contraParedes);
+        cExibe = new CameraExibicionista(transform, doFoco, altura, contraParedes);
         Estilo = EstiloDeCamera.mostrandoUmCriature;
-    }    
+    }
 
-    public void InicializaCameraDeLuta(CreatureManager alvo,Transform inimigo)
+    public void InicializaCameraDeLuta(CreatureManager alvo, Transform inimigo)
     {
-        cDeLuta.Start(transform,alvo.transform,alvo.MeuCriatureBase.alturaCameraLuta,alvo.MeuCriatureBase.distanciaCameraLuta);
+        cDeLuta.Start(transform, alvo.transform, alvo.MeuCriatureBase.alturaCameraLuta, alvo.MeuCriatureBase.distanciaCameraLuta);
         cDeLuta.T_Inimigo = inimigo;
         Estilo = EstiloDeCamera.luta;
     }
@@ -136,7 +154,7 @@ public class AplicadorDeCamera : MonoBehaviour
         float altura = -1,
         bool comTempo = false)
     {
-        return FocarPonto(velocidadeTempoDeFoco,distancia,altura,comTempo,default(Vector3),false,deslFocoCamera);
+        return FocarPonto(velocidadeTempoDeFoco, distancia, altura, comTempo, default(Vector3), false, deslFocoCamera);
     }
 
     public bool FocarPonto(float velocidadeTempoDeFoco,
@@ -149,14 +167,14 @@ public class AplicadorDeCamera : MonoBehaviour
         )
     {
         Estilo = EstiloDeCamera.focandoPonto;
-        return cExibe.MostrarFixa(velocidadeTempoDeFoco,distancia,altura,comTempo,dirIni,focoDoTransform,deslFocoCamera);
+        return cExibe.MostrarFixa(velocidadeTempoDeFoco, distancia, altura, comTempo, dirIni, focoDoTransform, deslFocoCamera);
     }
 
     public void NovoFocoBasico(Transform T, float altura, float distancia, bool contraParedes = false, bool dirDeObj = false)
     {
         Estilo = EstiloDeCamera.basica;
         basica.Start(transform);
-        Basica.NovoFoco(T,altura,distancia,contraParedes,dirDeObj);
+        Basica.NovoFoco(T, altura, distancia, contraParedes, dirDeObj);
     }
 
     public void DesligarMoveCamera()

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalController : MonoBehaviour {
+public class GlobalController : MonoBehaviour
+{
 
     [SerializeField] private Controlador control = Controlador.N3DS;
     [SerializeField] private AudioSource[] audios;
@@ -56,6 +57,11 @@ public class GlobalController : MonoBehaviour {
         EventAgregator.AddListener(EventKey.showEndFight, OnShowEndFight);
         EventAgregator.AddListener(EventKey.returnForFreeAfterFight, IniciarMusicaGuardada);
         EventAgregator.AddListener(EventKey.disparaSom, OnRequestStarterSound);
+        EventAgregator.AddListener(EventKey.requestMusicWithBackup, OnRequestMusicWithbackup);
+        EventAgregator.AddListener(EventKey.requestMusicBackupReturn, IniciarMusicaGuardada);
+        EventAgregator.AddListener(EventKey.enterInPause, PararMusica);
+        EventAgregator.AddListener(EventKey.stopTheMusic, PararMusica);
+        EventAgregator.AddListener(EventKey.exitPause, RetornaMusicaParada);
     }
 
     private void OnDestroy()
@@ -70,7 +76,28 @@ public class GlobalController : MonoBehaviour {
         EventAgregator.RemoveListener(EventKey.startFight, OnStartFight);
         EventAgregator.RemoveListener(EventKey.showEndFight, OnShowEndFight);
         EventAgregator.RemoveListener(EventKey.returnForFreeAfterFight, IniciarMusicaGuardada);
+        EventAgregator.RemoveListener(EventKey.requestMusicWithBackup, OnRequestMusicWithbackup);
+        EventAgregator.RemoveListener(EventKey.requestMusicBackupReturn, IniciarMusicaGuardada);
         EventAgregator.RemoveListener(EventKey.disparaSom, OnRequestStarterSound);
+        EventAgregator.RemoveListener(EventKey.enterInPause, PararMusica);
+        EventAgregator.RemoveListener(EventKey.stopTheMusic, PararMusica);
+        EventAgregator.RemoveListener(EventKey.exitPause, RetornaMusicaParada);
+    }
+
+    private void RetornaMusicaParada(IGameEvent obj)
+    {
+        musica.ReiniciarMusicas();
+    }
+
+    private void PararMusica(IGameEvent obj)
+    {
+        musica.PararMusicas();
+    }
+
+    private void OnRequestMusicWithbackup(IGameEvent obj)
+    {
+        StandardSendStringAndFloatEvent s = obj as StandardSendStringAndFloatEvent;
+        musica.IniciarMusicaGuardandoAtual(s.MyString, s.MyFloat);
     }
 
     private void OnRequestStarterSound(IGameEvent obj)
@@ -86,7 +113,7 @@ public class GlobalController : MonoBehaviour {
 
     void OnShowEndFight(IGameEvent e)
     {
-        DisparaAudio("VinhetaDoEncontro");
+        DisparaAudio(SoundEffectID.VinhetaDoEncontro.ToString());
     }
 
     void OnStartFight(IGameEvent e)
@@ -102,7 +129,7 @@ public class GlobalController : MonoBehaviour {
     private void OnEncounterStart(IGameEvent e)
     {
         musica.PararMusicas();
-        DisparaAudio("encontro");
+        DisparaAudio(SoundEffectID.encontro.ToString());
     }
 
     private void OnFadeOutStart(IGameEvent obj)
@@ -118,7 +145,7 @@ public class GlobalController : MonoBehaviour {
     void DisparaAudio(string s)
     {
         AudioSource a = RetornaMelhorCandidato();
-        
+
         a.clip = (AudioClip)Resources.Load(s);
         a.Play();
     }
@@ -156,7 +183,7 @@ public class GlobalController : MonoBehaviour {
         {
             if (!ativos.Contains(audios[i]))
             {
-                Debug.Log("audio: "+i);
+                Debug.Log("audio: " + i);
                 ativos.Add(audios[i]);
                 return audios[i];
             }
@@ -169,20 +196,20 @@ public class GlobalController : MonoBehaviour {
     {
         Musica.Update();
     }
-/*
-    public void IniciarMusica(NameMusic n,float volumeAlvo=1)
-    {
-        musica.IniciarMusica(n,volumeAlvo);
-    }
+    /*
+        public void IniciarMusica(NameMusic n,float volumeAlvo=1)
+        {
+            musica.IniciarMusica(n,volumeAlvo);
+        }
 
-    public void IniciarMusica(AudioClip n, float volumeAlvo = 1)
-    {
-        musica.IniciarMusica(n, volumeAlvo);
-    }
+        public void IniciarMusica(AudioClip n, float volumeAlvo = 1)
+        {
+            musica.IniciarMusica(n, volumeAlvo);
+        }
 
-    public void IniciarMusicaDoZero(AudioClip n, float volumeAlvo = 1)
-    {
-        musica.IniciarMusica(n, volumeAlvo);
-        musica.ReiniciarMusicas(true);
-    }*/
+        public void IniciarMusicaDoZero(AudioClip n, float volumeAlvo = 1)
+        {
+            musica.IniciarMusica(n, volumeAlvo);
+            musica.ReiniciarMusicas(true);
+        }*/
 }

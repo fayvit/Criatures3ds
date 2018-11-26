@@ -20,6 +20,7 @@ public class PassouDeNivelEmLuta
     public PassouDeNivelEmLuta(CriatureBase oNivelado)
     {
         this.oNivelado = oNivelado;
+        EventAgregator.Publish(new StandardSendStringEvent(null, SoundEffectID.tuimParaNivel.ToString(), EventKey.disparaSom));
         GameController.g.HudM.Painel.AtivarNovaMens(
             string.Format(BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.passouDeNivel),
             oNivelado.NomeEmLinguas,
@@ -37,7 +38,7 @@ public class PassouDeNivelEmLuta
                     GameController.g.HudM.Painel.EsconderMensagem();
 
                     gp = oNivelado.GerenteDeGolpes.VerificaGolpeDoNivel(
-                        oNivelado.NomeID,oNivelado.CaracCriature.mNivel.Nivel
+                        oNivelado.NomeID, oNivelado.CaracCriature.mNivel.Nivel
                         );
 
                     if (gp.Nome != nomesGolpes.nulo && !oNivelado.GerenteDeGolpes.TemEsseGolpe(gp.Nome))
@@ -50,27 +51,31 @@ public class PassouDeNivelEmLuta
                         return true;
                     }
                 }
-            break;
+                break;
             case FasesDoPassouDeNivel.aprendeuGolpe:
                 contadorDeTempo += Time.deltaTime;
                 if (contadorDeTempo > 0.5f)
                 {
+                    EventAgregator.Publish(
+                        new StandardSendStringEvent(null, SoundEffectID.coisaBoaRebot.ToString(), EventKey.disparaSom));
+
                     GameController.g.HudM.Painel.AtivarNovaMens(
                         string.Format(BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.aprendeuGolpe),
                         oNivelado.NomeEmLinguas,
                         GolpeBase.NomeEmLinguas(gp.Nome))
                         , 30
                         );
+
                     GameController.g.HudM.P_Golpe.Aciona(PegaUmGolpeG2.RetornaGolpe(gp.Nome));
                     fase = FasesDoPassouDeNivel.painelAprendeuGolpeAberto;
                 }
-            break;
+                break;
             case FasesDoPassouDeNivel.painelAprendeuGolpeAberto:
                 if (CommandReader.SubmitButtonDown(GameController.g.Manager.Control))
                 {
                     fase = FasesDoPassouDeNivel.finalizar;
                 }
-            break;
+                break;
             case FasesDoPassouDeNivel.tentandoAprender:
                 contadorDeTempo += Time.deltaTime;
                 if (contadorDeTempo > 0.5f)
@@ -82,8 +87,8 @@ public class PassouDeNivelEmLuta
                         GolpeBase.NomeEmLinguas(gp.Nome))
                         , 30
                         );
-                    
-                    
+
+
                     hudM.P_Golpe.Aciona(PegaUmGolpeG2.RetornaGolpe(gp.Nome));
 
                     //ActionManager.ModificarAcao(GameController.g.transform, GameController.g.HudM.H_Tenta.AcaoLocal);
@@ -92,11 +97,11 @@ public class PassouDeNivelEmLuta
                         , FechandoH_Tenta);
                     fase = FasesDoPassouDeNivel.emEspera;
                 }
-            break;
+                break;
             case FasesDoPassouDeNivel.finalizar:
                 GameController.g.HudM.Painel.EsconderMensagem();
                 GameController.g.HudM.P_Golpe.gameObject.SetActive(false);
-            return true;
+                return true;
         }
         return false;
     }

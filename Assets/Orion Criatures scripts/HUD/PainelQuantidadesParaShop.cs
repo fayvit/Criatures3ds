@@ -45,14 +45,15 @@ public class PainelQuantidadesParaShop : MonoBehaviour
                 case EstadoDaqui.botoesAtivos:
                     if (ActionManager.ButtonUp(1, GameController.g.Manager.Control))
                     {
+                        EventAgregator.Publish(EventKey.negativeUiInput, null);
                         BtnVoltar();
                     }
                     else if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                         ActionManager.VerificaAcao();
 
-                        int val = CommandReader.ValorDeGatilhos("HDpad",GameController.g.Manager.Control);
+                    int val = CommandReader.ValorDeGatilhos("HDpad", GameController.g.Manager.Control);
                     if (val == 0)
-                        val = CommandReader.ValorDeGatilhosTeclado("horizontal",GameController.g.Manager.Control);
+                        val = CommandReader.ValorDeGatilhosTeclado("horizontal", GameController.g.Manager.Control);
 
                     if (val == 1)
                         BotaoMaisUm();
@@ -69,20 +70,20 @@ public class PainelQuantidadesParaShop : MonoBehaviour
                         else if (val == -1)
                             BotaoMenosDez();
                     }
-                break;
+                    break;
                 case EstadoDaqui.fraseAgradecer:
                     if (!GameController.g.HudM.DisparaT.LendoMensagemAteOCheia())
                     {
                         estado = EstadoDaqui.finalizacao;
-                      //  ActionManager.ModificarAcao(transform, () => { gameObject.SetActive(false); });
+                        //  ActionManager.ModificarAcao(transform, () => { gameObject.SetActive(false); });
                     }
-                break;
+                    break;
                 case EstadoDaqui.finalizacao:
                     if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                     {
                         gameObject.SetActive(false);
                     }
-                break;
+                    break;
             }
         }
     }
@@ -99,16 +100,16 @@ public class PainelQuantidadesParaShop : MonoBehaviour
     void AtualizaQuantidade(int quantidade, int valor)
     {
         this.quantidade = quantidade;
-        if(comprar)
+        if (comprar)
             quantidadeTXt.text = quantidade.ToString();
         else
-            quantidadeTXt.text = quantidade+" / "+ dados.TemItem(esseItem.ID);
+            quantidadeTXt.text = quantidade + " / " + dados.TemItem(esseItem.ID);
         valorAPagar.text = (quantidade * valor).ToString();
     }
 
     void DesligaBotoes()
     {
-        
+
         BtnsManager.DesligarBotoes(gameObject);
         /*BtnsManager.DesligarBotoes(GameController.g.HudM.Botaozao.gameObject);*/
     }
@@ -137,6 +138,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
             }
             else
             {
+                EventAgregator.Publish(EventKey.UiDeOpcoesChange, null);
                 AtualizaQuantidade(quantidade + tanto, esseItem.Valor);
             }
         }
@@ -149,10 +151,11 @@ public class PainelQuantidadesParaShop : MonoBehaviour
                 GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(ReligarBotoes,
                     string.Format(textos[8], dados.TemItem(esseItem.ID), MbItens.NomeEmLinguas(esseItem.ID))
                     );
-                AtualizaQuantidade(dados.TemItem(esseItem.ID), Mathf.Max(1,esseItem.Valor / 4));
+                AtualizaQuantidade(dados.TemItem(esseItem.ID), Mathf.Max(1, esseItem.Valor / 4));
             }
             else
             {
+                EventAgregator.Publish(EventKey.UiDeOpcoesChange, null);
                 AtualizaQuantidade(quantidade + tanto, Mathf.Max(1, esseItem.Valor / 4));
             }
         }
@@ -171,7 +174,10 @@ public class PainelQuantidadesParaShop : MonoBehaviour
                 estado = EstadoDaqui.emEspera;
             }
             else
+            {
                 AtualizaQuantidade(quantidade - tanto, esseItem.Valor);
+                EventAgregator.Publish(EventKey.UiDeOpcoesChange, null);
+            }
         }
         else
         {
@@ -183,7 +189,10 @@ public class PainelQuantidadesParaShop : MonoBehaviour
                 AtualizaQuantidade(1, Mathf.Max(1, esseItem.Valor / 4));
             }
             else
+            {
                 AtualizaQuantidade(quantidade - tanto, Mathf.Max(1, esseItem.Valor / 4));
+                EventAgregator.Publish(EventKey.UiDeOpcoesChange, null);
+            }
         }
     }
 
@@ -249,6 +258,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
         {
             if (dados.Cristais >= quantidade * esseItem.Valor)
             {
+                EventAgregator.Publish(EventKey.positiveUiInput, null);
                 dados.AdicionaItem(esseItem.ID, quantidade);
                 dados.Cristais -= quantidade * esseItem.Valor;
                 GameController.g.HudM.AtualizeImagemDeAtivos();
@@ -257,6 +267,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
             }
             else if (dados.Cristais < esseItem.Valor)
             {
+                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.XP_Swing03.ToString(), EventKey.disparaSom));
                 DesligaBotoes();
                 GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(ReligarBotoes,
                     string.Format(textos[11], dados.Cristais / esseItem.Valor, MbItens.NomeEmLinguas(esseItem.ID))
@@ -266,6 +277,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
             }
             else
             {
+                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.XP_Swing03.ToString(), EventKey.disparaSom));
                 DesligaBotoes();
                 GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(ReligarBotoes,
                     string.Format(textos[7], dados.Cristais / esseItem.Valor, MbItens.NomeEmLinguas(esseItem.ID))
@@ -277,6 +289,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
         {
             if (quantidade <= dados.TemItem(esseItem.ID))
             {
+                EventAgregator.Publish(EventKey.positiveUiInput, null);
                 MbItens.RetirarUmItem(GameController.g.Manager, esseItem, quantidade, FluxoDeRetorno.armagedom);
                 dados.Cristais += (quantidade * Mathf.Max(1, esseItem.Valor / 4));
                 GameController.g.HudM.AtualizeImagemDeAtivos();
@@ -284,6 +297,7 @@ public class PainelQuantidadesParaShop : MonoBehaviour
             }
             else
             {
+                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.XP_Swing03.ToString(), EventKey.disparaSom));
                 DesligaBotoes();
                 GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(ReligarBotoes,
                     string.Format(textos[8], dados.TemItem(esseItem.ID), MbItens.NomeEmLinguas(esseItem.ID))

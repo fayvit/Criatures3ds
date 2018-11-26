@@ -54,10 +54,10 @@ public class ApresentaDerrota
                 if (contadorDeTempo > TEMPO_PARA_MOSTRAR_MENSAGEM_INICIAL)
                 {
                     GameController.g.HudM.Painel.AtivarNovaMens(string.Format(textos[0],
-                        manager.CriatureAtivo.MeuCriatureBase.NomeEmLinguas),32);
+                        manager.CriatureAtivo.MeuCriatureBase.NomeEmLinguas), 32);
                     fase = FaseDaDerrota.esperandoFecharMensagemDeDerrota;
                 }
-            break;
+                break;
             case FaseDaDerrota.esperandoFecharMensagemDeDerrota:
                 if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
@@ -69,47 +69,49 @@ public class ApresentaDerrota
                     }
                     else
                     {
-                        GameController.g.HudM.Painel.AtivarNovaMens(textos[2],26);
+                        GameController.g.HudM.Painel.AtivarNovaMens(textos[2], 26);
                         fase = FaseDaDerrota.mensDoArmagedom;
                         // Aqui vamos de volta para o armagedom
                         //return RetornoDaDerrota.deVoltaAoArmagedom;
                     }
                 }
-            break;
+                break;
             case FaseDaDerrota.mensDoArmagedom:
-                if (ActionManager.ButtonUp(0,GameController.g.Manager.Control))
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                 {
                     Debug.Log("gerenciador de acoes removido");
                     GameController.g.HudM.Painel.EsconderMensagem();
-                    //GameController.g.gameObject.AddComponent<FadeView>();
+
                     GlobalController.g.FadeV.IniciarFadeOut();
+
+
                     contadorDeTempo = 0;
                     fase = FaseDaDerrota.tempoParaCarregarCena;
                 }
-            break;
+                break;
             case FaseDaDerrota.tempoParaCarregarCena:
                 contadorDeTempo += Time.deltaTime;
                 if (contadorDeTempo > TEMPO_PARA_ESCURECER)
                 {
-                    GlobalController.g.Musica.PararMusicas();
-
                     CharacterManager manager = GameController.g.Manager;
                     VisitasParaArmagedom V = LocalizacaoDeArmagedoms.L[manager.Dados.UltimoArmagedom];
                     manager.transform.position = V.Endereco;//manager.Dados.UltimoArmagedom.posHeroi;
                     manager.transform.rotation = V.Rot;
                     manager.Dados.TodosCriaturesPerfeitos();
-                    AplicadorDeCamera.cam.GetComponent<Camera>().farClipPlane = 1000;
+                    //AplicadorDeCamera.cam.GetComponent<Camera>().farClipPlane = 1000;
+                    EventAgregator.Publish(EventKey.returnForFreeAfterFight, null);
                     Debug.Log(V.nomeDasCenas[0]);
                     GameController.g.Salvador.SalvarAgora(V.nomeDasCenas);
                     GlobalController.g.FadeV.IniciarFadeIn();
                     GameObject G = new GameObject();
                     SceneLoader loadScene = G.AddComponent<SceneLoader>();
                     loadScene.CenaDoCarregamento(GameController.g.Salvador.IndiceDoJogoAtual);
-                    GameController.g.Manager.AoHeroi();
+                    //GameController.g.Manager.AoHeroi();
+                    GameController.g.RetornarParaFluxoDoHeroi();
                     fase = FaseDaDerrota.emEspera;
                     return RetornoDaDerrota.deVoltaAoArmagedom;
                 }
-            break;
+                break;
             case FaseDaDerrota.entrandoUmNovo:
                 if (replace.Update())
                 {
@@ -122,7 +124,7 @@ public class ApresentaDerrota
                     fase = FaseDaDerrota.emEspera;
                     return RetornoDaDerrota.voltarParaPasseio;
                 }
-            break;
+                break;
             case FaseDaDerrota.hudEntraCriatureAberta:
                 GameController.g.HudM.EntraCriatures.Update();
 
@@ -130,7 +132,7 @@ public class ApresentaDerrota
                 {
                     AoEscolherUmCriature(GameController.g.HudM.EntraCriatures.OpcaoEscolhida);
                 }
-            break;
+                break;
         }
 
         return RetornoDaDerrota.atualizando;
@@ -139,7 +141,7 @@ public class ApresentaDerrota
     public void AoEscolherUmCriature(int qual)
     {
         GameController.g.HudM.EntraCriatures.FinalizarHud();
-        
+
         if (manager.Dados.CriaturesAtivos[qual].CaracCriature.meusAtributos.PV.Corrente > 0)
         {
             manager.Dados.CriatureSai = qual - 1;
@@ -150,7 +152,7 @@ public class ApresentaDerrota
         else
         {
             fase = FaseDaDerrota.emEspera;
-            GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(IniciarHudEntra,string.Format(
+            GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(IniciarHudEntra, string.Format(
                BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.criatureParaMostrador)[1],
                manager.Dados.CriaturesAtivos[qual].NomeEmLinguas
                 ));

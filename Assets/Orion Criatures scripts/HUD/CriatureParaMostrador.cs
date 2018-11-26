@@ -11,6 +11,7 @@ public class CriatureParaMostrador : UmaOpcao
     [SerializeField]private Text txtNivelNum;
     [SerializeField]private Text txtListaDeStatus;
 
+    private System.Action aoDesistir;
     private bool armagedom = false;
     // Use this for initialization
     void Start()
@@ -34,8 +35,11 @@ public class CriatureParaMostrador : UmaOpcao
 
     void DeVoltaAoMenu()
     {
+        if (aoDesistir != null)
+            aoDesistir();
+
         GameController.g.HudM.EntraCriatures.PodeMudar = true;
-        ActionManager.ModificarAcao(GameController.g.transform, GameController.g.HudM.EntraCriatures.AcaoDeOpcaoEscolhida);
+        //ActionManager.ModificarAcao(GameController.g.transform, GameController.g.HudM.EntraCriatures.AcaoDeOpcaoEscolhida);
         //BtnsManager.ReligarBotoes(transform.parent.gameObject);
     }
 
@@ -45,6 +49,8 @@ public class CriatureParaMostrador : UmaOpcao
 
         if (int.Parse(txtPVnum.text.Split('/')[0]) > 0)
         {
+            EventAgregator.Publish(EventKey.positiveUiInput, null);
+
             GameController.g.HudM.EntraCriatures.PodeMudar = true;
             string texto =
                 !armagedom ? string.Format(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.criatureParaMostrador)[0], nomeCriature.text)
@@ -66,10 +72,11 @@ public class CriatureParaMostrador : UmaOpcao
         }
     }
 
-    public void SetarCriature(CriatureBase C, System.Action<int> ao, bool armagedom = false)
+    public void SetarCriature(CriatureBase C, System.Action<int> ao, bool armagedom = false,System.Action aoDesistir = null)
     {
         this.armagedom = armagedom;
         Acao += ao;
+        this.aoDesistir += aoDesistir;
 
         Atributos A = C.CaracCriature.meusAtributos;
 

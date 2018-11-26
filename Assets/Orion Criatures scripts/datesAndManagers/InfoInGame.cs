@@ -8,7 +8,7 @@ public class InfoInGame : AtivadorDeBotao
 
     private string[] conversa;
     private EstadoDaInfoGame estado = EstadoDaInfoGame.emEspera;
-    
+
 
     private enum EstadoDaInfoGame
     {
@@ -19,7 +19,7 @@ public class InfoInGame : AtivadorDeBotao
     void Start()
     {
         textoDoBotao = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.textoBaseDeAcao)[1];
-        if(!exigirTrigger)
+        if (!exigirTrigger)
             SempreEstaNoTrigger();
 
         conversa = BancoDeTextos.RetornaListaDeTextoDoIdioma(StringParaEnum.ObterEnum<ChaveDeTexto>(paraChaveDeTexto)).ToArray();
@@ -31,17 +31,17 @@ public class InfoInGame : AtivadorDeBotao
         {
             case EstadoDaInfoGame.emEspera:
                 base.Update();
-            break;
+                break;
             case EstadoDaInfoGame.lendoTexto:
                 if (GameController.g.HudM.DisparaT.UpdateDeTextos(conversa))
                 {
                     //CommandReader.useiAcao = true;
-                    EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, "Book1", EventKey.disparaSom));
+                    EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.XP_Swing03.ToString(), EventKey.disparaSom));
                     GameController.g.HudM.DisparaT.DesligarPaineis();
                     estado = EstadoDaInfoGame.emEspera;
                     GameController.g.Manager.AoHeroi();
                 }
-            break;
+                break;
         }
     }
     public override void FuncaoDoBotao()

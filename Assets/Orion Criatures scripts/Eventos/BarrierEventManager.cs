@@ -2,21 +2,25 @@
 using System.Collections;
 //[ExecuteInEditMode]
 public class BarrierEventManager : EventoComGolpe
-{    
+{
     [Space(5)]
-    [SerializeField]private GameObject barreira;
-    [SerializeField]private GameObject acaoEfetivada;
-    [SerializeField]private GameObject finalizaAcao;
-    
-    
-    [SerializeField]private int indiceDaMensagem = 0;
+    [SerializeField] private GameObject barreira;
+    [SerializeField] private GameObject acaoEfetivada;
+    [SerializeField] private GameObject finalizaAcao;
+
+
+    [SerializeField] private int indiceDaMensagem = 0;
     [SerializeField] private bool usarForwardDoObjeto = false;
+    [SerializeField] private string somDaEfetivacao;
+    [SerializeField] private string somDaFinalizacao;
 
     private BarrierEventsState estado = BarrierEventsState.emEspera;
     private bool jaIniciaou = false;
     private float tempoDecorrido = 0;
     private float tempoDeEfetivaAcao = 2.5f;
     private float tempoDoFinalizaAcao = 1.75f;
+    private int numJaRepetidos = 0;
+    private int numRepeticoesDoSom = 8;
 
     private enum BarrierEventsState
     {
@@ -59,21 +63,10 @@ public class BarrierEventManager : EventoComGolpe
         VoltarAoFLuxoDeJogo();
         //ButtonsViewsManager.anularAcao = true;
     }
-    
+
     private void OnValidate()
     {
         BuscadorDeID.Validate(ref ID, this);
-        /*
-#if UNITY_EDITOR
-        if (string.IsNullOrEmpty(Chave)&& gameObject.scene.name != null)
-        {
-            // ID = BuscadorDeID.GetUniqueID(gameObject, ID.ToString());
-
-            Chave = GetInstanceID() + "_" + gameObject.scene.name + "_Barreira";
-            //ID = System.Guid.NewGuid().ToString();
-            BuscadorDeID.SetUniqueIdProperty(this, Chave, "chave");
-        }
-#endif*/
     }
 
     new void Update()
@@ -87,15 +80,17 @@ public class BarrierEventManager : EventoComGolpe
                     {
                         AcaoDeMensAberta();
                     }
-                break;
+                    break;
                 case BarrierEventsState.ativou:
                     tempoDecorrido += Time.deltaTime;
+                    VeririqueSom();
                     if (tempoDecorrido > tempoDeEfetivaAcao)
                     {
                         tempoDecorrido = 0;
                         finalizaAcao.SetActive(true);
                         barreira.SetActive(false);
                         estado = BarrierEventsState.apresentaFinalizaAcao;
+                        EventAgregator.Publish(new StandardSendStringEvent(gameObject, somDaFinalizacao, EventKey.disparaSom));
                     }
                     break;
                 case BarrierEventsState.apresentaFinalizaAcao:
@@ -111,20 +106,29 @@ public class BarrierEventManager : EventoComGolpe
         }
         else
         {
-          //  if (Application.isEditor)
+            //  if (Application.isEditor)
             //    Chave = BuscadorDeID.GetUniqueID(gameObject) + "_" + gameObject.scene.name;
             Start();
         }
     }
 
+    void VeririqueSom()
+    {
+        if (tempoDecorrido > numJaRepetidos * (tempoDeEfetivaAcao / numRepeticoesDoSom))
+        {
+            EventAgregator.Publish(new StandardSendStringEvent(gameObject, somDaEfetivacao, EventKey.disparaSom));
+            numJaRepetidos++;
+        }
+    }
+
     public override void DisparaEvento(nomesGolpes nomeDoGolpe)
     {
-        Debug.Log(nomeDoGolpe+" : "+ GameController.g.MyKeys.VerificaAutoShift(ID));
+        Debug.Log(nomeDoGolpe + " : " + GameController.g.MyKeys.VerificaAutoShift(ID));
 
-        if (EsseGolpeAtiva(nomeDoGolpe))        
+        if (EsseGolpeAtiva(nomeDoGolpe))
             estado = BarrierEventsState.ativou;
-        
-        
+
+
 
         if (estado == BarrierEventsState.ativou)
         {
@@ -133,7 +137,7 @@ public class BarrierEventManager : EventoComGolpe
             tempoDecorrido = 0;
             GameController.g.MyKeys.MudaAutoShift(ID, true);
             //GameController.g.MyKeys.MudaShift(ChaveEspecial, true);
-            AplicadorDeCamera.cam.NovoFocoBasico(transform,10,10,true,usarForwardDoObjeto);
+            AplicadorDeCamera.cam.NovoFocoBasico(transform, 10, 10, true, usarForwardDoObjeto);
         }
     }
 
@@ -146,7 +150,7 @@ public class BarrierEventManager : EventoComGolpe
         estado = BarrierEventsState.mensAberta;
 
         //ActionManager.ModificarAcao(GameController.g.transform,AcaoDeMensAberta);
-        
+
     }
 
     public override void FuncaoDoBotao()

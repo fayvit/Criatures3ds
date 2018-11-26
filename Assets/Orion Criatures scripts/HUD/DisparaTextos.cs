@@ -10,9 +10,9 @@ public class DisparaTexto
     [SerializeField] private RectTransform painelDaMens;
     [SerializeField] private GameObject painelDaPressa;
 
-    private Text textoDaUI;    
+    private Text textoDaUI;
     private Image img;
-    
+
     private Vector2 posOriginal;
     private FasesDaMensagem fase = FasesDaMensagem.caixaIndo;
 
@@ -20,7 +20,7 @@ public class DisparaTexto
     private float contadorDeTempo = 0;
     private bool dispara = false;
     private int indiceDaConversa = 0;
-    
+
 
     public enum FasesDaMensagem
     {
@@ -39,7 +39,7 @@ public class DisparaTexto
 
     public void IniciarDisparadorDeTextos(bool pressa = false)
     {
-        
+
         painelDaPressa.SetActive(pressa);
 
         dispara = false;
@@ -47,7 +47,7 @@ public class DisparaTexto
         indiceDaConversa = 0;
     }
 
-    public bool UpdateDeTextos(string[] conversa,Sprite foto = null)
+    public bool UpdateDeTextos(string[] conversa, Sprite foto = null)
     {
         if (indiceDaConversa < conversa.Length)
         {
@@ -70,7 +70,7 @@ public class DisparaTexto
             Toque();
         }
 
-        if (ActionManager.ButtonUp(1,GameController.g.Manager.Control) && painelDaPressa.activeSelf)
+        if (ActionManager.ButtonUp(1, GameController.g.Manager.Control) && painelDaPressa.activeSelf)
         {
             ActionManager.useiCancel = true;
             DesligarPaineis();
@@ -94,13 +94,13 @@ public class DisparaTexto
     public void Dispara(string texto, Sprite sDaFoto = null)
     {
         if (!dispara)
-        {            
+        {
 
             dispara = true;
             painelDaMens.gameObject.SetActive(true);
             painelDaMens.anchoredPosition = new Vector2(posOriginal.x, Screen.height);
             textoDaUI.text = "";
-            if (sDaFoto!=null)
+            if (sDaFoto != null)
             {
                 img.sprite = sDaFoto;
             }
@@ -109,7 +109,7 @@ public class DisparaTexto
 
             fase = FasesDaMensagem.caixaIndo;
             this.texto = texto;
-            
+
         }
     }
 
@@ -147,7 +147,7 @@ public class DisparaTexto
                     }
                     break;
                 case FasesDaMensagem.mensagemEnchendo:
-                    if ((int)(contadorDeTempo * velocidadeDasLetras) <= texto.Length  && !texto.Contains("<co"))
+                    if ((int)(contadorDeTempo * velocidadeDasLetras) <= texto.Length && !texto.Contains("<co"))
                         textoDaUI.text = texto.Substring(0, (int)(contadorDeTempo * velocidadeDasLetras));
                     else
                     {
@@ -180,15 +180,15 @@ public class DisparaTexto
         switch (fase)
         {
             case FasesDaMensagem.mensagemEnchendo:
-                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, "Cursor2", EventKey.disparaSom));
+                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.Book1.ToString(), EventKey.disparaSom));
                 textoDaUI.text = texto;
                 fase = FasesDaMensagem.mensagemCheia;
-            break;
+                break;
             case FasesDaMensagem.mensagemCheia:
-                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, "Cursor2", EventKey.disparaSom));
+                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.Book1.ToString(), EventKey.disparaSom));
                 fase = FasesDaMensagem.caixaSaindo;
                 contadorDeTempo = 0;
-            break;
+                break;
         }
     }
 

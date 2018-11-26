@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class RockMovePuzzle:EventoComGolpe
+public class RockMovePuzzle : EventoComGolpe
 {
-    [SerializeField]private float vel = 2;
-    [SerializeField]private float smooth = 2;
-    [SerializeField]private Transform posFinalizado;
+    [SerializeField] private float vel = 2;
+    [SerializeField] private float smooth = 2;
+    [SerializeField] private Transform posFinalizado;
 
     private float yInicial = 0;
     private float smoothVel = 0;
@@ -59,23 +59,23 @@ public class RockMovePuzzle:EventoComGolpe
         {
             case RockMoveState.movimentacao:
                 smoothVel = Mathf.Lerp(smoothVel, vel, Time.deltaTime * smooth);
-                controle.Move(dirDeMove*Time.deltaTime*vel);
-            break;
+                controle.Move(dirDeMove * Time.deltaTime * vel);
+                break;
             case RockMoveState.parar:
                 smoothVel = 0;
                 Destroy(controle);
-                transform.position = new Vector3(transform.position. x, yInicial, transform.position.z);
+                transform.position = new Vector3(transform.position.x, yInicial, transform.position.z);
                 estado = RockMoveState.emEspera;
                 Destroy(
-                Instantiate(GameController.g.El.retorna(DoJogo.poeiraAoVento),transform.position,Quaternion.identity),5);
+                Instantiate(GameController.g.El.retorna(DoJogo.poeiraAoVento), transform.position, Quaternion.identity), 5);
                 Invoke("TempoDeRetorno", 1);
-            break;
+                break;
             case RockMoveState.finalizar:
                 Destroy(controle);
                 transform.position = new melhoraPos().novaPos(umAlvo.position + Vector3.up);
                 Invoke("TempoDeRetorno", 1);
                 estado = RockMoveState.feito;
-            break;     
+                break;
         }
     }
 
@@ -91,14 +91,14 @@ public class RockMovePuzzle:EventoComGolpe
         {
             GameController.g.Manager.CriatureAtivo.Estado = CreatureManager.CreatureState.parado;
         }
-        
+
     }
 
     void CalculaDirecaoDeMove()
     {
         Vector3 dir = (GameController.g.Manager.CriatureAtivo.transform.position - transform.position).normalized;
         Vector3 min = Vector3.forward;
-        float ultimoDot = Vector3.Dot(min,dir);
+        float ultimoDot = Vector3.Dot(min, dir);
 
         MenorDot(ref min, ref ultimoDot, dir, Vector3.right);
         MenorDot(ref min, ref ultimoDot, dir, -Vector3.right);
@@ -110,10 +110,10 @@ public class RockMovePuzzle:EventoComGolpe
         MenorDot(ref min, ref ultimoDot, dir, (Vector3.forward - Vector3.right).normalized);
         */
 
-        Debug.Log(min+" : "+ultimoDot);
+        Debug.Log(min + " : " + ultimoDot);
 
         dirDeMove = -min;
-        AplicadorDeCamera.cam.NovoFocoBasico(transform, 10, 10,true);
+        AplicadorDeCamera.cam.NovoFocoBasico(transform, 10, 10, true);
         IniciaMovimentacao();
     }
 
@@ -123,7 +123,7 @@ public class RockMovePuzzle:EventoComGolpe
         controle = gameObject.AddComponent<CharacterController>();
     }
 
-    void MenorDot(ref Vector3 min,ref float ultimoDot,Vector3 dir, Vector3 quem)
+    void MenorDot(ref Vector3 min, ref float ultimoDot, Vector3 dir, Vector3 quem)
     {
         if (Vector3.Dot(dir, quem) > ultimoDot)
         {
@@ -143,21 +143,25 @@ public class RockMovePuzzle:EventoComGolpe
 
     public void RestauraShift()
     {
-        GameController.g.MyKeys.MudaAutoShift(ID,false);
+        GameController.g.MyKeys.MudaAutoShift(ID, false);
         estado = RockMoveState.emEspera;
     }
 
     void OnTriggerEnter(Collider hit)
     {
         if (hit.gameObject.tag == "gatilhoDePuzzle")
-            if (rockManager.VerificaTargetOcupado(hit.transform,transform))
+            if (rockManager.VerificaTargetOcupado(hit.transform, transform))
             {
                 Debug.Log("gatilhoDePuzzle");
                 umAlvo = hit.transform;
                 Destroy(
                 Instantiate(GameController.g.El.retorna("teletransporte"), hit.transform.position, Quaternion.identity), 5);
-                EventAgregator.Publish(new StandardSendStringEvent(hit.gameObject, "bemFeito", EventKey.disparaSom));
-                
+                EventAgregator.Publish(
+                    new StandardSendStringEvent(
+                        hit.gameObject,
+                        SoundEffectID.bemFeito.ToString(),
+                        EventKey.disparaSom));
+
                 GameController.g.MyKeys.MudaAutoShift(ID, true);
                 estado = RockMoveState.finalizar;
             }
@@ -169,7 +173,7 @@ public class RockMovePuzzle:EventoComGolpe
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (Vector3.ProjectOnPlane(hit.normal, Vector3.up).magnitude > 0.5f 
+        if (Vector3.ProjectOnPlane(hit.normal, Vector3.up).magnitude > 0.5f
             && estado == RockMoveState.movimentacao)
         {
             Debug.Log("Parece uma parede");

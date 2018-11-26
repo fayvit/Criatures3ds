@@ -3,13 +3,13 @@ using System.Collections;
 
 [System.Serializable]
 
-public class MbItens:System.ICloneable
+public class MbItens : System.ICloneable
 {
-    [SerializeField]private nomeIDitem nomeID;
-    [SerializeField]private bool usavel;
-    [SerializeField]private int acumulavel;
-    [SerializeField]private int estoque;
-    [SerializeField]private int valor;
+    [SerializeField] private nomeIDitem nomeID;
+    [SerializeField] private bool usavel;
+    [SerializeField] private int acumulavel;
+    [SerializeField] private int estoque;
+    [SerializeField] private int valor;
 
     //private GameObject gAlvoDoItem;
     [System.NonSerialized] private CharacterManager manager;
@@ -121,8 +121,8 @@ public class MbItens:System.ICloneable
 
         for (int i = 0; i < quantidade; i++)
         {
-            retorno &= RetirarUmItem(ProcuraItemNaLista(nomeItem.ID),gerente,fluxo);
-            
+            retorno &= RetirarUmItem(ProcuraItemNaLista(nomeItem.ID), gerente, fluxo);
+
         }
 
         return retorno;
@@ -148,7 +148,7 @@ public class MbItens:System.ICloneable
     static MbItens ProcuraItemNaLista(nomeIDitem nome)
     {
         MbItens retorno = new MbItens(new ContainerDeCaracteristicasDeItem());
-        for (int i = GameController.g.Manager.Dados.Itens.Count - 1; i > -1;i--)
+        for (int i = GameController.g.Manager.Dados.Itens.Count - 1; i > -1; i--)
         {
             if (GameController.g.Manager.Dados.Itens[i].ID == nome)
                 retorno = GameController.g.Manager.Dados.Itens[i];
@@ -159,7 +159,7 @@ public class MbItens:System.ICloneable
 
     public static bool RetirarUmItem(
         MbItens nomeItem,
-        CharacterManager gerente,         
+        CharacterManager gerente,
         FluxoDeRetorno fluxo = FluxoDeRetorno.heroi)
     {
         int indice = gerente.Dados.Itens.IndexOf(nomeItem);
@@ -168,7 +168,7 @@ public class MbItens:System.ICloneable
             {
                 gerente.Dados.Itens[indice].Estoque--;
                 GameController g = GameController.g;
-                if(g.UsarTempoDeItem==UsarTempoDeItem.sempre ||(g.UsarTempoDeItem==UsarTempoDeItem.emLuta && g.estaEmLuta))
+                if (g.UsarTempoDeItem == UsarTempoDeItem.sempre || (g.UsarTempoDeItem == UsarTempoDeItem.emLuta && g.estaEmLuta))
                     gerente.Dados.TempoDoUltimoUsoDeItem = Time.time;
 
                 Debug.Log("remove ai vai");
@@ -178,7 +178,7 @@ public class MbItens:System.ICloneable
                     g.FinalizaHuds();
                     gerente.Dados.Itens.Remove(gerente.Dados.Itens[indice]);
 
-                    if (gerente.Dados.itemSai > gerente.Dados.Itens.Count-1)
+                    if (gerente.Dados.itemSai > gerente.Dados.Itens.Count - 1)
                         gerente.Dados.itemSai = 0;
 
                     if (fluxo == FluxoDeRetorno.menuCriature || fluxo == FluxoDeRetorno.menuHeroi)
@@ -192,7 +192,7 @@ public class MbItens:System.ICloneable
         return false;
     }
 
-    protected void InicializacaoComum(GameObject dono,Transform alvoDoItem)
+    protected void InicializacaoComum(GameObject dono, Transform alvoDoItem)
     {
         Manager = GameController.g.Manager;
         TempoDecorrido = 0;

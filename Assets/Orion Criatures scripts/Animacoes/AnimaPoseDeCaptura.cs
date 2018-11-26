@@ -19,6 +19,7 @@ public class AnimaPoseDeCaptura
         mensDoArmagedom,
         finaliza
     }
+
     public AnimaPoseDeCaptura(CriatureBase oCapturado)
     {
         this.oCapturado = oCapturado;
@@ -48,12 +49,12 @@ public class AnimaPoseDeCaptura
         }
 
         //Trofeus.ProcurarTrofeuDeCriature(oCapturado.NomeID);
-        
+
 
         animator.SetBool("travar", true);
         animator.SetBool("chama", false);
         animator.Play("capturou");
-        
+
     }
 
     public bool Update()
@@ -65,26 +66,28 @@ public class AnimaPoseDeCaptura
                 AplicadorDeCamera.cam.FocarPonto(10);
                 if (tempoDecorrido > 1)
                 {
+                    EventAgregator.Publish(new StandardSendStringEvent(null, SoundEffectID.bemFeito.ToString(), EventKey.disparaSom));
                     InsereBrilho();
                     tempoDecorrido = 0;
                     fase = FaseDoAnimaPose.brilho2;
                 }
-            break;
+                break;
             case FaseDoAnimaPose.brilho2:
                 if (tempoDecorrido > 1.1f)
                 {
+                    EventAgregator.Publish(new StandardSendStringEvent(null, SoundEffectID.coisaBoaRebot.ToString(), EventKey.disparaSom));
                     InsereBrilho();
                     tempoDecorrido = 0;
                     fase = FaseDoAnimaPose.insereInfos;
                 }
-            break;
+                break;
             case FaseDoAnimaPose.insereInfos:
                 if (tempoDecorrido > 0.4f)
                 {
-                    
+
                     PainelDeCriature PC = GameController.g.HudM.P_Criature;
                     GameController.g.HudM.Painel.AtivarNovaMens(
-                        BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.tentaCapturar)[5]+
+                        BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.tentaCapturar)[5] +
                         oCapturado.NomeEmLinguas
                         , 25);
                     PC.gameObject.SetActive(true);
@@ -102,20 +105,20 @@ public class AnimaPoseDeCaptura
                         tempoDecorrido = 0;
                     }
                 }
-            break;
+                break;
             case FaseDoAnimaPose.mensDoArmagedom:
-                if (ActionManager.ButtonUp(0,GameController.g.Manager.Control)|| tempoDecorrido > TEMPO_DE_MENS_DE_CAPTURA)
+                if (ActionManager.ButtonUp(0, GameController.g.Manager.Control) || tempoDecorrido > TEMPO_DE_MENS_DE_CAPTURA)
                 {
-                   GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(() => {
+                    GameController.g.HudM.UmaMensagem.ConstroiPainelUmaMensagem(() => {
                         tempoDecorrido = 11;// para finalizar imediatamente
                         fase = FaseDoAnimaPose.finaliza;
-                    },string .Format(BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.foiParaArmagedom),
-                    GameController.g.Manager.Dados.maxCarregaveis,
-                    oCapturado.NomeEmLinguas,
-                    oCapturado.CaracCriature.mNivel.Nivel
-                    ));
+                    }, string.Format(BancoDeTextos.RetornaFraseDoIdioma(ChaveDeTexto.foiParaArmagedom),
+                     GameController.g.Manager.Dados.maxCarregaveis,
+                     oCapturado.NomeEmLinguas,
+                     oCapturado.CaracCriature.mNivel.Nivel
+                     ));
                 }
-            break;
+                break;
             case FaseDoAnimaPose.finaliza:
                 if (ActionManager.ButtonUp(0, GameController.g.Manager.Control) || tempoDecorrido > TEMPO_DE_MENS_DE_CAPTURA)
                 {
@@ -124,7 +127,7 @@ public class AnimaPoseDeCaptura
                     GameController.g.HudM.P_Criature.gameObject.SetActive(false);
                     return false;
                 }
-            break;
+                break;
         }
         return true;
     }
@@ -134,6 +137,7 @@ public class AnimaPoseDeCaptura
         Vector3 maoDoHeroi = GameController.g.Manager.transform
             .Find("metarig/hips/spine/chest/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_04_R")
                 .transform.position;//+0.2f*transform.forward;
-        MonoBehaviour.Instantiate(GameController.g.El.retorna("luz1captura"), maoDoHeroi, Quaternion.identity);
+        MonoBehaviour.Destroy(
+        MonoBehaviour.Instantiate(GameController.g.El.retorna("luz1captura"), maoDoHeroi, Quaternion.identity), 5);
     }
 }

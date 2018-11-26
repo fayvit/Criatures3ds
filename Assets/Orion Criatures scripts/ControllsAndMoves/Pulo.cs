@@ -27,7 +27,7 @@ public class Pulo
         caracteristicas.estouPulando = true;
         elementos.controle.Move(Vector3.up * caracteristicas.impulsoInicial);
         elementos.Animador.AnimaIniciaPulo();
-        EventAgregator.Publish(new StandardSendStringEvent(elementos.transform.gameObject, "064-Swing03", EventKey.disparaSom));
+        EventAgregator.Publish(new StandardSendStringEvent(elementos.transform.gameObject, SoundEffectID.XP_Swing03.ToString(), EventKey.disparaSom));
     }
 
     public void VerificaPulo(Vector3 direcaoMovimento)
@@ -81,14 +81,14 @@ public class Pulo
 
     public void NaoEstouPulando()
     {
-        
+
         if (caracteristicas.estouPulando)
             elementos.Animador.AnimaDescendoPulo();
-            
+
 
         //else
-            //elementos.animador.ResetaTriggerDeTocandoOChao();
-            
+        //elementos.animador.ResetaTriggerDeTocandoOChao();
+
         caracteristicas.estouPulando = false;
         caracteristicas.estavaPulando = false;
         movimentoVertical = Vector3.zero;

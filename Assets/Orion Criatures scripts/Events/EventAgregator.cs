@@ -5,10 +5,10 @@ using System;
 
 public static class EventAgregator
 {
-    private static Dictionary<EventKey, List<Action<IGameEvent>>> _eventDictionary 
+    private static Dictionary<EventKey, List<Action<IGameEvent>>> _eventDictionary
         = new Dictionary<EventKey, List<Action<IGameEvent>>>();
 
-    public static void AddListener(EventKey key,Action<IGameEvent> callback)
+    public static void AddListener(EventKey key, Action<IGameEvent> callback)
     {
         List<Action<IGameEvent>> callbackList;
         if (!_eventDictionary.TryGetValue(key, out callbackList))
@@ -42,7 +42,7 @@ public static class EventAgregator
                 if (e != null)
                     e(umEvento);
                 else
-                    Debug.LogWarning("Event agregator chamou uma função nula na key: "+key+
+                    Debug.LogWarning("Event agregator chamou uma função nula na key: " + key +
                         "\r\n Geralmente ocorre quando o objeto do evento foi destruido sem se retirar do listener");
             }
         }
@@ -74,5 +74,10 @@ public enum EventKey
     startFight,
     showEndFight,
     returnForFreeAfterFight,
-    disparaSom
+    disparaSom,
+    requestMusicWithBackup,
+    requestMusicBackupReturn,
+    enterInPause,
+    exitPause,
+    stopTheMusic
 }

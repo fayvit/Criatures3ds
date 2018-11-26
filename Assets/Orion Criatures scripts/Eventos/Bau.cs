@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
- 
+
 public class Bau : AtivadorDeBotao
 {
-    [SerializeField]private string ID = "";
-    [SerializeField]private ItemDeBau[] itemDoBau;
-    [SerializeField]private Transform tampa;
+    [SerializeField] private string ID = "";
+    [SerializeField] private ItemDeBau[] itemDoBau;
+    [SerializeField] private Transform tampa;
 
     private int indiceDoItem = 0;
     private string[] textos = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.bau).ToArray();
@@ -20,7 +20,7 @@ public class Bau : AtivadorDeBotao
         fechando
     }
 
-    
+
 
     // Use this for initialization
     void Start()
@@ -72,7 +72,7 @@ public class Bau : AtivadorDeBotao
     // Update is called once per frame
     new void Update()
     {
-        
+
         base.Update();
         switch (fase)
         {
@@ -83,22 +83,22 @@ public class Bau : AtivadorDeBotao
 
                 if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                     QualOpcao(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
-            break;
+                break;
             case FasesDoBau.abrindo:
 
                 if (Vector3.Angle(tampa.forward, transform.forward) < 70)
-                    tampa.Rotate(tampa.right, -75 * Time.deltaTime, Space.World); //(dobradica.position, dobradica.up, 75 * Time.deltaTime);
+                    tampa.Rotate(tampa.right, -75 * Time.deltaTime, Space.World);
                 else
                 {
                     fase = FasesDoBau.aberto;
-                    //ActionManager.ModificarAcao(GameController.g.transform, BauAberto);
+
                     VerificaItem();
                 }
-            break;
+                break;
             case FasesDoBau.aberto:
                 if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
                     BauAberto();
-            break;
+                break;
             case FasesDoBau.fechando:
                 // if (Vector3.Angle(tampa.forward, transform.forward) > 5)
                 //    tampa.Rotate(tampa.right, 75 * Time.deltaTime, Space.World);
@@ -108,10 +108,10 @@ public class Bau : AtivadorDeBotao
                     //tampa.rotation = Quaternion.LookRotation(transform.forward);
                     FinalizarAcaoDeBau();
                 }
-            break;
+                break;
         }
 
-        
+
     }
 
     void VerificaItem()
@@ -123,9 +123,10 @@ public class Bau : AtivadorDeBotao
         else
         {
             ItemDeBau ii = itemDoBau[indiceDoItem];
-            GameController.g.HudM.Painel.AtivarNovaMens(string.Format(textos[2], ii.Quantidade, MbItens.NomeEmLinguas(ii.Item)),25);
+            GameController.g.HudM.Painel.AtivarNovaMens(string.Format(textos[2], ii.Quantidade, MbItens.NomeEmLinguas(ii.Item)), 25);
             GameController.g.HudM.MostrarItem.IniciarPainel(ii.Item, ii.Quantidade);
-            GameController.g.Manager.Dados.AdicionaItem(ii.Item,ii.Quantidade);
+            GameController.g.Manager.Dados.AdicionaItem(ii.Item, ii.Quantidade);
+            EventAgregator.Publish(new StandardSendStringEvent(gameObject, SoundEffectID.coisaBoaRebot.ToString(), EventKey.disparaSom));
 
             indiceDoItem++;
         }
@@ -136,12 +137,13 @@ public class Bau : AtivadorDeBotao
         switch (qual)
         {
             case 0://sim
+                EventAgregator.Publish(new StandardSendStringEvent(gameObject, SoundEffectID.paraBau.ToString(), EventKey.disparaSom));
                 fase = FasesDoBau.abrindo;
-            break;
+                break;
             case 1://nao
 
                 FinalizarAcaoDeBau();
-            break;
+                break;
         }
 
         GameController.g.HudM.Menu_Basico.FinalizarHud();
@@ -150,6 +152,7 @@ public class Bau : AtivadorDeBotao
 
     void FinalizarAcaoDeBau()
     {
+        EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.XP_Swing03.ToString(), EventKey.disparaSom));
         fase = FasesDoBau.emEspera;
         //GameController.g.HudM.ligarControladores();
         //AndroidController.a.LigarControlador();
@@ -161,6 +164,7 @@ public class Bau : AtivadorDeBotao
 
     public override void FuncaoDoBotao()
     {
+        SomDoIniciar();
         FluxoDeBotao();
 
         //commandR = GameController.g.CommandR;
@@ -178,21 +182,22 @@ public class Bau : AtivadorDeBotao
         }
     }
 
-    
+
 }
 
 [System.Serializable]
 public class ItemDeBau
 {
     [SerializeField] private nomeIDitem item;
-    [SerializeField] private string itemString="";
+    [SerializeField] private string itemString = "";
     [SerializeField] private int quantidade;
 
     public nomeIDitem Item
     {
-        get {
+        get
+        {
             nomeIDitem n = item;
-            if (itemString!="")
+            if (itemString != "")
                 n = StringParaEnum.ObterEnum<nomeIDitem>(itemString);
             return n;
         }

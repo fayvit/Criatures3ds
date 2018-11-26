@@ -4,12 +4,12 @@ using System.Collections;
 [System.Serializable]
 public class MbMultiplicar : GolpeBase
 {
-    [System.NonSerialized]private CharacterController controle;
+    [System.NonSerialized] private CharacterController controle;
     private CaracteristicasDeImpacto carac;
     private GolpePersonagem gP;
     private float tempoDecorrido = 0;
     private bool addView = false;
-    
+
 
     public MbMultiplicar() : base(new ContainerDeCaracteristicasDeGolpe()
     {
@@ -41,7 +41,7 @@ public class MbMultiplicar : GolpeBase
     {
         tempoDecorrido = 0;
         addView = false;
-        
+
         gP = GolpePersonagem.RetornaGolpePersonagem(G, Nome);
     }
 
@@ -59,10 +59,10 @@ public class MbMultiplicar : GolpeBase
             GameObject G2 = GameController.g.El.retorna(C.MeuCriatureBase.NomeID);
             Vector3 pos = Vector3.zero;
             Transform alvo = CriaturesPerto.procureUmBomAlvo(G, 450);
-            EventAgregator.Publish(new StandardSendStringEvent(G, "043-Knock04", EventKey.disparaSom));
+            EventAgregator.Publish(new StandardSendStringEvent(G, SoundEffectID.XP_Knock04.ToString(), EventKey.disparaSom));
             if (alvo)
                 G.transform.rotation = Quaternion.LookRotation(
-                    Vector3.ProjectOnPlane(alvo.position-G.transform.position,Vector3.up)
+                    Vector3.ProjectOnPlane(alvo.position - G.transform.position, Vector3.up)
                     );
 
             for (int i = 0; i < 4; i++)
@@ -72,19 +72,19 @@ public class MbMultiplicar : GolpeBase
                     case 0:
                         pos = G.transform.position + G.transform.forward + 2 * G.transform.right;
 
-                    break;
+                        break;
                     case 1:
 
-                        pos = G.transform.position + G.transform.forward - 2 *G.transform.right;
+                        pos = G.transform.position + G.transform.forward - 2 * G.transform.right;
 
-                    break;
+                        break;
                     case 2:
                         pos = G.transform.position - G.transform.forward + 3 * G.transform.right;
 
-                    break;
+                        break;
                     case 3:
                         pos = G.transform.position - G.transform.forward - 3 * G.transform.right;
-                    break;
+                        break;
                 }
 
                 G2 = MonoBehaviour.Instantiate(G2, new melhoraPos().novaPos(pos), G.transform.rotation) as GameObject;
@@ -97,7 +97,7 @@ public class MbMultiplicar : GolpeBase
                     c.velocidadeProjetil = C.MeuCriatureBase.Mov.velocidadeAndando;
                     c.dono = G;
                     c.esseGolpe = this;
-                    c.tempoDestroy = Mathf.Max(0.95f* TempoDeDestroy - TempoDeMoveMin,1);
+                    c.tempoDestroy = Mathf.Max(0.95f * TempoDeDestroy - TempoDeMoveMin, 1);
                     CapsuleCollider caps = G2.AddComponent<CapsuleCollider>();
                     G2.AddComponent<Rigidbody>();
                     caps.isTrigger = true;
@@ -123,4 +123,4 @@ public class MbMultiplicar : GolpeBase
         }
     }
 
-    }
+}

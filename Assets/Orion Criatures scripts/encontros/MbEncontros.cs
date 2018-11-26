@@ -4,10 +4,10 @@ using System.Collections.Generic;
 [System.Serializable]
 public class MbEncontros
 {
-    [SerializeField]private int minEncontro = 50;
-    [SerializeField]private int maxEncontro = 300;
-    [SerializeField]private float andado = 0;
-    [SerializeField]private float proxEncontro = 100;
+    [SerializeField] private int minEncontro = 50;
+    [SerializeField] private int maxEncontro = 300;
+    [SerializeField] private float andado = 0;
+    [SerializeField] private float proxEncontro = 100;
     [SerializeField] private bool contarPassos = true;
 
     private Vector3 posHeroi;
@@ -25,7 +25,7 @@ public class MbEncontros
 
     public bool Luta
     {
-        get{return luta;}
+        get { return luta; }
     }
 
     public bool ContarPassos
@@ -50,20 +50,20 @@ public class MbEncontros
     // Update is called once per frame
     public void Update()
     {
-        
+
         //if (!pausaJogo.pause)
         {
             if (!luta)
                 posHeroi = manager.transform.position;
 
-            if (!LugarSeguro() && !luta && MovimentacaoBasica.noChaoS(manager.Mov.Controle,0.01f) && contarPassos)
+            if (!LugarSeguro() && !luta && MovimentacaoBasica.noChaoS(manager.Mov.Controle, 0.01f) && contarPassos)
             {
                 andado += (posHeroi - posAnterior).magnitude;
                 posAnterior = posHeroi;
             }
 
 
-            if (!luta && andado >= proxEncontro )
+            if (!luta && andado >= proxEncontro)
             {
                 ColetorDeLixo.Coleta();
                 IniciaEncontro();
@@ -76,7 +76,7 @@ public class MbEncontros
 
                 EventAgregator.Publish(EventKey.returnForFreeAfterFight,
                     null);
-                
+
             }
 
 
@@ -86,12 +86,15 @@ public class MbEncontros
 
     public void FinalizaEncontro(bool treinador)
     {
+        if (!treinador)
+            luta = false;
+
         gerenteDeEncontro.FinalizarEncontro(treinador);
     }
 
-    public void IniciarEncontroCom(CreatureManager c,bool treinador,string nomeTreinador = "")
+    public void IniciarEncontroCom(CreatureManager c, bool treinador, string nomeTreinador = "")
     {
-        gerenteDeEncontro.InicializarEncounterManager(c, manager,treinador,nomeTreinador);
+        gerenteDeEncontro.InicializarEncounterManager(c, manager, treinador, nomeTreinador);
         contraTreinador = treinador;
         if (gerenteDeEncontro.Inimigo)
         {
@@ -99,7 +102,7 @@ public class MbEncontros
             AplicadorDeCamera.cam.GetComponent<Camera>().farClipPlane = 100;
             GameController.g.FinalizaHuds();
 
-            if(!treinador)
+            if (!treinador)
                 InsereElementosDoEncontro.encontroPadrao(manager);
 
             GameController.g.HudM.ModoLimpo();
@@ -111,23 +114,22 @@ public class MbEncontros
     }
 
     void IniciaEncontro()
-    { 
+    {
         andado = 0;
         proxEncontro = SorteiaPassosParaEncontro();
         encontrado = criatureEncontrado();
-        IniciarEncontroCom(InsereInimigoEmCampo.RetornaInimigoEmCampo(encontrado, manager),false);
+        IniciarEncontroCom(InsereInimigoEmCampo.RetornaInimigoEmCampo(encontrado, manager), false);
         EventAgregator.Publish(EventKey.encounterEvent, null);
     }
 
     void RetornaParaModoPasseio()
     {
         MonoBehaviour.Destroy(GameObject.Find("cilindroEncontro"));
-        //GameController.g.HudM.Btns.btnParaCriature.interactable = true;
-        //heroi.emLuta = false;
-        luta = false;        
-        manager.AoHeroi();        
+
+        luta = false;
+        manager.AoHeroi();
         manager.transform.position = posHeroi;
-        
+
     }
 
     protected virtual bool LugarSeguro()
@@ -137,7 +139,7 @@ public class MbEncontros
 
         try
         {
-            nomeDaCena = (NomesCenas)System.Enum.Parse(typeof(NomesCenas), 
+            nomeDaCena = (NomesCenas)System.Enum.Parse(typeof(NomesCenas),
                 UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         }
         catch
@@ -148,20 +150,6 @@ public class MbEncontros
         }
 
         retorno = GetSceneConfigs.Get(nomeDaCena).LocaisSeguros();
-
-        /*
-        switch (nomeDaCena)
-        {
-            case NomesCenas.planicieDeInfinity:
-                retorno = GetSceneConfigs.Get(NomesCenas.planicieDeInfinity).LocaisSeguros();
-            break;
-            case NomesCenas.TempleZone:
-                retorno = LocaisSegurosDeTempleZone.LocalSeguro();
-            break;
-            case NomesCenas.Marjan:
-                retorno = LocaisSegurosDeMarjan.LocalSeguro();
-            break;
-        }*/
         return retorno;
     }
 
@@ -173,7 +161,7 @@ public class MbEncontros
     protected virtual List<Encontravel> listaEncontravel()
     {
         //return new List<Encontravel>() { new Encontravel(nomesCriatures.Nessei, 1, 3, 5) };//ListaDeEncontraveis.EncontraveisDaqui;
-        NomesCenas nomeDaCena = (NomesCenas)System.Enum.Parse(typeof(NomesCenas), 
+        NomesCenas nomeDaCena = (NomesCenas)System.Enum.Parse(typeof(NomesCenas),
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         return GetSceneConfigs.Get(nomeDaCena).ListaEncontravel; ;//ListaDeEncontraveis.EncontraveisDaqui;
     }
@@ -198,7 +186,7 @@ public class MbEncontros
             if (roleta <= sum && retorno == -1)
                 retorno = i;
         }
-        if(encontraveis.Count>0)
+        if (encontraveis.Count > 0)
             return encontraveis[retorno];
         else
             return new Encontravel();

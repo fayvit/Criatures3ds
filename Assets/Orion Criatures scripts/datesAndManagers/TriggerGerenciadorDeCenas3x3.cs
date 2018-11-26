@@ -18,6 +18,7 @@ public class TriggerGerenciadorDeCenas3x3 : MonoBehaviour {
         daCidade,
         daRegiao
     }
+
     // Use this for initialization
     void Start () {
         cenasLigadas = new NomesCenas[cenasLigadasString.Length];
@@ -45,7 +46,8 @@ public class TriggerGerenciadorDeCenas3x3 : MonoBehaviour {
             permitirLimpeza = true;
             NomesCenas[] N = SceneLoader.PegueAsCenasPorCarregar_b(cenasLigadas);
             NomesCenas[] N2 = SceneLoader.DescarregarCenasDesnecessarias_b(cenasLigadas);
-            //a2 = new AsyncOperation[N.Length];
+            
+
             for (int i = 0; i < N.Length; i++)
             {
                 SceneManager.LoadSceneAsync(N[i].ToString(), LoadSceneMode.Additive);
@@ -59,7 +61,7 @@ public class TriggerGerenciadorDeCenas3x3 : MonoBehaviour {
                 
             }
 
-            if (SceneManager.GetActiveScene().name == cenaAtivaNoDesligar.ToString())
+            if (SceneManager.GetActiveScene().name == cenaAtivaNoDesligar.ToString() )
                 SetarMusica();
 
             //ColetorDeLixo.Coleta();
@@ -96,7 +98,8 @@ public class TriggerGerenciadorDeCenas3x3 : MonoBehaviour {
                 break;
             }
 
-        if (mvc != null)
+        if (mvc != null &&
+                GlobalController.g.Musica.MusicaAtualAtiva.Musica !=mvc.Musica)
         {
            
             GlobalController.g.Musica.IniciarMusicaGuardandoAtual(mvc.Musica,mvc.Volume);
