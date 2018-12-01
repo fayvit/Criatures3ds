@@ -58,10 +58,10 @@ public class TriggerGerenciadorDeCena : MonoBehaviour
         if (cenaParaAtivars.isLoaded)
         {
             InvocarSetScene(cenaParaAtivars);
-            //ColetorDeLixo.Coleta();
-            
+
         }
-        else {
+        else
+        {
             Debug.LogWarning("A cena escolhida para ativa não está carregada");
         }
     }
@@ -82,7 +82,7 @@ public class TriggerGerenciadorDeCena : MonoBehaviour
     }
     public static void InvocarSetScene(Scene scene)
     {
-//        Debug.Log(scene.name);
+        
         SceneManager.SetActiveScene(scene);
         if (SceneManager.GetActiveScene() != scene)
             GameController.g.StartCoroutine(setarScene(scene));
@@ -93,12 +93,13 @@ public class TriggerGerenciadorDeCena : MonoBehaviour
 public enum NomesCenas
 {
     nula = -1,
-    cavernaIntro,    
+    cavernaIntro,
+    //reescritos
+    fortaleza3DS,
+    represaVsFortaleza,
+    cidadeDeIve,
+    fortalezaPrincipal,
     //antigos
-    planicieDeKatids,
-    katidsTerrain,
-    katidsVsTempleZone,
-    TempleZone,
     Marjan,
     TempleZoneVsMarjan,
     petrolifera,

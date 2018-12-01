@@ -7,34 +7,29 @@ public class TextosDeMarjanPT_BR
     {
         {ChaveDeTexto.Marjan1, new List<string>()
             {
-                "Seja muito bem vindo a cidade de <color=yellow>Marjan</color> viajante",
-                "Ao sul você pode ver a <color=yellow>Pertrolifera</color> do rio Marjan",
-                "Eles passam no momento por sérios problemas",
-                "Alguns compartimentos da petrolífera foram tomados por Criatures <color=orange>Iziculos</color>.",
-                "Iziculos são pequenos criatures insetos cortadores que gostam de viver em lugares úmidos e escuros",
-                "carregam um bastão e com esse bastão podem aprender habilidades cortantes fortes o suficiente para cortar barras de aço",
-                "Eu acho que a Petrolífera está em sérios apuros"
+                "Seja muito bem vindo a cidade de <color=yellow>Ive</color> viajante",
+                "Acabou de estar na cidade o candidato favorito a vencer a eleição de primeiro ministro do império",
+                "Ele se chama <color=orange>Glark Ganovan</color>, era o capitão da guarda pessoal do imperador",
+                "Nós gostamos muito das frases de efeito dele,",
+                " finalmente o primeiro ministro do reino vai representar o povo"
             }
         },
         {ChaveDeTexto.Marjan2, new List<string>()
             {
-                "Os esgotos que correm por baixo dessa planície são o abrigo de Criatures asquerosos.",
-                "Viajantes que utilizaram a estrada oeste de <color=yellow>Katids</color> sempre tem histórias para contar sobre insetos que saem dos esgotos",
-                "Em vista desse problema, a administração pública da <color=yellow>Garra Governamental</color> colocou grades nos tubos de esgoto",
-                "Mas isso não resolveu completamente o problema",
-                "Alguns criatures que carregam bastões podem utilizar a habilidade <color=cyan>Sabre de Bastão</color>",
-                " com essa habilidade cortam as barras de isolamento do esgoto",
-                "A Garra Governamental está sempre repondo as grades do esgoto, mas de tempos em tempos aparece uma nova abertura."
+                "Pela saida oeste da cidade você pode ver as tubulações que abastecem de agua as planicies de Orion",
+                "Ouvi dizer que dentro das tubulações existe um caminho que leva até a <color=cyan>arena sagrada de Drag</color>",
+                "Drag é o deus das aguas, sua arena divina fica no fundo do rio Mariinque",
+                "Não sei se acredito que alguém pode chegar até lá"
             }
         },
         {ChaveDeTexto.Marjan3,new List<string>()
             {
-                "Atracado nas margens do <color=yellow>rio Marjan</color> está o <color=yellow>Cruzador de Guerra </color>.",
+                "Atracado nas margens do <color=yellow>rio Mariinque</color> está o <color=yellow>Cruzador de Guerra </color>.",
                 "O cruzador de guerra é um navio construido para defender nosso continente das invasões estrangeiras.",
                 "Com o prolongar dos tempos de paz, o Cruzador se tornou pouco útil para questões de defesa territorial.",
                 "Então os militares resolveram disponibilizar o cruzador para transporte",
-                "Ultimamente eles estão fazendo a rota entre nossa cidade e a cidade de <color=yellow>Ofawing</color>",
-                "Proximo a Ofawing fica a sede da <color=yellow>Garra Governamental</color>"
+                "Ultimamente eles estão fazendo a rota entre nossa cidade e a cidade de <color=yellow>Hadjek</color>",
+                "Algumas pessoas vão até Hadjek procurando o caminho para a <color=cyan>arena sagrada de Laurense</color>"
             }},
         {ChaveDeTexto.Marjan4,new List<string>()
             {
@@ -185,7 +180,7 @@ public class TextosDeMarjanPT_BR
             }},
         {ChaveDeTexto.riquinhaDoEsgoto,new List<string>()
                 {
-                    "Olá Estranho! Você também é um treinador de Criatures em busca do Medalhão do oceano?",
+                    "Olá Estranho! Você também é um treinador de Criatures em busca do Medalhão das aguas?",
                     "Eu entrei aqui para procurar o caminho da <color=yellow>Arena de Drag</color> o deus das águas,...",
                     "Mas fiquei muito animada com a quantidade de báus com 2 Cristais que encontrei.",
                     "Se continuar assim, mesmo que não consiga o medalhão de Drag sairei daqui feliz, pois sairei muito rica!!"

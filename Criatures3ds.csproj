@@ -13,12 +13,14 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>N3DS:35</UnityBuildTarget>
     <UnityVersion>5.6.6f2</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -137,6 +139,9 @@
     <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\abrePortaInterna.cs" />
     <Compile Include="Assets\Orion Criatures scripts\ControllsAndMoves\transporteInterno.cs" />
     <Compile Include="Assets\Orion Criatures scripts\EncounterTriggerManager.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\Barreiraeletrica.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\BarrierBarEventBase.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\BarrierEventBase.cs" />
     <Compile Include="Assets\Orion Criatures scripts\Eventos\BarrierEventManager.cs" />
     <Compile Include="Assets\Orion Criatures scripts\Eventos\Bau.cs" />
     <Compile Include="Assets\Orion Criatures scripts\Eventos\EscondeCoisa.cs" />
@@ -145,6 +150,7 @@
     <Compile Include="Assets\Orion Criatures scripts\Eventos\IniciarEncontroDeLocal.cs" />
     <Compile Include="Assets\Orion Criatures scripts\Eventos\MbMudeCena.cs" />
     <Compile Include="Assets\Orion Criatures scripts\Eventos\MiniArmagedomPortatilNaCaverna.cs" />
+    <Compile Include="Assets\Orion Criatures scripts\Eventos\MoinhoDeVento.cs" />
     <Compile Include="Assets\Orion Criatures scripts\Eventos\RockMovePuzzle.cs" />
     <Compile Include="Assets\Orion Criatures scripts\Eventos\RockMovePuzzleManager.cs" />
     <Compile Include="Assets\Orion Criatures scripts\Eventos\TalkTriggerInkInDam.cs" />

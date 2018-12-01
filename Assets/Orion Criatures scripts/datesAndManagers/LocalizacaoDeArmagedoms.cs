@@ -29,12 +29,13 @@ public class LocalizacaoDeArmagedoms
         } },
         { IndiceDeArmagedoms.secretoDaRepresa, new VisitasParaArmagedom() {
             Endereco = new Vector3(590, 2f, 97),
-            nomeDasCenas = new NomesCenas[5]{
+            nomeDasCenas = new NomesCenas[6]{
                 NomesCenas.represaTopCam,
                 NomesCenas.represaTopCam_C,
                 NomesCenas.represaTopCam_B,
                 NomesCenas.represaTopCam_A,
-                NomesCenas.infinityVsRepresa
+                NomesCenas.infinityVsRepresa,
+                NomesCenas.represaVsFortaleza
             }
         } },
         { IndiceDeArmagedoms.Marjan, new VisitasParaArmagedom() {

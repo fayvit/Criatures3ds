@@ -16,7 +16,10 @@ public static class TextosDeBarreirasPT_BR
             "É notável pelo tamanho da tubulação que alguem pode caminhar ai dentro. Se não fossem as grades poderiamos entrar.",
             "Mais grades bloqueando nosso caminho!!",
             /*ID=8*/
-            "Isso me lembra uma musica que diz \" Pedrada na vidraça, tudo que tenho consegui na raça.\""
+            "Isso me lembra uma musica que diz \" Pedrada na vidraça, tudo que tenho consegui na raça.\"",
+            "Tenho uma leve impressão que as barras estão relacionadas com o moinho de vento",
+            "Parece que há um motor eletrico sem bateria.",
+            "Existe um mecanismo com as engrenagens emperradas. Parece que a graxa perdeu a viscosidade"
         } }
     };
 }

@@ -67,23 +67,18 @@ public class RockMovePuzzleManager : AtivadorDeBotao
 
         if (iniciarVisaoDeFeito)
         {
-            /*
-            contadorDeTempo += Time.deltaTime;
-            transform.position = Vector3.Lerp(posInicial,posDeEscondido,contadorDeTempo/tempoParaEsconder);
 
-            if (contadorDeTempo > tempoParaEsconder)*/
             if (escondePedra.Update())
             {
 
                 GameController.g.Manager.AoHeroi();
-                //GameController.g.HudM.ligarControladores();
-                //AndroidController.a.LigarControlador();
+
                 GameController.g.MyKeys.MudaAutoShift(ID, true);
                 GameController.g.MyKeys.MudaShift(chaveEspecial, true);
 
                 FinalizaEspecifico();
                 gameObject.SetActive(false);
-                EventAgregator.Publish(new StandardSendStringEvent(gameObject, SoundEffectID.coisaBoaRebot.ToString(), EventKey.disparaSom));
+                EventAgregator.Publish(new StandardSendStringEvent(gameObject, SoundEffectID.Item.ToString(), EventKey.disparaSom));
                 GlobalController.g.Musica.ReiniciarMusicas();
             }
         }
@@ -157,12 +152,6 @@ public class RockMovePuzzleManager : AtivadorDeBotao
         GameController.g.HudM.Menu_Basico.IniciarHud(Respostas,
             BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.simOuNao).ToArray());
 
-        /*
-         ActionManager.ModificarAcao(transform, 
-             () => {
-                 Respostas(GameController.g.HudM.Menu_Basico.OpcaoEscolhida);
-             });
-             */
     }
 
     void Respostas(int indice)
@@ -212,8 +201,7 @@ public class RockMovePuzzleManager : AtivadorDeBotao
     {
         ActionManager.ModificarAcao(transform, null);
         GameController.g.Manager.AoHeroi();
-        /*AndroidController.a.LigarControlador();
-        GameController.g.HudM.ligarControladores();*/
+
         GameController.g.HudM.Menu_Basico.FinalizarHud();
         GameController.g.HudM.Painel.EsconderMensagem();
         ativo = false;

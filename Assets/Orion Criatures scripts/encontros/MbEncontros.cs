@@ -84,9 +84,9 @@ public class MbEncontros
         }
     }
 
-    public void FinalizaEncontro(bool treinador)
+    public void FinalizaEncontro(bool treinador, bool colocarLutaFalse)
     {
-        if (!treinador)
+        if (colocarLutaFalse)
             luta = false;
 
         gerenteDeEncontro.FinalizarEncontro(treinador);
@@ -117,7 +117,7 @@ public class MbEncontros
     {
         andado = 0;
         proxEncontro = SorteiaPassosParaEncontro();
-        encontrado = criatureEncontrado();
+        encontrado = CriatureEncontrado();
         IniciarEncontroCom(InsereInimigoEmCampo.RetornaInimigoEmCampo(encontrado, manager), false);
         EventAgregator.Publish(EventKey.encounterEvent, null);
     }
@@ -158,25 +158,25 @@ public class MbEncontros
         return Random.Range(minEncontro, maxEncontro);
     }
 
-    protected virtual List<Encontravel> listaEncontravel()
+    protected virtual List<Encontravel> ListaEncontravel()
     {
-        //return new List<Encontravel>() { new Encontravel(nomesCriatures.Nessei, 1, 3, 5) };//ListaDeEncontraveis.EncontraveisDaqui;
+        
         NomesCenas nomeDaCena = (NomesCenas)System.Enum.Parse(typeof(NomesCenas),
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-        return GetSceneConfigs.Get(nomeDaCena).ListaEncontravel; ;//ListaDeEncontraveis.EncontraveisDaqui;
+        return GetSceneConfigs.Get(nomeDaCena).ListaEncontravel;
     }
 
-    Encontravel criatureEncontrado()
+    Encontravel CriatureEncontrado()
     {
-        List<Encontravel> encontraveis = listaEncontravel();//secaoEncontravel[IndiceDoLocal()];
+        List<Encontravel> encontraveis = ListaEncontravel();
         float maiorAleatorio = 0;
         for (int i = 0; i < encontraveis.Count; i++)
         {
             maiorAleatorio += encontraveis[i].taxa;
         }
-        //		print(maiorAleatorio);
+        
         float roleta = Random.Range(0, maiorAleatorio);
-        //		print(roleta);
+        
         float sum = 0;
         int retorno = -1;
         for (int i = 0; i < encontraveis.Count; i++)

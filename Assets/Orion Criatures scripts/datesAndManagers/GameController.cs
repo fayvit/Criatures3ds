@@ -322,9 +322,10 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void RetornarParaFluxoDoHeroi(bool treinador = false)
+
+    public void RetornarParaFluxoDoHeroi(bool treinador = false, bool colocarLutaFalse = false)
     {
-        encontros.FinalizaEncontro(treinador);
+        encontros.FinalizaEncontro(treinador, colocarLutaFalse);
         usoDeItens.FinalizaUsaItemDeFora();
     }
 

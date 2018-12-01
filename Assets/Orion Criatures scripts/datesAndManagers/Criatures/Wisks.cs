@@ -22,7 +22,7 @@ public class Wisks
                 NivelDoGolpe = 1,
                 Colisor = new colisor("esqueleto/corpo_001/coluna/pescoco/cabeca",
                                             new Vector3(0,0f,0),
-                                            new Vector3(-0.644f,-0.495f,0.048f)),
+                                            new Vector3(-0.71f,-0.013f,0.048f)),
                 TaxaDeUso = 0.5f
             },new GolpePersonagem()
             {
@@ -97,7 +97,8 @@ public class Wisks
                         velocidadeDuranteOPulo = 4,
                         amortecimentoNaTransicaoDePulo = 1.2f
                     }
-                },alturaCamera = 3,
+                },
+                alturaCamera = 3,
                 distanciaCamera = 7,
                 alturaCameraLuta = 5,
                 distanciaCameraLuta = 5

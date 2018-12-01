@@ -17,8 +17,8 @@ public class TextosDeKatidsPT_BR
         { ChaveDeTexto.katids2,new List<string>()
         {
             "Seguindo pelos caminhos do sul é possível alcançar a cidade de <color=yellow>Ive</color>",
-            "Nesse caminho é necessário passar por algumas pequenas cavernas e pelo campo de um templo Agnun",
-            "Da cidade de Marjan é possível ver a <color=yellow>Torre da Vida Eterna</color>"
+            "Nesse caminho é necessário passar por algumas pequenas cavernas, na frente da represa e perto da Fortaleza Stealer",
+            "Da cidade de Ive é possível ver a <color=yellow>Torre da Vida Eterna</color>"
         }
         },
         { ChaveDeTexto.katids3,new List<string>()
@@ -32,8 +32,8 @@ public class TextosDeKatidsPT_BR
         },
         { ChaveDeTexto.katids4,new List<string>()
         {
-            "Pelo caminho do sudoeste você pode encontrar uma entrada para os esgotos da planície",
-            "Dizem que os esgotos ligam um caminho para a arena divina que fica no fundo do rio",
+            "Pelo caminho do sudeste você pode encontrar uma entrada para as tubuluções de fornecimento de água",
+            "Dizem que as tubulações ligam um caminho para a arena divina que fica no fundo do rio",
             "Essa é a arena divida de Drag, o deus das águas",
             "Lá, você pode conseguir o medalhão das aguas"
         }
@@ -90,6 +90,7 @@ public class TextosDeKatidsPT_BR
         {
             ChaveDeTexto.DerekDepoisDeIan,new List<string>()
             {
+                "Você está procurando o portador da caneta sagrada de Log?",
                 "Então você quer me tomar a caneta sagrada de Log??",
                 "Prepare-se para lutar!!",
                 ""
@@ -124,10 +125,10 @@ public class TextosDeKatidsPT_BR
         {
             ChaveDeTexto.companhiaDoMiniArmgdDeKatids,new List<string>()
             {
-                "Você está indo bem novato. Passando pela planicie das ruinas do templo você encontrará a cidade de <color=yellow>Marjan</color>.",
-                "Da cidade de Marjan você poderá ver a <color=yellow>Torre da Vida Eterna</color> morada do imperador",
+                "Você está indo bem novato. Passando pela planicie da fortaleza você encontrará a cidade de <color=yellow>Ive</color>.",
+                "Da cidade de Ive você poderá ver a <color=yellow>Torre da Vida Eterna</color> morada do imperador",
                 "Estamos instalando mini armagedom's pelas planícies de Orion",
-                "Se sua jornada se estender mais talvez poderemos nos encontrar novamente."
+                "Se sua jornada se estender mais, talvez poderemos nos encontrar novamente."
             }
         },
         {
@@ -164,7 +165,7 @@ public class TextosDeKatidsPT_BR
             ChaveDeTexto.CamusMontanhaDoTemplo3,new List<string>()
             {
                 "Da beirada da montanha você pode ver uma caverna, esta te levará a cidade de <color=yellow>Marjan</color>",
-                "Estive lá faz pouco tempo. Tem lojas interessantes por lá, talvez te interesse visita-las"
+                "Estive lá faz pouco tempo. Existem numerosas lojas lá, talvez te interesse visita-las"
             }
         },
         {
@@ -202,7 +203,7 @@ public class TextosDeKatidsPT_BR
             {
                 "Nós estamos instalando estações de contato com armagedom pelas plánicies de Orion",
                 "Nelas você pode recuperar a energia de seus criatures",
-                "Ao longo da sua jornada você deve encontrar outras estações como essa",    
+                "Ao longo da sua jornada você deve encontrar outras estações como essa",
                 "continue em frente Cesar Corean, é bom saber que existe alguem de tanto valor como você em nossa causa."
             }
         }

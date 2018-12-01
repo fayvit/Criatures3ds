@@ -107,7 +107,8 @@ public class ApresentaDerrota
                     SceneLoader loadScene = G.AddComponent<SceneLoader>();
                     loadScene.CenaDoCarregamento(GameController.g.Salvador.IndiceDoJogoAtual);
                     //GameController.g.Manager.AoHeroi();
-                    GameController.g.RetornarParaFluxoDoHeroi();
+
+                    GameController.g.RetornarParaFluxoDoHeroi(false, true);
                     fase = FaseDaDerrota.emEspera;
                     return RetornoDaDerrota.deVoltaAoArmagedom;
                 }

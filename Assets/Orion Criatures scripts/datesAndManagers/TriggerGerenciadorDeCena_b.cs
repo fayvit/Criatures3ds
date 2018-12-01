@@ -29,10 +29,10 @@ public class TriggerGerenciadorDeCena_b : MonoBehaviour
                     for (int i = 0; i < ao.Length; i++)
                     {
                         progresso += ao[i].progress;
-                        
+
                     }
 
-                    
+
                     progresso /= ao.Length;
 
                     loadBar.ValorParaBarra(Mathf.Min(progresso, 1));
@@ -55,7 +55,7 @@ public class TriggerGerenciadorDeCena_b : MonoBehaviour
                     GameController.g.ModificacoesDaCena();
                 }
 
-             break;
+                break;
         }
     }
 
@@ -104,8 +104,8 @@ public class TriggerGerenciadorDeCena_b : MonoBehaviour
 
         for (int i = 0; i < N.Length; i++)
         {
-            ao[i] = SceneManager.LoadSceneAsync(N[i].ToString(),LoadSceneMode.Additive);
-           // SceneManager.sceneLoaded -= OnLoadTargetScene;
+            ao[i] = SceneManager.LoadSceneAsync(N[i].ToString(), LoadSceneMode.Additive);
+            // SceneManager.sceneLoaded -= OnLoadTargetScene;
         }
 
         loadBar = FindObjectOfType<LoadBar>();

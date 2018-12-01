@@ -9,6 +9,7 @@ public class ListaDeEncontraveis
         get
         {
             List<Encontravel> retorno = new List<Encontravel>();
+            /*
             NomesCenas nomeDaCena = (NomesCenas)System.Enum.Parse(typeof(NomesCenas), SceneManager.GetActiveScene().name);
             switch (nomeDaCena)
             {
@@ -32,7 +33,7 @@ public class ListaDeEncontraveis
                 default:
                     retorno = Default;
                 break;
-            }
+            }*/
 
             return retorno;
         }
