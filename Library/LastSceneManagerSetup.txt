@@ -1,34 +1,16 @@
 sceneSetups:
-- path: Assets/cenas/legado/planicieDeInfinity_b.unity
+- path: Assets/cenas/represaVsFortaleza.unity
+  isLoaded: 1
+  isActive: 0
+- path: Assets/cenas/FOrtaleza/fortaleza3DS.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/cenas/AsInfinitys/infinity_C.unity
+- path: Assets/cenas/FOrtaleza/fortalezaPrincipal.unity
   isLoaded: 1
   isActive: 0
-- path: Assets/cenas/AsInfinitys/infinity_A.unity
+- path: Assets/cenas/FOrtaleza/cidadeDeIve.unity
   isLoaded: 1
   isActive: 0
-- path: Assets/cenas/AsInfinitys/infinity_B.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/AsInfinitys/infinity_D.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/AsInfinitys/infinity_EF.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/AsInfinitys/infinity_G.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/AsInfinitys/infinity_H.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/AsInfinitys/infinity_I.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/AsInfinitys/infinity_J.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/cenas/legado/comunsDeFase.unity
+- path: Assets/cenas/infinityVsRepresa.unity
   isLoaded: 1
   isActive: 0
